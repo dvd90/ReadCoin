@@ -1,4 +1,5 @@
 require 'faker'
+require 'open-uri'
 
 User.destroy_all
 Kid.destroy_all
@@ -36,7 +37,7 @@ puts "creating ebooks.."
 5.times do
   ebook = Ebook.new(
     title: Faker::Book.title,
-    url:
+    url: 'http://www.planetpublish.com/wp-content/uploads/2011/11/The_Jungle_Book_T.pdf',
     quiz:
     readcoin: Faker::Number.between(1, 15),
     genre: Faker::Book.genre
@@ -48,7 +49,7 @@ puts "creating prizes.."
 5.times do
   prize = Prize.new(
   price: Faker::Number.non_zero_digit,
-  title:
+  title: Faker::Commerce.product_name,
   picture: Faker::LoremPixel.image("60x60", true)
  )
 
