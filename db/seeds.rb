@@ -1,3 +1,4 @@
+
 require 'faker'
 require 'open-uri'
 
@@ -64,3 +65,4 @@ ebook.create!
 prize.create!
 
 puts "finished seeding"
+
