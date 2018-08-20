@@ -1,7 +1,7 @@
 <h1><%= @kid.name %>'s dashboard</h1>
 <ul>
   <% @books.each do |book| %>
-    <li><%= book.title %></li>
+    <li><%= link_to book.title, kid_book_path(@kid, book) %></li>
   <% end %>
 </ul>
 
