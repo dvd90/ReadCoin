@@ -48,9 +48,28 @@ class KidsController < ApplicationController
    end
  end
 
+def edit
+  @kid = Kid.find(params[:id])
+end
+
+def update
+  @kid = Kid.find(params[:id])
+  if @kid.update(toilet_params)
+    redirect_to kids_path
+  else
+    render :edit
+  end
+end
+
+def destroy
+  @kid = Kid.find(params[:id])
+  @kid.destroy
+  redirect_to kids_path
+end
 
 
-  private
+
+private
 
   def kid_params
     params.require(:kid).permit(:name, :parent_id, :password, :age, :interests, :avatar)
