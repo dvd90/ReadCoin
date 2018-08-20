@@ -1,13 +1,17 @@
 <div class="two-sides">
   <div class="left-side">
-    <h2> Parent Log in</h2>
-    <h1>Welcome <%= @user.email %>!</h1>
-    <%= link_to "Dashboard", kids_path %>
+    <div class="left-side-container">
+      <h2> Parent Log in</h2>
+      <h1>Welcome <%= @user.email %>!</h1>
+      <%= link_to "Dashboard", kids_path %>
+    </div>
   </div>
   <div class="right-side">
-    <h2>Kid Log in</h2>
-    <%= simple_form_for kids_login_path do |f| %>
-      <%= f.input :password %>
-    <% end %>
+    <div class="right-side-container">
+      <h2>Kid Log in</h2>
+      <%= simple_form_for kids_login_path do |f| %>
+        <%= f.input :password %>
+      <% end %>
+    </div>
   </div>
 </div>
