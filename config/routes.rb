@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   end
   resources :prizes, only: [:index, :show]
   get 'login', to: 'kids#login', as: :kids_login
+  post 'login', to: 'kids#create_login', as: :verify_password
+  get 'kid_dashboard/:id', to: 'kids#kid_dashboard', as: :kid_dashboard
 end
