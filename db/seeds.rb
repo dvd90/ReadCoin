@@ -1,3 +1,4 @@
+
 require 'faker'
 require 'open-uri'
 
@@ -37,8 +38,15 @@ puts "creating ebooks.."
 5.times do
   ebook = Ebook.new(
     title: Faker::Book.title,
+
     url: 'http://www.planetpublish.com/wp-content/uploads/2011/11/The_Jungle_Book_T.pdf',
     quiz: 'roaman',
+
+    author: Faker::Book.author,
+    summery: 'it was a wonder day as i walk in the forest...'
+    url: 'http://www.planetpublish.com/wp-content/uploads/2011/11/The_Jungle_Book_T.pdf',
+    quiz:
+
     readcoin: Faker::Number.between(1, 15),
     genre: Faker::Book.genre
     )
@@ -62,3 +70,4 @@ ebook.create!
 prize.create!
 
 puts "finished seeding"
+
