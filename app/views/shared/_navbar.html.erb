@@ -12,7 +12,8 @@
       <!-- Links when logged in -->
       <%= link_to "E-shop", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "E-books", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Dashbord", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Dashboard", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'navbar-wagon-item navbar-wagon-link', id: 'navbar-logout' %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
