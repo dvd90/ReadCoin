@@ -38,7 +38,7 @@ puts "creating ebooks.."
   ebook = Ebook.new(
     title: Faker::Book.title,
     url: 'http://www.planetpublish.com/wp-content/uploads/2011/11/The_Jungle_Book_T.pdf',
-    quiz:
+    quiz: 'roaman',
     readcoin: Faker::Number.between(1, 15),
     genre: Faker::Book.genre
     )
