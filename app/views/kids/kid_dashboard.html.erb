@@ -1,2 +1,7 @@
-<h1>kid dashboard</h1>
-<%= @kid.name %>
+<h1><%= @kid.name %>'s dashboard</h1>
+<ul>
+  <% @books.each do |book| %>
+    <li><%= book.title %></li>
+  <% end %>
+</ul>
+
