@@ -21,6 +21,7 @@ class KidsController < ApplicationController
 
   def kid_dashboard
     @kid = Kid.find(params[:id])
+    @books = Book.where(genre: @kid.interests).where("min_age < ? AND max_age > ?", @kid.age, @kid.age)
   end
 
   private
