@@ -1,0 +1,5 @@
+<h1><%= @user.email %> Dashboard</h1>
+<% @kids.each do |kid| %>
+<h3><%= link_to kid.name, kid_path(kid) %>  <%= link_to "edit", edit_kid_path(kid) %></h3>
+<% end %>
+<p><%= link_to "add a kid", new_kid_path %></p>
