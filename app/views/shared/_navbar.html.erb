@@ -10,7 +10,7 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "E-shop", prizes_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "E-shop", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "E-books", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Dashboard", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'navbar-wagon-item navbar-wagon-link', id: 'navbar-logout' %>
