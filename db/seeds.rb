@@ -2,6 +2,10 @@
 require 'faker'
 require 'open-uri'
 
+# def seed_image(file_name)
+#  File.open(File.join(Rails.root, "/app/assets/images/#{file_name}"))
+# end
+
 User.destroy_all
 Kid.destroy_all
 Book.destroy_all
@@ -21,9 +25,8 @@ puts "creating kids"
   age: 8,
   interests: 'sci-fi',
   wallet: 150,
-  avatar: Faker::Avatar.image("my-own-slug", "50x50", "jpg"),
+  avatar: "alex.png",
   parent_id: user.id
-  avatar: url("alex.png")
   )
 
  Kid.create!(
@@ -32,7 +35,7 @@ puts "creating kids"
   age: 10,
   interests: 'fashion',
   wallet: 100,
-  avatar: Faker::Avatar.image("my-own-slug", "50x50", "jpg"),
+  avatar: "sam.png",
   parent_id: user.id
   )
 
@@ -77,4 +80,3 @@ end
 
 
 puts "finished seeding"
-
