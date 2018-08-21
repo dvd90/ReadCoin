@@ -68,6 +68,10 @@ def destroy
   redirect_to kids_path
 end
 
+def create_avatar
+  @kid = Kid.find(params[:kid_id])
+end
+
 private
 
   def kid_params
