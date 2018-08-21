@@ -1,12 +1,37 @@
 <div class="parent-dashboard-wrapper">
-  <div class="parent-dashboard-container">
-    <h1><%= @user.email %> Dashboard</h1>
-    <% @kids.each do |kid| %>
-      <h3><%= link_to kid.name, kid_path(kid) %>  <%= link_to "edit", edit_kid_path(kid) %></h3>
-      <ul>
-        <li>kid.readings</li>
-      </ul>
-    <% end %>
-    <p><%= link_to "add a kid", new_kid_path %></p>
-  </div>
+  <div class="parent-dashboard-container kid-index-container">
+    <h2>What are they up to?</h2>
+      <div class="parent-dashboard-container-content">
+        <div class="row">
+        <% @kids.each do |kid| %>
+        <div class="col-xs-12 col-xs-offset-3">
+            <div class="parent-card">
+              <div class="card-avatar">
+                <%= image_tag kid.avatar, class: "parent-avatar" %>
+              </div>
+              <div class="kid-name">
+                <p><%= kid.name %></p>
+              </div>
+              <div class="kid-edit">
+                <p><%= link_to "edit", edit_kid_path(kid) %></p>
+              </div>
+              <div class="kid-readings">
+                <p>Readings: <%= kid.readings.length %></p>
+              </div>
+              <div class="kid-purchases">
+                <p>Purchases: <%= kid.purchases.length %></p>
+              </div>
+              <div class="kid-readcoins">
+                <p>Readcoins: <%= kid.wallet %></p>
+              </div>
+              <div class="show-more">
+                <%= link_to "more", kid_path(kid), class: "parent-button" %>
+              </div>
+            </div>
+            </div>
+        <% end %>
+        </div>
+      </div>
+      <p><%= link_to "add a kid", new_kid_path, class: "parent-button add-a-kid-btn" %></p>
+    </div>
 </div>
