@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :kids, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :purchases, only: [:index, :create]
-    resources :readings, only: [:index, :create]
-    resources :books, only: [:index, :show]
+    resources :books, only: [:index, :show] do
+      resources :readings, only: [:index, :create, :show]
+    end
   end
   resources :prizes, only: [:index, :show]
   get 'login', to: 'kids#login', as: :kids_login

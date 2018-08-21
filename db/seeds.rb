@@ -23,6 +23,7 @@ puts "creating kids"
   wallet: 150,
   avatar: Faker::Avatar.image("my-own-slug", "50x50", "jpg"),
   parent_id: user.id
+  avatar: url("alex.png")
   )
 
  Kid.create!(
