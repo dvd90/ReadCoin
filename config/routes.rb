@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :kids, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    get 'create_avatar', to: 'kids#create_avatar', as: :create_avatar
     resources :books, only: [:index, :show] do
       resources :readings, only: [:index, :create, :show]
     end

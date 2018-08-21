@@ -55,8 +55,8 @@ end
 
 def update
   @kid = Kid.find(params[:id])
-  if @kid.update(toilet_params)
-    redirect_to kids_path
+  if @kid.update(kid_params)
+    redirect_to kid_dashboard_path(@kid)
   else
     render :edit
   end
@@ -66,6 +66,10 @@ def destroy
   @kid = Kid.find(params[:id])
   @kid.destroy
   redirect_to kids_path
+end
+
+def create_avatar
+  @kid = Kid.find(params[:kid_id])
 end
 
 private
