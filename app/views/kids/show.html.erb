@@ -1,1 +1,17 @@
-<h1><%= @kid.name %></h1>
+<div class="parent-dashboard-wrapper">
+  <div class="parent-dashboard-container">
+    <h1><%= @kid.name %></h1>
+    <h3>Readings:</h3>
+    <ul>
+      <% @kid.readings.each do |reading| %>
+        <li><%= reading.book.title %></li>
+      <% end %>
+    </ul>
+    <h3>Purchases:</h3>
+    <ul>
+      <% @kid.purchases.each do |purchase| %>
+        <li><%= purchase.prize.title %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
