@@ -16,13 +16,13 @@
                 <p><%= link_to "edit", edit_kid_path(kid) %></p>
               </div>
               <div class="kid-readings">
-                <p>Readings: <%= kid.readings.length %></p>
+                <p><i class="fas fa-book-reader"></i> Readings: <%= kid.readings.length %></p>
               </div>
               <div class="kid-purchases">
-                <p>Purchases: <%= kid.purchases.length %></p>
+                <p><i class="fas fa-gift"></i> Purchases: <%= kid.purchases.length %></p>
               </div>
               <div class="kid-readcoins">
-                <p>Readcoins: <%= kid.wallet %></p>
+                <p><i class="fas fa-coins"></i> Readcoins: <%= kid.wallet %></p>
               </div>
               <div class="show-more">
                 <%= link_to "more", kid_path(kid), class: "parent-button" %>
