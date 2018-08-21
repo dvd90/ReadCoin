@@ -2,6 +2,7 @@ class PurchasesController < ApplicationController
 
   def show
     @purchase = Purchase.find(params[:id])
+    @kid = Kid.find(params[:kid_id])
   end
 
   def create

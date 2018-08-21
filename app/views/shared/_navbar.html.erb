@@ -13,15 +13,14 @@
 
       <!-- Links when logged in -->
       <%= link_to "E-shop", kid_prizes_path(@kid), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "E-books", kid_books_path(@kid), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Dashboard", kid_dashboard_path(@kid), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "E-books", kid_dashboard_path(@kid), class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
   <div class="dropdown">
-    <%= image_tag @kid.avatar, class:"kid-avatar" %>
+    <%= image_tag @kid.avatar, class:"kid-avatar ", id:"navbar-wagon-menu", data: { toggle: 'dropdown'}%>
     <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-      <li><%= link_to "Log out", "#", class: 'navbar-wagon-item navbar-wagon-link'%></li>
+      <li><%= link_to "Create your avatar", "#", class: 'navbar-wagon-item navbar-wagon-link'%></li>
       <li><%= link_to "Your profile", kid_path(@kid), class: 'navbar-wagon-item navbar-wagon-link' %></li>
       <li><%= link_to "Log out", kids_login_path, class: 'navbar-wagon-item navbar-wagon-link', id: 'navbar-logout' %></li>
     </ul>

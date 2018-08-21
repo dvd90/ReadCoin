@@ -2,6 +2,7 @@ class ReadingsController < ApplicationController
   def show
     @reading = Reading.find(params[:id])
     @book = Book.find(params[:book_id])
+    @kid = Kid.find(params[:kid_id])
   end
 
   def create
