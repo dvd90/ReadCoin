@@ -6,10 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-config.action_dispatch.default_headers = {
-    'X-Frame-Options' => 'ALLOWALL'
-}
-
 module ReadCoin
   class Application < Rails::Application
     config.generators do |generate|
