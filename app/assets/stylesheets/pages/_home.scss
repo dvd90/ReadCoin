@@ -1,2 +1,38 @@
+//banner
+.banner-img {
+  background-image: url("banner-landing-page.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(60%);
+}
 
+.banner-title {
+  color: white;
+  font-size: 150px;
+  font-weight: bold;
+}
+
+.banner-text {
+  color: white;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+//testimonals
+.testimonals-text {
+  color:black;
+}
+
+.card-border {
+  border: 0;
+}
+
+
+
+//services
+.services-background {
+  color: black;
+  background-color: $gray;
+  height: 10vh;
+}
 
