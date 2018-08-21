@@ -68,8 +68,6 @@ def destroy
   redirect_to kids_path
 end
 
-
-
 private
 
   def kid_params

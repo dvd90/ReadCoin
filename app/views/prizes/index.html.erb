@@ -1,0 +1,6 @@
+<h1>E-Shop</h1>
+<ol>
+<% @prizes.each do |prize| %>
+<li><%= link_to prize.title, prize_path(prize) %>  <%= prize.price %> $</li>
+<% end %>
+</ol>
