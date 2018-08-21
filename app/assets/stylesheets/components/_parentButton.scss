@@ -1,9 +1,13 @@
 .parent-button {
-  background-color: #F25F5C;
+  background-color: rgba(242, 95, 92, 0.8);
   color: white;
   padding: 5px 15px;
   border-radius: 15px;
 }
+.parent-button:hover {
+  background-color: rgba(242, 95, 92, 1);
+}
 a.parent-button:hover {
   text-decoration: none;
+  color: white;
 }

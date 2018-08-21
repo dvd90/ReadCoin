@@ -1,0 +1,54 @@
+.kid-index-container{
+  text-align: center;
+  position: relative;
+}
+.add-a-kid-btn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+.parent-card {
+  background-color: #DED9E2;
+  position: relative;
+  width: 40vw;
+  padding: 60px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.card-avatar {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.kid-name {
+  position: absolute;
+  top: 5px;
+  left: 70px;
+  color: #F25F5C;
+}
+.kid-edit {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+}
+.kid-readings {
+  position: absolute;
+  top: 30px;
+  left: 70px;
+}
+.kid-purchases {
+  position: absolute;
+  top: 60px;
+  left: 70px;
+}
+.kid-readcoins {
+  position: absolute;
+  top: 90px;
+  left: 70px;
+}
+.show-more {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+}
