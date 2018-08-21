@@ -18,7 +18,11 @@
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
   <div class="dropdown">
-    <%= cl_image_tag @kid.avatar, class:"kid-avatar ", id:"navbar-wagon-menu", data: { toggle: 'dropdown'}%>
+    <% if @kid.avatar %>
+      <%= cl_image_tag @kid.avatar, class:"kid-avatar ", id:"navbar-wagon-menu", data: { toggle: 'dropdown'}%>
+    <% else %>
+      <%= image_tag "Transparency.png", class:"kid-avatar ", id:"navbar-wagon-menu", data: { toggle: 'dropdown'}%>
+    <% end %>
     <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
       <li><%= link_to "Create your avatar", kid_create_avatar_path(@kid), class: 'navbar-wagon-item navbar-wagon-link'%></li>
       <li><%= link_to "Your profile", kid_path(@kid), class: 'navbar-wagon-item navbar-wagon-link' %></li>

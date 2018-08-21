@@ -35,7 +35,7 @@ class KidsController < ApplicationController
   end
 
   def new
-    @kid = Kid.new
+    @new_kid = Kid.new
   end
 
   def create
