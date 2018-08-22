@@ -1,18 +1,20 @@
 //banner
 .banner-img {
-  background-image: url("http://www.webanywhere.co.uk/blog/wp-content/uploads/2012/09/rsz_children_tablet.jpg");
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("http://www.webanywhere.co.uk/blog/wp-content/uploads/2012/09/rsz_children_tablet.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
   width: 100vw;
-  filter: brightness(0.7);
   position: relative;
+  z-index: -1;
+
 
 }
 
-.row-center {
+.banner-content {
   position: absolute;
+  z-index: 9999;
   top: 50%;
   left:50%;
   transform: translate(-50%,-50%);
@@ -27,8 +29,12 @@
   margin-top: 35px;
   font-size: 40px;
   width: 200px;
+
 }
 
+.banner-text {
+  font-weight: bolder;
+}
 
 //problem-solution
 .problem-solution-background {
