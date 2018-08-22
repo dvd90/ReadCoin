@@ -50,6 +50,11 @@ puts "creating ebooks.."
     quiz: 'who many birds in the sky?',
     reward: Faker::Number.between(1, 15),
     genre: 'sci-fi',
+    quiz: {"Q1": [["A1", false], ["A2", false], ["A3", true], ["A4", false]],
+      "Q2": [["A1", true], ["A2", false], ["A3", false], ["A4", false]],
+      "Q3": [["A1", false], ["A2", false], ["A3", false], ["A4", true]],
+      "Q4": [["A1", false], ["A2", true], ["A3", false], ["A4", false]],
+      "Q5": [["A1", false], ["A2", true], ["A3", false], ["A4", false]]},
     min_age: 5,
     max_age: 10
     )
