@@ -1,2 +1,43 @@
-// Specific CSS for your home-page
+//banner
+.banner-img {
+  background-image: url("http://www.webanywhere.co.uk/blog/wp-content/uploads/2012/09/rsz_children_tablet.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(0.6);
+
+}
+
+.banner-btn {
+  font-size: 36px;
+}
+.banner-title {
+  color: black;
+  font-size: 150px;
+  font-weight: bold;
+}
+
+.banner-text {
+  color: black;
+  font-size: 50px;
+  font-weight: bolder;
+  margin-bottom: 70px;
+}
+
+//testimonals
+.testimonals-text {
+  color:black;
+}
+
+.card-border {
+  border: 0;
+}
+
+
+
+//services
+.services-background {
+  color: black;
+  background-color: $gray;
+  height: 10vh;
+}
 
