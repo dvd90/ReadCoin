@@ -5,4 +5,5 @@ class Book < ApplicationRecord
   validates :url, presence: true
   validates :genre, presence: true
   validates :reward, presence: true
+  serialize :quiz
 end
