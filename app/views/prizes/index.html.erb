@@ -1,0 +1,7 @@
+<h1>E-Shop</h1>
+<h3><%= @kid.name %> wallet: <%= @kid_balance %>$</h3>
+<ol>
+<% @prizes.each do |prize| %>
+<li><%= link_to prize.title, kid_prize_path(@kid, prize) %>  <%= prize.price %> $</li>
+<% end %>
+</ol>

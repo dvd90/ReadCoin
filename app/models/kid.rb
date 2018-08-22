@@ -7,4 +7,5 @@ class Kid < ApplicationRecord
   validates :parent_id, presence: true
   validates :name, presence: true
   validates :password, presence: true
+  mount_uploader :avatar, PhotoUploader
 end

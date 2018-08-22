@@ -1,2 +1,11 @@
-<h1>kid dashboard</h1>
-<%= @kid.name %>
+<div class="kid-dashboard-wrapper">
+  <div class="kid-dashboard-container">
+    <h1><%= @kid.name %>'s dashboard</h1>
+    <ul>
+      <% @books.each do |book| %>
+        <li><%= link_to book.title, kid_book_path(@kid, book) %></li>
+      <% end %>
+    </ul>
+    <%= link_to "Go to E-Shop",  kid_prizes_path(@kid) %>
+  </div>
+</div>
