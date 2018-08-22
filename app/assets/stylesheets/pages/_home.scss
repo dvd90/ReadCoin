@@ -1,21 +1,26 @@
 //banner
 .banner-img {
-  background-image: url("banner-landing-page.jpg");
+  background-image: url("http://www.webanywhere.co.uk/blog/wp-content/uploads/2012/09/rsz_children_tablet.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  filter: brightness(60%);
+  filter: brightness(0.6);
+
 }
 
+.banner-btn {
+  font-size: 36px;
+}
 .banner-title {
-  color: white;
+  color: black;
   font-size: 150px;
   font-weight: bold;
 }
 
 .banner-text {
-  color: white;
+  color: black;
   font-size: 50px;
   font-weight: bolder;
+  margin-bottom: 70px;
 }
 
 //testimonals
