@@ -1,0 +1,5 @@
+<% if @score == "100"%>
+<h2>Congratulation! All the answer are corrects you just won: <%= @book.reward %> RDC</h2>
+<% else %>
+<h2>Try Again! You have <%= @score %>% of correct answers ...</h2>
+<% end %>

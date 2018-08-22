@@ -1,0 +1,8 @@
+<h1>QUIZ on <%= @book.title %></h1>
+<%= simple_form_for "quiz", url: kid_book_check_quiz_path(@kid, @book) do |f| %>
+<% @book.quiz.each do |q , a| %>
+<%= f.input q, label: q, collection: a, as: :select, prompt: 'Choose your answer'%>
+<% end %>
+
+<%= f.submit "Submit", class: "kid-button" %>
+<% end %>
