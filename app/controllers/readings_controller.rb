@@ -5,6 +5,9 @@ class ReadingsController < ApplicationController
     @kid = Kid.find(params[:kid_id])
   end
 
+  def reader
+  end
+
   def create
     @reading = Reading.new
     @kid = Kid.find(params[:kid_id])

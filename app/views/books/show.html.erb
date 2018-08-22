@@ -3,6 +3,8 @@
 <h1><%= @book.title %></h1>
 <p>Author: <%= @book.author%></p>
 <p><%= @book.summary %></p>
+
+
 <%= link_to "Read Now", kid_book_readings_path(@kid, @book), method: :post %>
 <!-- <iframe width="600" height="400" src="http://www.planetpublish.com/wp-content/uploads/2011/11/The_Jungle_Book_T.pdf"></iframe> -->
   </div>
