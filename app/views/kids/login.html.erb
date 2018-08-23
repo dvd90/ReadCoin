@@ -5,7 +5,8 @@
       <h1>Welcome <%= @user.email %>!</h1>
       <%= link_to "Dashboard", kids_path, class: "kid-button" %>
       <% if current_user.admin?  %>
-      <%= link_to "add a book", new_kid_path, class: "kid-button" %>
+        <p><%= link_to "admin book dashboard", admin_books_path, class: "kid-button" %></p>
+        <p><%= link_to "admin prize dashboard", admin_prizes_path, class: "kid-button" %></p>
       <% end %>
     </div>
   </div>
