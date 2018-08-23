@@ -6,11 +6,16 @@ require 'open-uri'
 #  File.open(File.join(Rails.root, "/app/assets/images/#{file_name}"))
 # end
 
-Admin.create!(password: 'darolo')
 User.destroy_all
 Kid.destroy_all
 Book.destroy_all
 Prize.destroy_all
+
+User.create!(
+  email: 'admin@readcoin.com',
+  password: 'admin1234',
+  admin: true
+  )
 
 puts "creating user"
  user = User.create!(

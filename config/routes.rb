@@ -16,8 +16,9 @@ Rails.application.routes.draw do
       resources :purchases, only: [:index, :create, :show]
     end
   end
-  get 'admin', to: 'admins#login', as: :admin_login
-  post 'admin', to: 'admins#login', as: :verify_admin
+  resources :editors
+
+
   get 'login', to: 'kids#login', as: :kids_login
   post 'login', to: 'kids#create_login', as: :verify_password
   get 'kid_dashboard/:id', to: 'kids#kid_dashboard', as: :kid_dashboard
