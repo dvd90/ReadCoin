@@ -6,7 +6,10 @@
         <%= f.input :name %>
         <%= f.input :password %>
         <%= f.input :age %>
-        <%= f.input :interests %>
+        <%= select_tag "kid[interests][]", options_from_collection_for_select(
+              @categories,
+              :to_s, :to_s),
+              class: 'select2', multiple: 'multiple' %>
         <%= f.submit class: 'btn btn-primary form-group' %>
       <% end %>
     </div>

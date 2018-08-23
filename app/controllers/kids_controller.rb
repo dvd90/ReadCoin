@@ -36,6 +36,84 @@ class KidsController < ApplicationController
 
   def new
     @new_kid = Kid.new
+    @categories = ["Adventure",
+      "Animals",
+      "Architecture",
+      "Art",
+      "Autobiography",
+      "Biography",
+      "Classics",
+      "Comedy",
+      "Comic Books",
+      "Cooking",
+      "Crafts & Hobbies",
+      "Creative Writing",
+      "Culture",
+      "Drama",
+      "Dystopian Fiction",
+      "Ecology",
+      "Education",
+      "Entertainment",
+      "Environment",
+      "Fairy Tale",
+      "Family",
+      "Fantasy",
+      "Fiction",
+      "Food",
+      "Friendship",
+      "Futuristic",
+      "Game Books",
+      "Garden",
+      "Graphic Novel ",
+      "History",
+      "Holiday",
+      "Horror",
+      "How-to",
+      "Human Rights",
+      "Humor",
+      "Inspirational",
+      "Judiasm",
+      "Language Arts",
+      "Lifestyles",
+      "Literature",
+      "Magic",
+      "Manga",
+      "Mind & Body",
+      "Motivational",
+      "Movies",
+      "Music",
+      "Mystery",
+      "Mythology",
+      "Nonfiction",
+      "Outdoor",
+      "Paranormal",
+      "Personal Growth",
+      "Pets",
+      "Photography",
+      "Picture",
+      "Poetry",
+      "Politics",
+      "Popular Culture",
+      "Relationships",
+      "Religion",
+      "Romance",
+      "Science",
+      "Science Fiction",
+      "Screenplay",
+      "Short Stories",
+      "Social Sciences",
+      "Sports",
+      "Spy Fiction",
+      "Superhero",
+      "Supernatural",
+      "Suspense",
+      "Technology",
+      "Thriller",
+      "Travel",
+      "Urban Fantasy",
+      "Western",
+      "World History"
+    ]
   end
 
   def create
@@ -76,7 +154,7 @@ end
 private
 
   def kid_params
-    params.require(:kid).permit(:name, :parent_id, :password, :age, :interests, :avatar)
+    params.require(:kid).permit(:name, :parent_id, :password, :age, :avatar, interests: [])
   end
 
   def login_params
