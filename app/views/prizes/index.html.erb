@@ -1,7 +1,28 @@
-<h1>E-Shop</h1>
-<h3><%= @kid.name %> wallet: <%= @kid_balance %>$</h3>
-<ol>
-<% @prizes.each do |prize| %>
-<li><%= link_to prize.title, kid_prize_path(@kid, prize) %>  <%= prize.price %> $</li>
-<% end %>
-</ol>
+<div class="container text-center header-page" >
+  <ul class="", style="list-style-type: none;">
+  <!-- <li><h3><%= @kid.name %></h3></li>-->
+   <li><h1 class="text-center header-title">E-Shop</h1></li>
+   <li><h3>My wallet: <%= @kid_balance %>$</h3></li>
+  </ul>
+</div>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <% @prizes.each do |prize| %>
+      <div class="text-center col-sm-6 col-md-4">
+        <div class="thumbnail prizes-style">
+          <%= cl_image_tag prize.picture, height: 180, width: 160, crop: :fill, style:'border-radius:3px'  %>
+          <div class="caption">
+            <h3><%= link_to prize.title, kid_prize_path(@kid, prize), style: 'text-decoration:none' %></h3>
+            <p>---------------------</p>
+            <h5><%= prize.price %>-RC</h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
