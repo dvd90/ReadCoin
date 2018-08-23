@@ -16,8 +16,11 @@ Rails.application.routes.draw do
       resources :purchases, only: [:index, :create, :show]
     end
   end
-  resources :editors
 
+  namespace :admin do
+    resources :books
+    resources :prizes
+  end
 
   get 'login', to: 'kids#login', as: :kids_login
   post 'login', to: 'kids#create_login', as: :verify_password

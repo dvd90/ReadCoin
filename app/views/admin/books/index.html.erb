@@ -1,0 +1,18 @@
+<h1>admin books index</h1>
+
+<div class="row">
+ <% @books.each do |book| %>
+ <div class="col-xs-3 col-sm-2">
+  <p><%= cl_image_tag book.photo, height: 100, width: 80, crop: :fill %></p>
+  <p><%= book.title %></p>
+  <p><%= book.author %></p>
+  <p><%= link_to "delete", admin_book_path(book),
+      method: :delete,
+      data: { confirm: "are you sure?" } %></p>
+  <p><%= link_to "update", edit_admin_book_path(book),
+      data: { confirm: "are you sure?" } %></p>
+ </div>
+ <% end %>
+</div>
+​
+<%= link_to "Add a new Book", new_admin_book_path, class:"parent-button" %>

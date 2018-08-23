@@ -6,4 +6,5 @@ class Book < ApplicationRecord
   validates :genre, presence: true
   validates :reward, presence: true
   serialize :quiz
+  mount_uploader :photo, PhotoUploader
 end
