@@ -40,12 +40,17 @@
 //problem-solution
 .problem-solution-background {
   background-color: white;
+  margin-bottom: 0;
+  height: 500px;
+
+
 }
 
 .cards-align {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 65px;
 }
 
 .card-left {
@@ -56,7 +61,28 @@
   margin-left: 35px;
 }
 
-.p-s-image {
-  border-radius: 3%;
-  margin-top: 70px;
+.lgog-image {
+  margin-top: 0;
+
+}
+
+.fas-fa-color i{
+  color: black;
+  font-size: 24px;
+}
+
+.fas-fa.color p {
+  font-size: 48px;
+}
+
+.the-path-header {
+  font-size: 69px;
+}
+
+.the-path-background-color {
+  background-color: white;
+}
+
+.get-paid-background {
+  margin-bottom: 0;
 }
