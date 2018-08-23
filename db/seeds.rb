@@ -6,11 +6,16 @@ require 'open-uri'
 #  File.open(File.join(Rails.root, "/app/assets/images/#{file_name}"))
 # end
 
-Admin.create!(password: 'darolo')
 User.destroy_all
 Kid.destroy_all
 Book.destroy_all
 Prize.destroy_all
+
+User.create!(
+  email: 'admin@readcoin.com',
+  password: 'admin1234',
+  admin: true
+  )
 
 puts "creating user"
  user = User.create!(
@@ -48,7 +53,6 @@ puts "creating ebooks.."
     url: 'http://www.planetpublish.com/wp-content/uploads/2011/11/The_Jungle_Book_T.pdf',
     author: Faker::Book.author,
     summary: 'it was a wonder day as i walk in the forest...',
-    quiz: 'who many birds in the sky?',
     reward: Faker::Number.between(1, 15),
     genre: 'sci-fi',
     quiz: {"Q1": [["A1", false], ["A2", false], ["A3", true], ["A4", false]],
@@ -65,7 +69,11 @@ Book.create!(
     url: 'http://www.planetpublish.com/wp-content/uploads/2011/11/The_Jungle_Book_T.pdf',
     author: Faker::Book.author,
     summary: 'it was a wonder day as i walk in the forest...',
-    quiz: 'who many birds in the sky?',
+    quiz: {"Q1": [["A1", false], ["A2", false], ["A3", true], ["A4", false]],
+      "Q2": [["A1", true], ["A2", false], ["A3", false], ["A4", false]],
+      "Q3": [["A1", false], ["A2", false], ["A3", false], ["A4", true]],
+      "Q4": [["A1", false], ["A2", true], ["A3", false], ["A4", false]],
+      "Q5": [["A1", false], ["A2", true], ["A3", false], ["A4", false]]},
     reward: Faker::Number.between(1, 15),
     genre: 'fashion',
     min_age: 8,

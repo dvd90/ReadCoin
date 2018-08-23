@@ -4,6 +4,9 @@
       <h2> Parent Log in</h2>
       <h1>Welcome <%= @user.email %>!</h1>
       <%= link_to "Dashboard", kids_path, class: "kid-button" %>
+      <% if current_user.admin?  %>
+      <%= link_to "add a book", new_kid_path, class: "kid-button" %>
+      <% end %>
     </div>
   </div>
   <div class="right-side">
@@ -11,6 +14,7 @@
       <h2>Kid Log in</h2>
       <%= simple_form_for kids_login_path do |f| %>
         <%= f.input :password %>
+        <%#= f.submit class: 'btn btn-primary form-group' %>
       <% end %>
     </div>
   </div>
