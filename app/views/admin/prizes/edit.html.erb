@@ -1,0 +1,8 @@
+<%= simple_form_for @prize, url: admin_prize_path do |f| %>
+  <%= f.hidden_field :prize, { :value => @prize } %>
+  <%= f.input :title %>
+  <%= f.input :price %>
+  <%= f.input :picture %>
+  <%= f.input :picture_cache, as: :hidden %>
+  <%= f.submit 'update prize', class: 'btn btn-primary form-group' %>
+<% end %>
