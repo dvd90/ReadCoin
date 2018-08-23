@@ -1,0 +1,7 @@
+<%= simple_form_for @prize, url: admin_prizes_path do |f| %>
+  <%= f.input :title %>
+  <%= f.input :price %>
+  <%= f.input :picture %>
+  <%= f.input :picture_cache, as: :hidden %>
+  <%= f.submit 'add prize', class: 'btn btn-primary form-group' %>
+<% end %>

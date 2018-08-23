@@ -7,6 +7,7 @@ class PrizesController < ApplicationController
 
   def show
     @prize = Prize.find(params[:id])
-    @kid = Kid.find(params[:kid_id]) 
+    @kid = Kid.find(params[:kid_id])
   end
+
 end

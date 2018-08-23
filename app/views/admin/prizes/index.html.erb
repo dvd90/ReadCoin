@@ -1,1 +1,16 @@
 <h1>admin prize index</h1>
+<div class="row">
+  <% @prizes.each do |prize| %>
+  <div class="col-xs-3 col-sm-2">
+    <p><%= cl_image_tag prize.picture, height: 100, width: 80, crop: :fill %></p>
+    <p><%= prize.title %></p>
+    <p><%= prize.price %></p>
+    <p><%= link_to "delete", admin_prize_path(prize),
+            method: :delete,
+            data: { confirm: "are you sure?" } %>  <%= link_to "update", edit_admin_prize_path(prize) %></p>
+  </div>
+  <% end %>
+</div>
+
+<%= link_to "add a prize", new_admin_prize_path %>
+
