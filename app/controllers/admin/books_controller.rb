@@ -38,6 +38,8 @@ class Admin::BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :url, :quiz, :reward, :genre, :min_age, :max_age, :author, :summary, :photo)
+    ps = params.require(:book).permit(:title, :url, :quiz, :reward, :genre, :min_age, :max_age, :author, :summary, :photo)
+    ps[:quiz] = JSON.load(ps[:quiz])
+    ps
   end
 end
