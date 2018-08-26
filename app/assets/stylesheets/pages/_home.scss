@@ -7,9 +7,6 @@
   height: 100vh;
   width: 100vw;
   position: relative;
-
-
-
 }
 
 .banner-content {
@@ -39,11 +36,9 @@
 
 //problem-solution
 .problem-solution-background {
-  background-color: white;
+  background-color: #BBC7CE;
   margin-bottom: 0;
   height: 500px;
-
-
 }
 
 .cards-align {
@@ -54,11 +49,19 @@
 }
 
 .card-left {
-  margin-right: 35px;
+  margin-right: 38px;
+  h3 {
+  font-weight: bolder;
+  font-size: 38px;
+  }
 }
 
 .card-right {
-  margin-left: 35px;
+  margin-left: 38px;
+  h3 {
+  font-weight: bolder;
+  font-size: 38px;
+  }
 }
 
 .lgog-image {
@@ -66,23 +69,35 @@
 
 }
 
-.fas-fa-color i{
-  color: black;
-  font-size: 24px;
-}
-
-.fas-fa.color p {
-  font-size: 48px;
-}
-
-.the-path-header {
+.path-header {
   font-size: 69px;
+  font-weight:bolder;
+}
+
+.path-font h1 {
+  font-size: 48px;
+  font-weight:bolder;
+
 }
 
 .the-path-background-color {
   background-color: white;
+  margin: 0;
 }
 
 .get-paid-background {
   margin-bottom: 0;
+  background-color: #87677B;
+}
+
+.how-uses-background {
+  background-color: #BBC7CE;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.image-inline {
+  display: flex;
+  justify-content: space-between;
+
 }
