@@ -10,6 +10,7 @@ class BooksController < ApplicationController
   end
 
   def check_quiz
+    @user = current_user
     @kid = Kid.find(params[:kid_id])
     @book = Book.find(params[:book_id])
     @answered_quiz = params[:quiz]
@@ -20,6 +21,8 @@ class BooksController < ApplicationController
     if @score == 100
       @kid.wallet += @book.reward
       @kid.save!
+      @user.wallet -= Money.new((@book.reward * 100), 'USD')
+      @user.save!
     end
     redirect_to kid_book_answers_quiz_path(@kid, @book, @score)
   end
