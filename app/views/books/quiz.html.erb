@@ -1,8 +1,17 @@
-<h1>QUIZ on <%= @book.title %></h1>
-<%= simple_form_for "quiz", url: kid_book_check_quiz_path(@kid, @book) do |f| %>
-<% @book.quiz.each do |q , a| %>
-<%= f.input q, label: q, collection: a, as: :select, prompt: 'Choose your answer'%>
-<% end %>
+<div class="kid-dashboard-wrapper">
+  <div class="kid-dashboard-container quiz-container">
 
-<%= f.submit "Submit", class: "kid-button" %>
-<% end %>
+  <h1>QUIZ on <%= @book.title %></h1>
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <%= simple_form_for "quiz", url: kid_book_check_quiz_path(@kid, @book) do |f| %>
+      <% @book.quiz.each do |q , a| %>
+      <%= f.input q, label: q, collection: a, as: :select, prompt: 'Choose your answer'%>
+      <% end %>
+
+      <%= f.submit "Submit", class: "kid-button" %>  <%= link_to "back to book", kid_book_path(@kid, @book), class: "kid-button" %>
+    </div>
+  </div>
+  <% end %>
+  </div>
+</div>
