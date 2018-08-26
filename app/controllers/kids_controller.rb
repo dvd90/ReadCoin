@@ -147,7 +147,7 @@ def update
   @kid = Kid.find(params[:id])
   @kid.update(kid_params)
   if @kid.save!
-    redirect_to kid_dashboard_path(@kid)
+    redirect_to kids_path
   else
     render :edit
   end
