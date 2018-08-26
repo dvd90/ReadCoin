@@ -1,7 +1,7 @@
 <div class="container banner-img">
   <div class="banner-content text-center">
     <h1 class="banner-title">READCOIN</h1>
-    <h2 class="banner-text">Find. Read. Buy.</h2>
+    <h2 class="banner-text", style="color:white;">Find. Read. Buy.</h2>
     <%= link_to "sign in", new_user_session_path, class:"btn btn-danger btn-lg align-self-center banner-btn" %>
   </div>
 </div>
@@ -16,7 +16,7 @@
       <%= image_tag 'logo.png', class:"logo-image", style:"height: 300px" %>
 
       <div class="card  col-xs-12 col-md-4 text-center card-right">
-        <h3>Why ReadCoin?</h3>
+        <h3 style="font-size: 38px;">Why ReadCoin?</h3>
         <p>If you want your children to be smart, successful, technologicly advanced, happy and ready for the way that is ahead.</p>
       </div>
   </div>
@@ -24,20 +24,20 @@
 
 <div class="jumbotron the-path-background-color">
   <div class="container">
-    <h1 class="text-center the-path-header">The Path</h1>
-    <div class="row text-center fas-fa-color">
+    <h1 class="text-center path-header">The Path</h1>
+    <div class="row text-center path-font">
       <div class="col-xs-12 col-md-4">
-        <i class="fas fa-book-open"></i>
+        <%= image_tag "icons8-read-online-96.png" %>
         <h1>Read</h1>
         <p>Find a book. Read the book.</p>
       </div>
       <div class="col-xs-12 col-md-4">
-        <i class="fas fa-question"></i>
+        <%= image_tag "icons8-pass-fail-96.png" %>
         <h1>Answer</h1>
         <p>Answer a short quiz about the book</p>
       </div>
       <div class="col-xs-12 col-md-4">
-         <i class="fas fa-shopping-cart"></i>
+         <%= image_tag "icons8-buy-96.png" %>
          <h1>Buy</h1>
          <p>Go to our amazing shop and find the gift that you want for yourself</p>
       </div>
@@ -45,26 +45,23 @@
   </div>
 </div>
 
-  <div class="container">
-    <h1 class="text-center">The Three Pillars</h1>
-    <%= image_tag "http://www.scholastic.com/readingreport/images/o10.png", class:"img-responsive" %>
-  </div>
 
-
-<div class="container-fluid services-background", style="margin-top: 35px;">
-  <h1 class="text-center" style="font-size: 48px; padding-bottom: 65px;">Why Books?</h1>
-  <div class="row text-center">
-    <div class="col-xs-12 col-md-4">
-        <%= image_tag "http://www.scholastic.com/readingreport/images/s12.png" %>
-    </div>
-    <div class="col-xs-12 col-md-4">
-        <%= image_tag "http://www.scholastic.com/readingreport/images/s19.png" %>
-    </div>
-    <div class="col-xs-12 col-md-4">
-        <%= image_tag "http://www.scholastic.com/readingreport/images/s20.png" %>
-    </div>
+<div class="container-fluid how-uses-background">
+    <h2 class="text-center" style="font-size: 48px; padding-bottom: 65px; font-weight:bolder;">How uses ReadCoin?</h2>
+    <div class="container text-center image-inline">
+      <div>
+        <%= image_tag "kids_on_roof_reading_book.jpg", class:"img-circle" %>
+        <h3 style="font-size:45px">Kids</h3>
+        <p style="font-size:30px">Read books and Learn important money management skills that last a lifetime.</p>
+      </div>
+      <div>
+        <%= image_tag "kids_on_roof_reading_book.jpg", class:"img-circle" %>
+        <h3 style="font-size:45px">Parents</h3>
+        <p style="font-size:30px">Get involved in your child’s learning and reading abilities  and have fun along the way.</p>
+      </div>
   </div>
 </div>
+
 
 <div class="jumbotron get-paid-background">
   <div class="container">
