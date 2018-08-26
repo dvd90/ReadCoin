@@ -8,6 +8,7 @@ User.create!(
   email: 'admin@readcoin.com',
   password: 'admin1234',
   admin: true
+  username: 'admin'
   )
 
 puts "finished seeding"
