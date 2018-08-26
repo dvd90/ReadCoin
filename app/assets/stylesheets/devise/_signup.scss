@@ -2,7 +2,6 @@ abbr[title="required"] {
   display: none;
 }
 
-
 .form-background {
   background-color: white;
   margin-top: 130px;
@@ -12,4 +11,10 @@ abbr[title="required"] {
   border: none;
   box-shadow: none;
   border-bottom-style:  solid;
+  border-bottom-width: 1px;
+}
+
+.form-control:focus {
+  border-color: none;
+  box-shadow: none;
 }
