@@ -1,7 +1,7 @@
 
-<div class="container">
+<div class="container form-container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3 form-background">
+    <div class="col-md-6 col-md-offset-3 form-background text-center">
       <h2>Sign up</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up", class:"btn btn-default" %>
+          <%= f.button :submit, "Sign up", class:"btn  btn-lg btn-primary" %>
         </div>
       <% end %>
     </div>
