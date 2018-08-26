@@ -6,7 +6,7 @@
   <%= f.input :url %>
   <%= f.input :quiz %>
   <%= f.input :reward %>
-  <%= f.input :genre %>
+  <%= f.input :genre, collection: @categories %>
   <%= f.input :min_age %>
   <%= f.input :max_age %>
   <%= f.input :photo %>
