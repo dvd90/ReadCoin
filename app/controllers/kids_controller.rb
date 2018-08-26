@@ -22,7 +22,11 @@ class KidsController < ApplicationController
 
   def kid_dashboard
     @kid = Kid.find(params[:id])
-    @books = Book.where(genre: @kid.interests).where("min_age < ? AND max_age > ?", @kid.age, @kid.age)
+    @books = Book.all
+    @chosen_books = []
+    @kid.interests.each do |interest|
+      @chosen_books = Book.where(genre: interest).where("min_age < ? AND max_age > ?", @kid.age, @kid.age)
+    end
   end
 
   def index
@@ -38,19 +42,10 @@ class KidsController < ApplicationController
     @new_kid = Kid.new
     @categories = ["Adventure",
       "Animals",
-      "Architecture",
-      "Art",
-      "Autobiography",
-      "Biography",
-      "Classics",
       "Comedy",
       "Comic Books",
-      "Cooking",
-      "Crafts & Hobbies",
-      "Creative Writing",
       "Culture",
       "Drama",
-      "Dystopian Fiction",
       "Ecology",
       "Education",
       "Entertainment",
@@ -63,56 +58,30 @@ class KidsController < ApplicationController
       "Friendship",
       "Futuristic",
       "Game Books",
-      "Garden",
-      "Graphic Novel ",
-      "History",
       "Holiday",
       "Horror",
-      "How-to",
-      "Human Rights",
       "Humor",
-      "Inspirational",
-      "Judiasm",
-      "Language Arts",
-      "Lifestyles",
       "Literature",
       "Magic",
       "Manga",
-      "Mind & Body",
-      "Motivational",
       "Movies",
       "Music",
       "Mystery",
       "Mythology",
-      "Nonfiction",
-      "Outdoor",
-      "Paranormal",
-      "Personal Growth",
       "Pets",
       "Photography",
       "Picture",
       "Poetry",
-      "Politics",
-      "Popular Culture",
-      "Relationships",
-      "Religion",
       "Romance",
-      "Science",
       "Science Fiction",
-      "Screenplay",
-      "Short Stories",
-      "Social Sciences",
       "Sports",
-      "Spy Fiction",
       "Superhero",
       "Supernatural",
       "Suspense",
       "Technology",
       "Thriller",
       "Travel",
-      "Urban Fantasy",
       "Western",
-      "World History"
     ]
   end
 
@@ -129,6 +98,49 @@ class KidsController < ApplicationController
 
 def edit
   @kid = Kid.find(params[:id])
+  @categories = ["Adventure",
+    "Animals",
+    "Comedy",
+    "Comic Books",
+    "Culture",
+    "Drama",
+    "Ecology",
+    "Education",
+    "Entertainment",
+    "Environment",
+    "Fairy Tale",
+    "Family",
+    "Fantasy",
+    "Fiction",
+    "Food",
+    "Friendship",
+    "Futuristic",
+    "Game Books",
+    "Holiday",
+    "Horror",
+    "Humor",
+    "Literature",
+    "Magic",
+    "Manga",
+    "Movies",
+    "Music",
+    "Mystery",
+    "Mythology",
+    "Pets",
+    "Photography",
+    "Picture",
+    "Poetry",
+    "Romance",
+    "Science Fiction",
+    "Sports",
+    "Superhero",
+    "Supernatural",
+    "Suspense",
+    "Technology",
+    "Thriller",
+    "Travel",
+    "Western",
+  ]
 end
 
 def update

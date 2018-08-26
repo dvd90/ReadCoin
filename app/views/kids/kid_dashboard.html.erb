@@ -1,11 +1,19 @@
 <div class="kid-dashboard-wrapper">
   <div class="kid-dashboard-container">
     <h1><%= @kid.name %>'s dashboard</h1>
+    <% if !@chosen_books.empty? %>
     <ul>
-      <% @books.each do |book| %>
+      <% @chosen_books.each do |book| %>
         <li><%= link_to book.title, kid_book_path(@kid, book) %></li>
       <% end %>
     </ul>
+      <% else %>
+    </ul>
+    <% @books.each do |book| %>
+      <li><%= link_to book.title, kid_book_path(@kid, book) %></li>
+    </ul>
+    <% end %>
+    <% end %>
     <%= link_to "Go to E-Shop",  kid_prizes_path(@kid) %>
   </div>
 </div>

@@ -6,10 +6,7 @@
   <%= f.input :url %>
   <%= f.input :quiz %>
   <%= f.input :reward %>
-  <%= select_tag "book[genre][]", options_from_collection_for_select(
-        @categories,
-        :to_s, :to_s),
-        class: 'select2', multiple: 'multiple' %>
+  <%= f.input :genre, collection: @categories %>
   <%= f.input :min_age %>
   <%= f.input :max_age %>
   <%= f.input :photo %>

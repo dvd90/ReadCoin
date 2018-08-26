@@ -6,6 +6,7 @@
         <%= f.input :name %>
         <%= f.input :password %>
         <%= f.input :age %>
+        <p>Interests</p>
         <%= select_tag "kid[interests][]", options_from_collection_for_select(
               @categories,
               :to_s, :to_s),
