@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :kids, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     get 'create_avatar', to: 'kids#create_avatar', as: :create_avatar
+    post 'add_RDC', to: 'kids#add_RDC', as: :add_RDC
     resources :books, only: [:index, :show] do
       get 'quiz', to: 'books#quiz', as: :quiz
       post 'check_quiz', to: 'books#check_quiz', as: :check_quiz
@@ -20,6 +21,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :books
     resources :prizes
+  end
+
+  resources :orders, only: [:show, :create] do
+    resources :payments, only: [:new, :create]
   end
 
   get 'login', to: 'kids#login', as: :kids_login

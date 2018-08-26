@@ -1,6 +1,11 @@
+<% if flash[:notice] %>
+<div class="notice"><%= flash[:notice] %></div>
+<% end %>
 <div class="parent-dashboard-wrapper">
   <div class="parent-dashboard-container">
+    <h4>Wallet: <%= humanized_money_with_symbol(current_user.wallet) %> USD</<h4>
     <h1><%= @kid.name %></h1>
+    <h3>RDC: <%= @kid.wallet %></h3>
     <h3>Readings:</h3>
     <ul>
       <% @kid.readings.each do |reading| %>
@@ -13,5 +18,9 @@
         <li><%= purchase.prize.title %></li>
       <% end %>
     </ul>
+    <%= form_tag kid_add_RDC_path(@kid) do %>
+    <%= number_field_tag "amount" %>
+    <%= submit_tag 'Add Some ReadCoin', class: 'parrent_button', data: { confirm: "are you sure?" } %>
+    <% end %>
   </div>
 </div>

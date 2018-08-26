@@ -8,7 +8,6 @@ gem 'pg', '~> 0.21'
 gem 'puma'
 gem 'rails', '5.2.1'
 gem 'redis'
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 
 gem 'autoprefixer-rails'
@@ -20,6 +19,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
+gem 'money-rails'
+gem 'stripe'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

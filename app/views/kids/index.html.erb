@@ -32,6 +32,11 @@
         <% end %>
         </div>
       </div>
+      <h4>Wallet: <%= humanized_money_with_symbol(current_user.wallet) %> USD</<h4>
       <p><%= link_to "add a kid", new_kid_path, class: "parent-button add-a-kid-btn" %></p>
+      <%= form_tag orders_path do %>
+      <%= number_field_tag "amount" %>
+      <%= submit_tag 'Buy Some ReadCoin', class: 'parrent_button' %>
+      <% end %>
     </div>
 </div>
