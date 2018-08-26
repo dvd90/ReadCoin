@@ -10,7 +10,7 @@
         <%= select_tag "kid[interests][]", options_from_collection_for_select(
               @categories,
               :to_s, :to_s),
-              class: 'select2', multiple: 'multiple' %>
+              class: 'select2 form-control', multiple: 'multiple' %>
         <%= f.submit class: 'btn btn-primary form-group' %>
       <% end %>
     </div>
