@@ -5,3 +5,5 @@
   <li>Amount: <%= humanized_money_with_symbol(@order.amount) %></li>
   <li>Wallet: <%= current_user.wallet %> USD</li>
 <ul>
+
+<%= link_to "back to dashboard", kids_path, class: "parent-button" %>

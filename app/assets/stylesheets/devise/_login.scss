@@ -2,7 +2,7 @@
   display: flex;
 }
 .right-side {
-  background-color:#65A5FF;
+  background-color: #EF798A;
   width: 50vw;
   height: 100vh;
   display: flex;
@@ -10,9 +10,11 @@
 }
 .right-side-container {
   width: 30vw;
+  margin: 10vh auto;
+  color: white;
 }
 .left-side {
-  background-color: #FA4E4D;
+  background-color: #F7F7FF;
   width: 50vw;
   height: 100vh;
   display: flex;
@@ -20,4 +22,9 @@
 }
 .left-side-container {
   width: 30vw;
+  margin: 10vh auto;
+  color: #EF798A;
+}
+.login-avatar {
+  margin-left: 10vw;
 }

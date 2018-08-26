@@ -1,19 +1,14 @@
 
-require 'open-uri'
 
-# def seed_image(file_name)
-#  File.open(File.join(Rails.root, "/app/assets/images/#{file_name}"))
-# end
-
-
+User.destroy_all
 Kid.destroy_all
 
 
-# User.create!(
-#   email: 'admin@readcoin.com',
-#   password: 'admin1234',
-#   admin: true
-#   )
+User.create!(
+  email: 'admin@readcoin.com',
+  password: 'admin1234',
+  admin: true
+  )
 
 puts "finished seeding"
 
