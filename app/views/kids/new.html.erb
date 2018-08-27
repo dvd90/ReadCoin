@@ -1,17 +1,17 @@
 <div class="container-form">
-<h1>Add your Kid</h1>
   <div class="row">
-    <div class= "col-sm-3 offset-sm-3 form-toilet">
-      <%= simple_form_for(@new_kid) do |f| %>
-        <%= f.input :name %>
-        <%= f.input :password %>
-        <%= f.input :age %>
-        <p>Interests</p>
-        <%= select_tag "kid[interests][]", options_from_collection_for_select(
-              @categories,
-              :to_s, :to_s),
-              class: 'select2', multiple: 'multiple' %>
-        <%= f.submit class: 'btn btn-primary form-group' %>
+    <div class="col-md-6 col-md-offset-3 text-center">
+      <h1>Add A Child</h1>
+        <%= simple_form_for(@new_kid) do |f| %>
+          <%= f.input :name %>
+          <%= f.input :password %>
+          <%= f.input :age %>
+          <p>Interests</p>
+          <%= select_tag "kid[interests][]", options_from_collection_for_select(
+                @categories,
+                :to_s, :to_s),
+                class: 'select2', multiple: 'multiple' %>
+          <%= f.submit class: 'btn btn-primary form-group' %>
       <% end %>
     </div>
   </div>
