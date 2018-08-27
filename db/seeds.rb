@@ -1,5 +1,7 @@
 
 
+Order.destroy_all
+Purchase.destroy_all
 User.destroy_all
 Kid.destroy_all
 
@@ -7,7 +9,8 @@ Kid.destroy_all
 User.create!(
   email: 'admin@readcoin.com',
   password: 'admin1234',
-  admin: true
+  admin: true,
+  username: "admin"
   )
 
 puts "finished seeding"
