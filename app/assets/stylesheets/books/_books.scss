@@ -1,0 +1,28 @@
+.kid-dashboard-flexbox {
+  display: flex;
+  height: 170px;
+}
+.books-pics {
+  width: 30vw;
+  background-size: cover;
+  position: relative;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+.book-category {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  text-transform: uppercase;
+  color: white;
+}
+.books-details {
+  width: 70vw;
+}
+.bk-summary {
+  white-space: nowrap;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

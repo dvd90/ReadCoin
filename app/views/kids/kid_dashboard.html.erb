@@ -1,28 +1,46 @@
 <div class="kid-dashboard-wrapper">
   <div class="kid-dashboard-container">
-    <h1><%= @kid.name %>'s dashboard</h1>
-    <div class="row">
-      <% if @chosen_books.empty? %>
-      <ul>
-        <% @books.each do |book| %>
-        <div class="col-xs-12 col-sm-6">
-          <p><%= cl_image_tag book.photo, width: 160, heigth: 140 %></p>
-          <p><%= link_to book.title, kid_book_path(@kid, book) %></p>
+    <h1>My ebooks</h1>
+    <% if @chosen_books.empty? %>
+      <% @books.each do |book| %>
+        <div class="kid-dashboard-flexbox">
+          <div class="books-pics" style="background-image: url('<%= cl_image_path book.photo %>')" >
+            <div class="book-category">
+              <%= book.genre %>
+            </div>
+          </div>
+
+          <div class="books-details">
+            <p><strong><%= image_tag 'coins.png' %> <%= book.reward %> rdcn</strong></p>
+            <p><%= book.title %></p>
+            <p>Author: <%= book.author %></p>
+            <p><%= link_to "show more", kid_book_path(@kid, book),
+            class: "kid-button" %></p>
+          </div>
+
         </div>
-        <% end %>
-      </ul>
-      <% else %>
-        <ul>
-        <% @chosen_books.each do |book| %>
-        <div class="col-xs-12 col-sm-6">
-          <p><%= cl_image_tag book.photo, width: 160, heigth: 140 %></p>
-          <p><%= link_to book.title, kid_book_path(@kid, book) %></p>
-        </div>
-        <% end %>
-      </ul>
       <% end %>
-    </div>
-    <%= link_to "Go to E-Shop",  kid_prizes_path(@kid), class: "kid-button" %>
+    <% else %>
+      <% @chosen_books.each do |book| %>
+        <div class="kid-dashboard-flexbox">
+
+          <div class="books-pics" style="background-image: url('<%= cl_image_path book.photo %>')" >
+            <div class="book-category">
+              <%= book.genre %>
+            </div>
+          </div>
+
+          <div class="books-details">
+            <p><strong><%= image_tag 'coins.png' %> <%= book.reward %> rdcn</strong></p>
+            <p><%= book.title %></p>
+            <p>Author: <%= book.author %></p>
+            <p><%= link_to "show more", kid_book_path(@kid, book),
+            class: "kid-button", id: "show-more-kd-btn" %></p>
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
