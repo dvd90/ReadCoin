@@ -32,7 +32,6 @@
     <% else %>
       <% @chosen_books.each do |book| %>
         <div class="kid-dashboard-flexbox">
-
           <div class="books-pics" style="background-image: url('<%= cl_image_path book.photo %>')" >
             <div class="book-category">
               <%= book.genre %>
@@ -41,14 +40,19 @@
 
           <div class="books-details">
             <h3><%= book.title %></h3>
-            <p>Author: <%= book.author %></p>
-            <p><%= link_to "show more", kid_book_path(@kid, book),
-            class: "kid-button" %></p>
+            <p class="book-author">Author: <%= book.author %></p>
+            <%= link_to kid_book_path(@kid, book),
+            class: "kid-button show-more-btn" do %>
+              <i class="fas fa-eye"></i>
+              <p>Show more</p>
+            <% end %>
           </div>
 
           <div class="book-reward">
-            <%= image_tag 'coins.png' %>
-            <p><strong><%= book.reward %> rdcn</strong></p>
+            <div class="book-reward-ctn">
+              <%= image_tag 'coins.png' %>
+              <p><strong><%= book.reward %> rdcn</strong></p>
+            </div>
           </div>
 
         </div>
