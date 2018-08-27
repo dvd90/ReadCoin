@@ -1,57 +1,82 @@
-.kid-index-container{
-  text-align: center;
-  position: relative;
+.background-size {
+  height: 100vw;
+
 }
-.add-a-kid-btn {
-  position: absolute;
-  top: 40px;
-  right: 40px;
+
+.kid-card {
+  border: 0.8px solid $turquiz;
+  border-radius: 12px;
+  padding: 0;
 }
+
+
+.cards-display {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.kid-params {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.btn-add-kid {
+  border-radius: 50%;
+
+}
+
+.btn-add-kid-margin {
+  margin-top: 70px;
+}
+
 .parent-card {
-  background-color: #DED9E2;
-  position: relative;
-  width: 40vw;
-  padding: 60px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  font-size: 20px;
+  border: 0.8px solid $turquiz;
+  border-radius: 12px;
+  padding: 25px;
+  background-color: $turquiz;
 }
-.card-avatar {
-  position: absolute;
-  top: 5px;
-  left: 5px;
+
+.add-child-button {
+  color: rgba(84, 198, 235, 0.8);
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 2px solid rgba(84, 198, 235, 0.8)
 }
-.kid-name {
-  position: absolute;
-  top: 5px;
-  left: 70px;
-  color: #F25F5C;
+.add-child-button:hover {
+  background-color: rgba(84, 198, 235, 1);
 }
-.kid-edit {
-  position: absolute;
-  top: 5px;
-  right: 15px;
+
+a.add-child-button:hover {
+  text-decoration: none;
+  color: rgba(247, 247, 255, 1);
 }
-.kid-readings {
-  position: absolute;
-  top: 30px;
-  left: 70px;
+
+.buy-btn {
+  margin-top: 25px;
 }
-.kid-purchases {
-  position: absolute;
-  top: 60px;
-  left: 70px;
+
+#amount {
+  width: 167px;
 }
-.kid-readcoins {
-  position: absolute;
-  top: 90px;
-  left: 70px;
+
+.card-lower {
+  background-color: $turquiz;
+  padding: 10px;
+  height: 60%;
+  border-radius:0px 0px 11px 11px;
 }
-.show-more {
-  position: absolute;
-  right: 15px;
-  bottom: 15px;
-}
-.fas {
-  color: #E2C044;
+
+.card-upper {
+  padding:15px;
+  height:40%;
+
 }
