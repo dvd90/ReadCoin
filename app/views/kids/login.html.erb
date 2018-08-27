@@ -16,7 +16,7 @@
     <div class="right-side-container">
       <h1>Kids</h1>
       <p>Enter your password to access your dashboard and see your books</p>
-      <%= image_tag 'kid-pic-login', class: "login-avatar" %>
+      <%= image_tag 'kid-pic-login.jpg', class: "login-avatar" %>
       <%= simple_form_for kids_login_path do |f| %>
         <%= f.input :password %>
         <%= f.submit "GO!", class: 'parent-button' %>
