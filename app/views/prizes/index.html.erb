@@ -1,27 +1,20 @@
-<div class="container text-center header-page" >
-  <ul class="", style="list-style-type: none;">
-   <li><h1 class="text-center header-title">E-Shop</h1></li>
-   <li><h3>My wallet: <%= @kid_balance %>$</h3></li>
-  </ul>
-</div>
-
-
-
-
-
-<div class="container">
-  <div class="row">
-    <% @prizes.each do |prize| %>
-      <div class="text-center col-sm-6 col-md-4">
-        <div class="thumbnail prizes-style">
-          <%= cl_image_tag prize.picture, height: 180, width: 160, crop: :fill, style:'border-radius:3px'  %>
-          <div class="caption">
-            <h3><%= link_to prize.title, kid_prize_path(@kid, prize), style: 'text-decoration:none' %></h3>
-            <p>---------------------</p>
-            <h5><%= prize.price %>-RC</h5>
+<div class="kid-dashboard-wrapper">
+  <div class="kid-dashboard-container prizes-container">
+    <h1>E-Shop</h1>
+    <h3><%= image_tag 'coins.png' %> My wallet: <%= @kid_balance %> rdcn</h3>
+      <div class="row">
+        <% @prizes.each do |prize| %>
+          <div class="col-sm-3">
+            <div class="prize-card">
+              <%= cl_image_tag prize.picture, height: 180, width: 160, crop: :fill %>
+              <div class="prize-title">
+                <h3><%= prize.title %></h3>
+              </div>
+              <p><%= prize.price %> rdcn</p>
+              <%= link_to "Buy now", kid_prize_path(@kid, prize), class: "kid-button" %>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
   </div>
 </div>

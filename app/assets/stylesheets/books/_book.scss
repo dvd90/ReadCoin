@@ -1,0 +1,19 @@
+.book-show-container {
+  display: flex;
+}
+.book-image {
+  width: 30vw;
+  height: 100vh;
+  padding-top: 25px;
+  background-size: cover;
+}
+.book-details {
+  width: 70vw;
+}
+.book-show-btn {
+  margin: 20px;
+}
+#book-img {
+  width: 90%;
+  border-radius: 5px;
+}

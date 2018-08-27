@@ -1,0 +1,64 @@
+.kid-dashboard-flexbox {
+  display: flex;
+  height: 170px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid lightgrey;
+}
+.books-pics {
+  width: 25vw;
+  background-size: cover;
+  position: relative;
+  margin-right: 25px;
+  margin-bottom: 15px;
+}
+.book-category {
+  position: absolute;
+  top: 8px;
+  left: 0px;
+  text-transform: uppercase;
+  color: $turquiz;
+  padding: 3px 7px;
+  background-color: white;
+  font-size: 14px;
+}
+.books-details {
+  flex-grow: 1;
+}
+.books-details h3 {
+  margin-top: 0px;
+  margin-bottom: 6.5px;
+}
+.books-details p {
+  margin-bottom: 25px;
+}
+.book-author {
+  color: #ababab;
+}
+.bk-summary {
+  white-space: nowrap;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.book-reward {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 15vw;
+}
+.book-reward-ctn {
+  text-align: center;
+}
+.show-more-btn i {
+  color: $turquiz;
+  margin-right: 5px;
+}
+.show-more-btn {
+  display: flex;
+  align-items: center;
+  width: 150px;
+}
+.show-more-btn p {
+  margin: 0;
+}
+

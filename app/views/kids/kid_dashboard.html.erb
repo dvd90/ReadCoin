@@ -1,28 +1,63 @@
 <div class="kid-dashboard-wrapper">
   <div class="kid-dashboard-container">
-    <h1><%= @kid.name %>'s dashboard</h1>
-    <div class="row">
-      <% if @chosen_books.empty? %>
-      <ul>
-        <% @books.each do |book| %>
-        <div class="col-xs-12 col-sm-6">
-          <p><%= cl_image_tag book.photo, width: 160, heigth: 140 %></p>
-          <p><%= link_to book.title, kid_book_path(@kid, book) %></p>
+    <h1>My ebooks</h1>
+    <% if @chosen_books.empty? %>
+      <% @books.each do |book| %>
+        <div class="kid-dashboard-flexbox">
+          <div class="books-pics" style="background-image: url('<%= cl_image_path book.photo %>')" >
+            <div class="book-category">
+              <%= book.genre %>
+            </div>
+          </div>
+
+          <div class="books-details">
+            <h3><%= book.title %></h3>
+            <p class="book-author">Author: <%= book.author %></p>
+            <%= link_to kid_book_path(@kid, book),
+            class: "kid-button show-more-btn" do %>
+              <i class="fas fa-eye"></i>
+              <p>Show more</p>
+            <% end %>
+          </div>
+
+          <div class="book-reward">
+            <div class="book-reward-ctn">
+              <%= image_tag 'coins.png' %>
+              <p><strong><%= book.reward %> rdcn</strong></p>
+            </div>
+          </div>
+
         </div>
-        <% end %>
-      </ul>
-      <% else %>
-        <ul>
-        <% @chosen_books.each do |book| %>
-        <div class="col-xs-12 col-sm-6">
-          <p><%= cl_image_tag book.photo, width: 160, heigth: 140 %></p>
-          <p><%= link_to book.title, kid_book_path(@kid, book) %></p>
-        </div>
-        <% end %>
-      </ul>
       <% end %>
-    </div>
-    <%= link_to "Go to E-Shop",  kid_prizes_path(@kid), class: "kid-button" %>
+    <% else %>
+      <% @chosen_books.each do |book| %>
+        <div class="kid-dashboard-flexbox">
+          <div class="books-pics" style="background-image: url('<%= cl_image_path book.photo %>')" >
+            <div class="book-category">
+              <%= book.genre %>
+            </div>
+          </div>
+
+          <div class="books-details">
+            <h3><%= book.title %></h3>
+            <p class="book-author">Author: <%= book.author %></p>
+            <%= link_to kid_book_path(@kid, book),
+            class: "kid-button show-more-btn" do %>
+              <i class="fas fa-eye"></i>
+              <p>Show more</p>
+            <% end %>
+          </div>
+
+          <div class="book-reward">
+            <div class="book-reward-ctn">
+              <%= image_tag 'coins.png' %>
+              <p><strong><%= book.reward %> rdcn</strong></p>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 

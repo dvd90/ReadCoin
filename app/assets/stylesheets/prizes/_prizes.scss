@@ -1,15 +1,23 @@
-.header-page{
-  margin-bottom: 100px;
+.prizes-container {
+  border-radius: 5px;
 }
-
-.prizes-style h5 {
-  font-size: 36px;
+.prize-card {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 1px lightgrey;
+  width: 18vw;
+  margin-right: 15px;
+  height: 350px;
+  text-align: center;
+  margin-bottom: 20px;
+  h3 {
+    margin-top: 0px;
+    color: $turquiz;
+  }
+  p {
+    margin-bottom: 20px;
+  }
 }
-
-.prizes-style a {
-  color: $gray;
-}
-
-.header-title {
-  font-size: 78px;
+.prize-title {
+  height: 70px;
 }
