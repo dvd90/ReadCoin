@@ -4,7 +4,7 @@
       <h2> Parents</h2>
       <h3><%= "Welcome #{@user.username}!" %></h3>
       <p>Access your dashboard below to buy some readcoins, and see your kids activities<p>
-      <%= image_tag 'parent-login-pic', class: "login-avatar" %><br/><br/>
+      <%= image_tag 'parent-login-pic.jpg', class: "login-avatar" %><br/><br/>
       <%= link_to "Dashboard", kids_path, class: "kid-button dashboard-btn" %>
       <% if current_user.admin?  %>
         <p><%= link_to "admin book dashboard", admin_books_path, class: "kid-button" %></p>
