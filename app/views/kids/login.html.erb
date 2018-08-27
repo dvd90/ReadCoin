@@ -5,8 +5,10 @@
       <h3><%= "Welcome #{@user.username}!" %></h3>
       <p>Access your dashboard below to buy some readcoins, and see your kids activities<p>
       <%= image_tag 'kid-reading-with-parents.jpg', class: "login-avatar" %><br/><br/>
-      <%= link_to "Dashboard", kids_path, class: "kid-button dashboard-btn" %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "log-out-btn dashboard-btn" %>
+      <div class="login-links">
+        <%= link_to "Dashboard", kids_path, class: "kid-button dashboard-btn" %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "log-out-btn dashboard-btn" %>
+      </div>
       <% if current_user.admin?  %>
         <p><%= link_to "admin book dashboard", admin_books_path, class: "kid-button" %></p>
         <p><%= link_to "admin prize dashboard", admin_prizes_path, class: "kid-button" %></p>
