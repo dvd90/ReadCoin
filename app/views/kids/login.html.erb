@@ -1,11 +1,14 @@
 <div class="two-sides">
   <div class="left-side">
     <div class="left-side-container">
-      <h2> Parents</h2>
+      <h2 class="login-title"> Parents</h2>
       <h3><%= "Welcome #{@user.username}!" %></h3>
       <p>Access your dashboard below to buy some readcoins, and see your kids activities<p>
-      <%= image_tag 'parent-login-pic.jpg', class: "login-avatar" %><br/><br/>
-      <%= link_to "Dashboard", kids_path, class: "kid-button dashboard-btn" %>
+      <%= image_tag 'kid-reading-with-parents.jpg', class: "login-avatar" %><br/><br/>
+      <div class="login-links">
+        <%= link_to "Dashboard", kids_path, class: "kid-button dashboard-btn" %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "log-out-btn dashboard-btn" %>
+      </div>
       <% if current_user.admin?  %>
         <p><%= link_to "admin book dashboard", admin_books_path, class: "kid-button" %></p>
         <p><%= link_to "admin prize dashboard", admin_prizes_path, class: "kid-button" %></p>
@@ -14,11 +17,11 @@
   </div>
   <div class="right-side">
     <div class="right-side-container">
-      <h1>Kids</h1>
-      <p>Enter your password to access your dashboard and see your books</p>
-      <%= image_tag 'kid-pic-login.jpg', class: "login-avatar" %>
+      <h2 class="login-title">Kids</h2>
+      <p class="kids-description">Enter your password to access your dashboard and see your books</p>
+      <%= image_tag 'kids_on_roof_reading_book.jpg', class: "login-avatar" %>
       <%= simple_form_for kids_login_path do |f| %>
-        <%= f.input :password %>
+        <%= f.input :password, label: "Magic password" %>
         <%= f.submit "GO!", class: 'parent-button' %>
       <% end %>
     </div>

@@ -2,6 +2,7 @@ class KidsController < ApplicationController
 
   def login
     @user = current_user
+    @show_navbar = true
   end
   def create_login
     @user = current_user
