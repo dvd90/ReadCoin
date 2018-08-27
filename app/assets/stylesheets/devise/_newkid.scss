@@ -3,6 +3,7 @@
   box-shadow: none;
   border-bottom-style:  solid;
   border-bottom-width: 1px;
+  background-color: $light-gray;
 }
 
 #kid_password {
@@ -10,6 +11,7 @@
   box-shadow: none;
   border-bottom-style:  solid;
   border-bottom-width: 1px;
+  background-color: $light-gray;
 }
 
 #kid_age {
@@ -17,12 +19,18 @@
   box-shadow: none;
   border-bottom-style:  solid;
   border-bottom-width: 1px;
+  background-color: $light-gray;
 }
 .form-control:focus {
   border-color: none;
   box-shadow: none;
 }
 
-input {
-  background-color: white;
+.interests-font {
+  font-weight: bolder;
+}
+
+.interests-dropdown {
+  width: 100%;
+  background-color: $light-gray;
 }
