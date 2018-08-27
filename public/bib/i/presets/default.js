@@ -25,14 +25,14 @@ Bibi.Preset = {
 "single-page-always"         : "no", // "yes" or "no" or "desktop" or "mobile"
 
 "autostart"                  : "no", // "yes" or "no" or "desktop" or "mobile"
-"start-in-new-window"        : "mobile", // "yes" or "no" or "desktop" or "mobile"
+"start-in-new-window"        : "no", // "yes" or "no" or "desktop" or "mobile"
 
 "use-full-height"            : "yes", // "yes" or "no" or "desktop" or "mobile"
 "use-menubar"                : "yes", // "yes" or "no" or "desktop" or "mobile"
 "use-nombre"                 : "yes", // "yes" or "no" or "desktop" or "mobile"
 "use-slider"                 : "yes", // "yes" or "no" or "desktop" or "mobile"
 "use-arrows"                 : "yes", // "yes" or "no" or "desktop" or "mobile"
-"use-keys"                   : "desktop", // "yes" or "no" or "desktop" or "mobile"
+"use-keys"                   : "mobile", // "yes" or "no" or "desktop" or "mobile"
 "use-swipe"                  : "yes", // "yes" or "no" or "desktop" or "mobile"
 "use-cookie"                 : "yes", // "yes" or "no" or "desktop" or "mobile"
 
