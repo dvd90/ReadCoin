@@ -12,6 +12,20 @@
   width: 30vw;
   margin: 10vh auto;
   color: white;
+  position: relative;
+  margin-top: 18vh;
+  h2 {
+    background: #F7F7FF;
+    color: #54c6eb;
+    right: -102px;
+    border-radius: 15px 0 0 15px;
+    top: -105px;
+    width: 90px;
+  }
+}
+.kids-description {
+  margin-top: 72px;
+  min-height: 75px;
 }
 .left-side {
   background-color: #F7F7FF;
@@ -20,10 +34,25 @@
   display: flex;
   justify-content: space-around;
 }
+.login-title {
+  padding: 10px 15px;
+  position: absolute;
+  border-radius: 15px;
+}
 .left-side-container {
   width: 30vw;
   margin: 10vh auto;
   color: $turquiz;
+  margin-top: 18vh;
+  position: relative;
+  h2 {
+    background: #54c6eb;
+    color: white;
+    text-align: right;
+    left: -130px;
+    top: -105px;
+    width: 190px;
+  }
 }
 .login-avatar {
   margin-left: 10vw;
