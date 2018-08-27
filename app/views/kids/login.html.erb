@@ -4,7 +4,7 @@
       <h2 class="login-title"> Parents</h2>
       <h3><%= "Welcome #{@user.username}!" %></h3>
       <p>Access your dashboard below to buy some readcoins, and see your kids activities<p>
-      <%= image_tag 'kids_on_roof_reading_book.jpg', class: "login-avatar" %><br/><br/>
+      <%= image_tag 'kid-reading-with-parents.jpg', class: "login-avatar" %><br/><br/>
       <%= link_to "Dashboard", kids_path, class: "kid-button dashboard-btn" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "log-out-btn dashboard-btn" %>
       <% if current_user.admin?  %>
@@ -17,7 +17,7 @@
     <div class="right-side-container">
       <h2 class="login-title">Kids</h2>
       <p class="kids-description">Enter your password to access your dashboard and see your books</p>
-      <%= image_tag 'kid-reading-with-parents.jpg', class: "login-avatar" %>
+      <%= image_tag 'kids_on_roof_reading_book.jpg', class: "login-avatar" %>
       <%= simple_form_for kids_login_path do |f| %>
         <%= f.input :password, label: "Magic password" %>
         <%= f.submit "GO!", class: 'parent-button' %>
