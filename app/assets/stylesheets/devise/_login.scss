@@ -2,7 +2,7 @@
   display: flex;
 }
 .right-side {
-  background-color: #EF798A;
+  background-color: $turquiz;
   width: 50vw;
   height: 100vh;
   display: flex;
@@ -23,7 +23,7 @@
 .left-side-container {
   width: 30vw;
   margin: 10vh auto;
-  color: #EF798A;
+  color: $turquiz;
 }
 .login-avatar {
   margin-left: 10vw;

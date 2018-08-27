@@ -1,13 +1,15 @@
 .parent-button {
-  background-color: rgba(242, 95, 92, 0.8);
-  color: white;
+  color: rgba(247, 247, 255, 0.8);
+  background-color: rgba(84, 198, 235, 1);
   padding: 5px 15px;
   border-radius: 15px;
+  border: 2px solid rgba(247, 247, 255, 0.8);
 }
 .parent-button:hover {
-  background-color: rgba(242, 95, 92, 1);
+  background-color: rgba(247, 247, 255, 0.8);
+  color: rgba(84, 198, 235, 1);
 }
 a.parent-button:hover {
   text-decoration: none;
-  color: white;
+  color: rgba(84, 198, 235, 1);
 }

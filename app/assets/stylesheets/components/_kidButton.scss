@@ -1,13 +1,14 @@
 .kid-button {
-  background-color: rgba(91, 183, 251, 0.8);
-  color: white;
+  color: rgba(84, 198, 235, 0.8);
   padding: 5px 15px;
   border-radius: 15px;
+  border: 2px solid rgba(84, 198, 235, 0.8)
 }
 .kid-button:hover {
-   background-color: rgba(91, 183, 251, 1);
+  background-color: rgba(84, 198, 235, 1);
 }
+
 a.kid-button:hover {
   text-decoration: none;
-  color: white;
+  color: rgba(247, 247, 255, 1);
 }

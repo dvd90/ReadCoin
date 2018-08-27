@@ -7,6 +7,15 @@ abbr[title="required"] {
   margin-top: 130px;
 }
 
+<<<<<<< HEAD
+=======
+
+.form-control:focus {
+  border-color: none;
+  box-shadow: none;
+}
+
+>>>>>>> master
 #user_email {
   border: none;
   box-shadow: none;
@@ -16,6 +25,7 @@ abbr[title="required"] {
 
 #user_password {
   border: none;
+<<<<<<< HEAD
   box-shadow: none;
   border-bottom-style:  solid;
   border-bottom-width: 1px;
@@ -29,5 +39,16 @@ abbr[title="required"] {
 }
 .form-control:focus {
   border-color: none;
+=======
+>>>>>>> master
   box-shadow: none;
+  border-bottom-style:  solid;
+  border-bottom-width: 1px;
+}
+
+#user_password_confirmation {
+  border: none;
+  box-shadow: none;
+  border-bottom-style:  solid;
+  border-bottom-width: 1px;
 }

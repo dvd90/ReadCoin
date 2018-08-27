@@ -163,21 +163,21 @@ def create_avatar
   @kid = Kid.find(params[:kid_id])
 end
 
-def add_RDC
-  @kid = Kid.find(params[:kid_id])
-  @user = current_user
-  if @user.wallet.to_i >= params[:amount].to_i
-    @user.wallet -= Money.new((params[:amount].to_i * 100), 'USD')
-    @kid.wallet += params[:amount].to_i
-    @user.save!
-    @kid.save!
-    flash[:notice] = "Just added #{params[:amount].to_i} RDC"
-    redirect_to @kid
-  else
-    flash[:notice] = "Not enough RDC please deposit..."
-    redirect_to @kid
-  end
-end
+# def add_RDC
+#   @kid = Kid.find(params[:kid_id])
+#   @user = current_user
+#   if @user.wallet.to_i >= params[:amount].to_i
+#     @user.wallet -= Money.new((params[:amount].to_i * 100), 'USD')
+#     @kid.wallet += params[:amount].to_i
+#     @user.save!
+#     @kid.save!
+#     flash[:notice] = "Just added #{params[:amount].to_i} RDC"
+#     redirect_to @kid
+#   else
+#     flash[:notice] = "Not enough RDC please deposit..."
+#     redirect_to @kid
+#   end
+# end
 
 private
 
