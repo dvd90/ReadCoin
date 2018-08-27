@@ -1,4 +1,7 @@
 //banner
+.body {
+  position: relative;
+}
 .banner-img {
   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("http://www.webanywhere.co.uk/blog/wp-content/uploads/2012/09/rsz_children_tablet.jpg");
   background-repeat: no-repeat;

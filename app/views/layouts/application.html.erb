@@ -12,8 +12,9 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar' unless controller_name == 'devise/sessions' && action_name == 'new' || !@show_navbar%>
-
+    <% if !@show_navbar %>
+      <%= render 'shared/navbar' unless current_page?(new_user_session_path) %>
+    <% end %>
     <%#= #render 'shared/flashes' %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
