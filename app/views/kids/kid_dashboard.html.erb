@@ -11,11 +11,20 @@
           </div>
 
           <div class="books-details">
-            <p><strong><%= image_tag 'coins.png' %> <%= book.reward %> rdcn</strong></p>
-            <p><%= book.title %></p>
-            <p>Author: <%= book.author %></p>
-            <p><%= link_to "show more", kid_book_path(@kid, book),
-            class: "kid-button" %></p>
+            <h3><%= book.title %></h3>
+            <p class="book-author">Author: <%= book.author %></p>
+            <%= link_to kid_book_path(@kid, book),
+            class: "kid-button show-more-btn" do %>
+              <i class="fas fa-eye"></i>
+              <p>Show more</p>
+            <% end %>
+          </div>
+
+          <div class="book-reward">
+            <div class="book-reward-ctn">
+              <%= image_tag 'coins.png' %>
+              <p><strong><%= book.reward %> rdcn</strong></p>
+            </div>
           </div>
 
         </div>
@@ -31,11 +40,15 @@
           </div>
 
           <div class="books-details">
-            <p><strong><%= image_tag 'coins.png' %> <%= book.reward %> rdcn</strong></p>
-            <p><%= book.title %></p>
+            <h3><%= book.title %></h3>
             <p>Author: <%= book.author %></p>
             <p><%= link_to "show more", kid_book_path(@kid, book),
-            class: "kid-button", id: "show-more-kd-btn" %></p>
+            class: "kid-button" %></p>
+          </div>
+
+          <div class="book-reward">
+            <%= image_tag 'coins.png' %>
+            <p><strong><%= book.reward %> rdcn</strong></p>
           </div>
 
         </div>
