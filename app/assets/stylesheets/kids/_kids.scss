@@ -3,34 +3,86 @@
 
 }
 
+#amount {
+  width: 167px;
+}
+
+.purchase-card {
+  border: 0.8px solid $turquiz;
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  width: 55vw;
+
+}
+
+.fields-align {
+  display: inline-flex;
+  justify-content: space-between;
+  width:100%;
+}
+.purchase-spacing {
+  height: 25vh;
+  display:flex;
+  justify-content: space-between;
+}
+
+.balance-card {
+  border: 0.8px solid $turquiz;
+  border-radius: 12px;
+  margin:0;
+  font-size: 25px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-color: $gray;
+}
+
+.balance-card-content {
+  font-size:40px;
+}
+
+.cards-display{
+  display: grid;
+}
 .kid-card {
   border: 0.8px solid $turquiz;
   border-radius: 12px;
   padding: 0;
+  width:100%;
+  margin-bottom: 40px;
+  height:50vh;
+  display:flex;
+}
+.card-left {
+  width:40%;
+  border-right: 2px solid black;
+  margin: 0;
 }
 
+.card-right {
+  width:60%;
+  margin: 0;
+  font-size: 24px;
+}
 
-.cards-display {
+.card-avatar {
+  height:80px;
+  width:80px;
+}
+.kid-name {
+  margin-top: 30px;
+}
+.kid-params {
   display: flex;
-  justify-content: space-between;
-
+  justify-content:space-around;
+  height: 20vh;
+  align-items: center;
 }
-
-
 .nav-buttons {
   display: flex;
   justify-content: space-around;
-
-}
-
-.kid-params {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 25px;
-}
-
-.btn-add-kid {
-  border-radius: 50%;
 
 }
 
@@ -38,19 +90,14 @@
   margin-top: 70px;
 }
 
-.parent-card {
-  border: 0.8px solid $turquiz;
-  border-radius: 12px;
-  padding: 25px;
-  background-color: $turquiz;
-}
-
 .add-child-button {
   color: rgba(84, 198, 235, 0.8);
   padding: 5px 15px;
   border-radius: 15px;
-  border: 2px solid rgba(84, 198, 235, 0.8)
+  border: 2px solid rgba(84, 198, 235, 0.8);
+  margin-bottom: 30px;
 }
+
 .add-child-button:hover {
   background-color: rgba(84, 198, 235, 1);
 }
@@ -60,23 +107,27 @@ a.add-child-button:hover {
   color: rgba(247, 247, 255, 1);
 }
 
-.buy-btn {
-  margin-top: 25px;
-}
-
-#amount {
-  width: 167px;
-}
-
-.card-lower {
-  background-color: $turquiz;
-  padding: 10px;
-  height: 60%;
-  border-radius:0px 0px 11px 11px;
-}
-
-.card-upper {
-  padding:15px;
-  height:40%;
+.btn-add-kid {
+  border-radius: 50%;
 
 }
+
+
+.line-seperate {
+  margin-top: 70px;
+  width: 60vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
