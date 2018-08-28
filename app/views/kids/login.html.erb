@@ -20,7 +20,7 @@
       <%= image_tag 'kids_on_roof_reading_book.jpg', class: "login-avatar" %>
       <%= simple_form_for kids_login_path do |f| %>
         <%= f.input :password, label: "Magic password" %>
-        <%= f.submit "GO!", class: 'parent-button' %>
+        <%= f.submit "GO!", class: 'parent-button', id: "login-go-btn" %>
       <% end %>
     </div>
   </div>
