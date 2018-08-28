@@ -8,7 +8,7 @@ function showSwal(){
   if (current.includes("100")) {
     swal({
       title: 'Good job!',
-      text: 'You fininsh the book, go and answer the quiz!',
+      text: 'You finished the book, go and answer the quiz!',
       type: 'success',
     })
 }
