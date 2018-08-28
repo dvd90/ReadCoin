@@ -1,5 +1,5 @@
 <div class="container background-size">
-  <h1 class="text-center", style="margin-bottom: 45px;">What are they up to?</h1>
+  <h1 class="text-center", style="margin-bottom: 45px;">My account</h1>
   <p class="text-center", style="font-size: 23px; margin-bottom: 40px;">Purchase ReadCoins and allow your children to explore the wonders of the books world</p>
 
 
@@ -44,7 +44,7 @@
 
   <div class="row text-center btn-add-kid-margin">
     <div class="add-child-button">
-      <%= link_to "Add child", new_kid_path, class: "btn-add-kid", style:"text-decoration:none;" %>
+      <%= link_to "Add a child", new_kid_path, class: "btn-add-kid", style:"text-decoration:none; color: #54c6eb;" %>
     </div>
   </div>
   <div class="row cards-display">
@@ -57,7 +57,9 @@
           </div>
         </div>
         <div class="card-right">
-          <i class="far fa-edit", style="position: absolute; right: 22px; top:22px;"><% link_to edit_kid_path(kid) %></i>
+          <%= link_to edit_kid_path(kid), style:"position: absolute; right: 22px; top:22px;" do  %>
+          <i class="far fa-edit", style="color: #54c6eb;"></i>
+          <% end %>
 
 
 
@@ -76,7 +78,7 @@
                 <div class="kid-purchases", style="font-size: 55px;">
                   <%= kid.purchases.length %>
                 </div>
-                <p>Gift purchesed</p>
+                <p>Gift purchased</p>
               </div>
               <div class="kid-readcoins">
                 <div class="kid-wallet", style="font-size: 55px;">
