@@ -1,8 +1,15 @@
-
-<h1><%= @prize.title %></h1>
-<h2><%= @prize.price %> $</h2>
-<% if @kid.wallet >= @prize.price %>
-  <h2><%= link_to "Buy Now!", kid_prize_purchases_path(@kid, @prize), method: :post, id:"buy-now-btn" %></h2>
-<% else %>
-  <h2><%= link_to "Buy Now!", kid_prizes_path(@kid), data: { confirm: "Not enough ReadCoin go and read some more!"}%></h2>
-<% end %>
+<div class="kid-dashboard-wrapper">
+  <div class="kid-dashboard-container prize-show-container">
+    <div class="prize-show-card">
+      <h1><%= @prize.title %></h1>
+      <%= cl_image_tag @prize.picture %>
+      <h2><%= image_tag 'coins.png' %> <%= @prize.price %> rdc</h2>
+      <% if @kid.wallet >= @prize.price %>
+        <h2><%= link_to "Confirm", kid_prize_purchases_path(@kid, @prize), method: :post, id:"buy-now-btn", class: "kid-button" %></h2>
+         <h2><%= link_to "Back to Eshop", kid_prizes_path(@kid), id:"buy-now-btn", class: "kid-button" %></h2>
+      <% else %>
+        <h2><%= link_to "Confirm", kid_prizes_path(@kid), class: "kid-button", data: { confirm: "Not enough ReadCoin go and read some more!"}%></h2>
+      <% end %>
+    </div>
+  </div>
+</div>
