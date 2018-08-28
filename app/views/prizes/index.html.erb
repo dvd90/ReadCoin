@@ -1,7 +1,9 @@
 <div class="kid-dashboard-wrapper">
   <div class="kid-dashboard-container prizes-container">
-    <h1>E-Shop</h1>
-    <h3><%= image_tag 'coins.png' %> My wallet: <%= @kid_balance %> rdcn</h3>
+    <div class="eshop-top-flexbox">
+      <h1>E-Shop</h1>
+      <h3><%= image_tag 'coins.png' %> <%= @kid_balance %> rdn</h3>
+    </div>
       <div class="row">
         <% @prizes.each do |prize| %>
           <div class="col-sm-3">

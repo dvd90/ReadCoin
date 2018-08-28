@@ -1,1 +1,22 @@
-<h1>transaction confirmed</h1>
+<div class="kid-dashboard-wrapper">
+  <div class="kid-dashboard-container">
+    <div class="purchase-top-flexbox">
+      <h1>Purchase confirmation</h1>
+      <h3><%= image_tag 'coins.png' %> <%= @kid.wallet %> rdn</h3>
+    </div>
+      <div class="purchase-details">
+        <h2><%= @purchase.prize.title %></h2>
+        <%= cl_image_tag @purchase.prize.picture %>
+        <h3>It's yours, enjoy!</h3>
+      </div>
+
+      <div class="purchase-link">
+      <%= link_to "Back to Eshop", kid_prizes_path(@kid), class: "kid-button", id: "purchase-back-shop" %>
+      <%= link_to "Back to Ebooks", kid_dashboard_path(@kid), class: "kid-button" %>
+    </div>
+
+  </div>
+</div>
+
+
+
