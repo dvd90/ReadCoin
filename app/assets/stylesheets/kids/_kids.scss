@@ -1,11 +1,111 @@
-.kid-index-container{
-  text-align: center;
-  position: relative;
+.background-size {
+  height: 100vw;
+
 }
-.add-a-kid-btn {
-  position: absolute;
-  top: 40px;
-  right: 40px;
+
+#amount {
+  width: 167px;
+}
+
+
+.call-to-action {
+  display:flex;
+  justify-content:center;
+}
+
+.purchase-action {
+  display: flex;
+  justify-content:center;
+}
+.buy-btn {
+    color: rgba(247, 247, 255, 0.8);
+    background-color: rgba(84, 198, 235, 1);
+    padding: 5px 15px;
+    border-radius: 15px;
+    border: 2px solid rgba(247, 247, 255, 0.8);
+  }
+.buy-btn:hover {
+    background-color: rgba(247, 247, 255, 0.8);
+    color: rgba(84, 198, 235, 1);
+  }
+a.buy-btn:hover {
+    text-decoration: none;
+    color: rgba(84, 198, 235, 1);
+  }
+
+.purchase-card {
+  border: 0.8px solid $turquiz;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+
+
+
+
+.balance-card-content {
+  border: 1px solid $turquiz;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  margin: 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color: $turquiz;
+}
+
+.cards-display{
+  display: grid;
+}
+.kid-card {
+  border: 1.5px solid $turquiz;
+  border-radius: 12px;
+  padding: 0;
+  width:100%;
+  margin-bottom: 40px;
+  height:35vh;
+  display:flex;
+}
+.card-left {
+  width:30%;
+  border-right: 1px solid $turquiz;
+  margin: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+}
+
+.card-right {
+  width:70%;
+  margin: 0;
+  font-size: 24px;
+}
+
+.card-avatar {
+  height:150px;
+  width:150px;
+
+}
+.kid-name {
+  margin-top: 30px;
+}
+.kid-params {
+  display: flex;
+  justify-content:space-around;
+  height: 20vh;
+  align-items: center;
+
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.btn-add-kid-margin {
+  margin-top: 70px;
 }
 .log-out-btn {
   border: none !important;
@@ -14,51 +114,40 @@
   padding: 5px 15px;
 }
 
-.parent-card {
-  background-color: #DED9E2;
-  position: relative;
-  width: 40vw;
-  padding: 60px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  font-size: 20px;
+.add-child-button {
+  color: rgba(84, 198, 235, 0.8);
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 2px solid rgba(84, 198, 235, 0.8);
+  margin-bottom: 30px;
 }
-.card-avatar {
-  position: absolute;
-  top: 5px;
-  left: 5px;
+
+.add-child-button:hover {
+  background-color: rgba(84, 198, 235, 1);
 }
-.kid-name {
-  position: absolute;
-  top: 5px;
-  left: 70px;
-  color: #F25F5C;
+
+a.add-child-button:hover {
+  text-decoration: none;
+  color: rgba(247, 247, 255, 1);
 }
-.kid-edit {
-  position: absolute;
-  top: 5px;
-  right: 15px;
+
+.btn-add-kid {
+  border-radius: 50%;
+
 }
-.kid-readings {
-  position: absolute;
-  top: 30px;
-  left: 70px;
-}
-.kid-purchases {
-  position: absolute;
-  top: 60px;
-  left: 70px;
-}
-.kid-readcoins {
-  position: absolute;
-  top: 90px;
-  left: 70px;
-}
-.show-more {
-  position: absolute;
-  right: 15px;
-  bottom: 15px;
-}
-.fas {
-  color: #E2C044;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

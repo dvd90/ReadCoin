@@ -1,43 +1,113 @@
-<div class="parent-dashboard-wrapper">
-  <div class="parent-dashboard-container kid-index-container">
-    <h2>What are they up to?</h2>
-      <div class="parent-dashboard-container-content">
-        <div class="row">
-        <% @kids.each do |kid| %>
-        <div class="col-xs-12 col-xs-offset-3">
-            <div class="parent-card">
-              <div class="card-avatar">
-                <%= cl_image_tag kid.avatar, class: "parent-avatar" %>
-              </div>
-              <div class="kid-name">
-                <p><%= kid.name %></p>
-              </div>
-              <div class="kid-edit">
-                <p><%= link_to "edit", edit_kid_path(kid) %></p>
-              </div>
-              <div class="kid-readings">
-                <p><i class="fas fa-book-reader"></i> Readings: <%= kid.readings.length %></p>
-              </div>
-              <div class="kid-purchases">
-                <p><i class="fas fa-gift"></i> Purchases: <%= kid.purchases.length %></p>
-              </div>
-              <div class="kid-readcoins">
-                <p><i class="fas fa-coins"></i> Readcoins: <%= kid.wallet %></p>
-              </div>
-              <div class="show-more">
-                <%= link_to "more", kid_path(kid), class: "parent-button" %>
-              </div>
-            </div>
-            </div>
-        <% end %>
+<div class="container background-size">
+  <h1 class="text-center", style="margin-bottom: 45px;">What are they up to?</h1>
+  <p class="text-center", style="font-size: 23px; margin-bottom: 40px;">Purchase ReadCoins and allow your children to explore the wonders of the books world</p>
+
+
+
+  <div class="container call-to-action">
+    <div class="row">
+      <div class="balance-card-content text-center">
+        <div class="call-action-content">
+        <div class="num-field", style="font-size:95px;">
+          <%= humanized_money_with_symbol(current_user.wallet) %>
+        </div>
+          <p style="margin-bottom: 0;">Balance</p>
         </div>
       </div>
-      <h4>Wallet: <%= humanized_money_with_symbol(current_user.wallet) %> USD</<h4>
-      <p><%= link_to "add a kid", new_kid_path, class: "parent-button add-a-kid-btn" %></p>
-      <%= form_tag orders_path do %>
-      <%= number_field_tag "amount" %>
-      <%= submit_tag 'Buy Some ReadCoin', class: 'parrent_button' %>
-      <% end %>
-      <%= link_to "Back", kids_login_path, class: "parent-button" %>
+
+
     </div>
+  </div>
+
+
+  <div class="container", style="margin-top:35px;">
+    <div class="purchase-action">
+      <div>
+        <%= form_tag orders_path do %>
+          <%= number_field_tag "amount", class:"buy-field" %>
+          <p>Enter amount</p>
+      </div>
+      <div style="margin-left: 20px;">
+        <%= submit_tag 'Purchase ReadCoin', class:"buy-btn" %>
+      </div>
+     <% end %>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  <div class="row text-center btn-add-kid-margin">
+    <div class="add-child-button">
+      <%= link_to "Add child", new_kid_path, class: "btn-add-kid", style:"text-decoration:none;" %>
+    </div>
+  </div>
+  <div class="row cards-display">
+    <% @kids.each do |kid| %>
+      <div class="card col-md-4 text-center kid-card">
+        <div class="card-left">
+          <div class="card-avatar">
+            <%= cl_image_tag kid.avatar, class: "parent-avatar card-avatar-img", style:"height:150px; width:150px;  " %>
+
+          </div>
+        </div>
+        <div class="card-right">
+          <i class="far fa-edit", style="position: absolute; right: 22px; top:22px;"><% link_to edit_kid_path(kid) %></i>
+
+
+
+          <div class="right-card-pad">
+            <div class="kid-name">
+              <p style="margin-top: 10px; font-size: 46px; text-transform: capitalize;"><%= kid.name %></p>
+            </div>
+            <div class="kid-params">
+              <div class="kid-readings">
+                <div class="kid-readings", style="font-size: 55px;">
+                  <%= kid.readings.length %>
+                </div>
+                <p>Books Read</p>
+              </div>
+              <div class="kid-purchases">
+                <div class="kid-purchases", style="font-size: 55px;">
+                  <%= kid.purchases.length %>
+                </div>
+                <p>Gift purchesed</p>
+              </div>
+              <div class="kid-readcoins">
+                <div class="kid-wallet", style="font-size: 55px;">
+                  <%= kid.wallet %>
+                </div>
+                <p>Readcoins Spent</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
