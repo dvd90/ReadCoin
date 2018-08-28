@@ -7,6 +7,22 @@
   width: 167px;
 }
 
+.buy-btn {
+    color: rgba(247, 247, 255, 0.8);
+    background-color: rgba(84, 198, 235, 1);
+    padding: 5px 15px;
+    border-radius: 15px;
+    border: 2px solid rgba(247, 247, 255, 0.8);
+  }
+.buy-btn:hover {
+    background-color: rgba(247, 247, 255, 0.8);
+    color: rgba(84, 198, 235, 1);
+  }
+a.buy-btn:hover {
+    text-decoration: none;
+    color: rgba(84, 198, 235, 1);
+  }
+
 .purchase-card {
   border: 0.8px solid $turquiz;
   border-radius: 12px;
@@ -36,7 +52,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  background-color: $gray;
+
 }
 
 .balance-card-content {
@@ -57,8 +73,12 @@
 }
 .card-left {
   width:40%;
-  border-right: 2px solid black;
+  border-right: 1px solid $turquiz;
   margin: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
 }
 
 .card-right {
@@ -68,8 +88,9 @@
 }
 
 .card-avatar {
-  height:80px;
-  width:80px;
+  height:150px;
+  width:150px;
+
 }
 .kid-name {
   margin-top: 30px;
@@ -79,6 +100,7 @@
   justify-content:space-around;
   height: 20vh;
   align-items: center;
+  margin-top: 40px;
 }
 .nav-buttons {
   display: flex;
@@ -124,6 +146,21 @@ a.add-child-button:hover {
   width: 60vw;
 }
 
+.parent-button {
+  color: rgba(247, 247, 255, 0.8);
+  background-color: rgba(84, 198, 235, 1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 2px solid rgba(247, 247, 255, 0.8);
+}
+.parent-button:hover {
+  background-color: rgba(247, 247, 255, 0.8);
+  color: rgba(84, 198, 235, 1);
+}
+a.parent-button:hover {
+  text-decoration: none;
+  color: rgba(84, 198, 235, 1);
+}
 
 
 

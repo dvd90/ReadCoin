@@ -2,7 +2,7 @@
   <h1 class="text-center", style="margin-bottom: 45px;">What are they up to?</h1>
   <p class="text-center", style="font-size: 23px; margin-bottom: 40px;">Purchase ReadCoins and allow your children to explore the wonders of the books world</p>
   <div class="container purchase-spacing">
-    <div class="card col-md-8 purchase-card">
+    <div class="card col-md-8  purchase-card">
       <div class="fields-align">
         <div>
           <%= form_tag orders_path do %>
@@ -26,10 +26,10 @@
   <div class="container line-seperate", style="border:0.5px solid black">
   </div>
 
-  <p class="text-center", style="font-size: 23px; margin: 70px 0px 40px 0px;">Follow the progress of your children as what they read and on what they spending they ReadCoins</p>
+  <p class="text-center", style="font-size: 23px; margin: 70px 0px 40px 0px;">Follow the progress of your children and check what they are reading and how much and on what they spending their ReadCoins</p>
   <div class="row text-center btn-add-kid-margin">
     <div class="add-child-button">
-      <%= link_to "Add child", new_kid_path, class: "btn-add-kid" %>
+      <%= link_to "Add child", new_kid_path, class: "btn-add-kid", style:"text-decoration:none;" %>
     </div>
   </div>
   <div class="row cards-display">
@@ -37,13 +37,14 @@
       <div class="card col-md-4 text-center kid-card">
         <div class="card-left">
           <div class="card-avatar">
+            <%= cl_image_tag kid.avatar, class: "parent-avatar card-avatar-img", style:"height:150px; width:150px;  " %>
+
           </div>
         </div>
         <div class="card-right">
           <div class="right-card-pad">
             <div class="kid-name">
-              <%= cl_image_tag kid.avatar, class: "parent-avatar card-avatar" %>
-              <p style="margin-top: 10px;"><%= kid.name %></p>
+              <p style="margin-top: 10px; font-size: 46px;"><%= kid.name %></p>
             </div>
             <div class="kid-params">
               <div class="kid-readings">
@@ -64,8 +65,7 @@
               </div>
             </div>
             <div class="nav-buttons">
-              <%= link_to "edit", edit_kid_path(kid), class:"btn btn-primary" %>
-              <%= link_to "more", kid_path(kid), class:"btn btn-primary" %>
+              <%= link_to "edit", edit_kid_path(kid), class:"parent-button" %>
             </div>
           </div>
         </div>
@@ -73,19 +73,7 @@
     <% end %>
   </div>
 
-  <div class="row text-center btn-add-kid-margin">
-    <div class="add-child-button">
-      <%= link_to "Add child", new_kid_path, class: "btn-add-kid" %>
-      <h4>Wallet: <%= humanized_money_with_symbol(current_user.wallet) %> USD</<h4>
-      <p><%= link_to "add a kid", new_kid_path, class: "parent-button add-a-kid-btn" %></p>
-      <%= form_tag orders_path do %>
-      <%= number_field_tag "amount" %>
-      <%= submit_tag 'Buy Some ReadCoin', class: 'parrent_button' %>
-      <% end %>
-      <%= link_to "Back", kids_login_path, class: "parent-button" %>
-    </div>
-  </div>
-</div>
+
 
 
 
