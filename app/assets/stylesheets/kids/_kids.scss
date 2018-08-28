@@ -1,6 +1,10 @@
 .background-size {
   height: 100vw;
-
+  margin-top: 10vh;
+  background-color: #EEEEEE;
+  h1 {
+    font-family: 'Kurale';
+  }
 }
 
 #amount {
@@ -45,8 +49,8 @@ a.buy-btn:hover {
 
 .balance-card-content {
   border: 1px solid $turquiz;
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
   border-radius: 50%;
   margin: 0;
   display:flex;
@@ -133,7 +137,9 @@ a.add-child-button:hover {
 
 .btn-add-kid {
   border-radius: 50%;
-
+}
+.edit-container-form {
+  margin-top: 15vh;
 }
 
 
