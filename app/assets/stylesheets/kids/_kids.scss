@@ -7,6 +7,16 @@
   width: 167px;
 }
 
+
+.call-to-action {
+  display:flex;
+  justify-content:center;
+}
+
+.purchase-action {
+  display: flex;
+  justify-content:center;
+}
 .buy-btn {
     color: rgba(247, 247, 255, 0.8);
     background-color: rgba(84, 198, 235, 1);
@@ -27,52 +37,38 @@ a.buy-btn:hover {
   border: 0.8px solid $turquiz;
   border-radius: 12px;
   padding: 25px;
-  display: flex;
-  align-items: center;
-  width: 55vw;
-
 }
 
-.fields-align {
-  display: inline-flex;
-  justify-content: space-between;
-  width:100%;
-}
-.purchase-spacing {
-  height: 25vh;
-  display:flex;
-  justify-content: space-between;
-}
 
-.balance-card {
-  border: 0.8px solid $turquiz;
-  border-radius: 12px;
-  margin:0;
-  font-size: 25px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 
-}
+
 
 .balance-card-content {
-  font-size:40px;
+  border: 1px solid $turquiz;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  margin: 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color: $turquiz;
 }
 
 .cards-display{
   display: grid;
 }
 .kid-card {
-  border: 0.8px solid $turquiz;
+  border: 1.5px solid $turquiz;
   border-radius: 12px;
   padding: 0;
   width:100%;
   margin-bottom: 40px;
-  height:50vh;
+  height:35vh;
   display:flex;
 }
 .card-left {
-  width:40%;
+  width:30%;
   border-right: 1px solid $turquiz;
   margin: 0;
   display:flex;
@@ -82,7 +78,7 @@ a.buy-btn:hover {
 }
 
 .card-right {
-  width:60%;
+  width:70%;
   margin: 0;
   font-size: 24px;
 }
@@ -100,7 +96,7 @@ a.buy-btn:hover {
   justify-content:space-around;
   height: 20vh;
   align-items: center;
-  margin-top: 40px;
+
 }
 .nav-buttons {
   display: flex;
@@ -141,26 +137,7 @@ a.add-child-button:hover {
 }
 
 
-.line-seperate {
-  margin-top: 70px;
-  width: 60vw;
-}
 
-.parent-button {
-  color: rgba(247, 247, 255, 0.8);
-  background-color: rgba(84, 198, 235, 1);
-  padding: 5px 15px;
-  border-radius: 15px;
-  border: 2px solid rgba(247, 247, 255, 0.8);
-}
-.parent-button:hover {
-  background-color: rgba(247, 247, 255, 0.8);
-  color: rgba(84, 198, 235, 1);
-}
-a.parent-button:hover {
-  text-decoration: none;
-  color: rgba(84, 198, 235, 1);
-}
 
 
 
