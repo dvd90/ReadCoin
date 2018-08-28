@@ -9,6 +9,7 @@
          <h2><%= link_to "Back to Eshop", kid_prizes_path(@kid), id:"buy-now-btn", class: "kid-button" %></h2>
       <% else %>
         <h2><%= link_to "Confirm", kid_prizes_path(@kid), class: "kid-button", data: { confirm: "Not enough ReadCoin go and read some more!"}%></h2>
+        <h2><%= link_to "Back to Eshop", kid_prizes_path(@kid), id:"buy-now-btn", class: "kid-button" %></h2>
       <% end %>
     </div>
   </div>
