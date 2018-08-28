@@ -1,7 +1,6 @@
 
-
 <div class="link-to-ebook">
   <%= link_to "back to book", kid_book_path(@kid, @book), class: "kid-button to-book-btn" %>
+  <%= link_to "Quiz", kid_book_quiz_path(@kid, @book) %>
   <a href="/bib/i/?book=<%= @book.url %>.epub" data-bibi="embed" data-bibi-style="width: 100%; height: 100vh;">The Little Prince</a><script src="/bib/i.js"></script>
 </div>
-
