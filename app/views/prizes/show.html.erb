@@ -1,7 +1,7 @@
 <div class="kid-dashboard-wrapper">
   <div class="kid-dashboard-container prize-show-container">
     <div class="prize-show-card">
-      <h1><%= @prize.title %></h1>
+      <h2><%= @prize.title %></h2>
       <%= cl_image_tag @prize.picture, width: 220, height: 220 %>
       <h2><%= image_tag 'coins.png' %> <%= @prize.price %> rdc</h2>
       <% if @kid.wallet >= @prize.price %>
