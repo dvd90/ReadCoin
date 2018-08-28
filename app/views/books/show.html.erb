@@ -1,22 +1,24 @@
 <div class="kid-dashboard-wrapper">
   <div class="kid-dashboard-container book-show-container">
-    <div class="book-image">
-      <%= cl_image_tag @book.photo, crop: :fill, id: "book-img" %>
-    </div>
+<!--     <div class="book-image">
+ -->      <%= cl_image_tag @book.photo, crop: :fill, id: "book-img" %>
+    <!-- </div> -->
     <div class="book-details">
       <h1><%= @book.title %></h1>
-      <p>Author: <%= @book.author%></p>
+      <p><i>Author: <%= @book.author%></i></p>
       <p><%= @book.summary %></p>
-      <div class="read-now-btn book-show-btn">
-        <p><%= link_to "Read Now", kid_book_readings_path(@kid, @book), method: :post, class: "kid-button" %></p>
+      <div class="book-show-links">
+        <div class="read-now-btn book-show-btn">
+          <p><%= link_to "Read Now", kid_book_readings_path(@kid, @book), method: :post, class: "kid-button" %></p>
+        </div>
+        <% if @book.reward <= current_user.wallet.to_i %>
+        <div class="quiz-btn book-show-btn">
+          <p><%= link_to "Answer the QUIZ", kid_book_quiz_path(@kid, @book), class: "kid-button" %></p>
+        </div>
+        <% else %>
+        <h4>Please ask your parents to verify your account</h4>
+        <% end %>
       </div>
-      <% if @book.reward <= current_user.wallet.to_i %>
-      <div class="quiz-btn book-show-btn">
-        <p><%= link_to "Answer the QUIZ to get some ReadCoin", kid_book_quiz_path(@kid, @book), class: "kid-button" %></p>
-      </div>
-      <% else %>
-      <h4>Please ask your parents to verify your account</h4>
-      <% end %>
     </div>
   </div>
 </div>

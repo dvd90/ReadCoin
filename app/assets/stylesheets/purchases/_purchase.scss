@@ -1,0 +1,26 @@
+.purchase-show-flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#purchased-btn {
+  width: 100px;
+  height: 100px;
+}
+.purchase-link {
+  display: flex;
+  justify-content: center;
+}
+.purchase-top-flexbox {
+  display: flex;
+  justify-content: space-between;
+}
+#purchase-back-shop {
+  margin-right: 10px;
+}
+.purchase-details {
+  text-align: center;
+  h3 {
+    margin-bottom: 50px;
+  }
+}

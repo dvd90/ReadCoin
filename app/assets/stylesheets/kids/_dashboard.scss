@@ -2,14 +2,16 @@
   display: flex;
   justify-content: space-around;
   background-color: $turquiz;
+  overflow: scroll;
 }
 .kid-dashboard-container{
   width: 85vw;
-  height: 100vw;
+  height: 100vh;
   background-color: white;
   padding: 20px;
   margin-top: 70px;
   border-radius: 5px;
+  overflow: scroll;
 }
 .kid-dashboard-container h1 {
   margin-top: 15px;
