@@ -12,7 +12,7 @@
           <%= humanized_money_with_symbol(current_user.wallet) %>
         </div>
           <p>Balance</p>
-          <p>1 RDC = $</p>
+          <p>1 RDC = 1 USD</p>
         </div>
       </div>
 
@@ -40,20 +40,16 @@
   </div>
   <div class="row cards-display">
     <% @kids.each do |kid| %>
-      <div class="card col-md-4 text-center kid-card">
+      <div class="card col-xs-12 text-center kid-card">
         <div class="card-left">
           <div class="card-avatar">
             <%= cl_image_tag kid.avatar, class: "parent-avatar card-avatar-img", style:"height:150px; width:150px;  " %>
-
           </div>
         </div>
         <div class="card-right">
           <%= link_to edit_kid_path(kid), style:"position: absolute; right: 22px; top:22px;" do  %>
           <i class="far fa-edit", style="color: #54c6eb;"></i>
           <% end %>
-
-
-
           <div class="right-card-pad">
             <div class="kid-name">
               <p style="margin-top: 10px; font-size: 46px; text-transform: capitalize;"><%= kid.name %></p>
