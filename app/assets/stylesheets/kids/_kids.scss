@@ -3,9 +3,15 @@
   margin-top: 10vh;
   background-color: #EEEEEE;
   overflow: scroll;
+  width: 85vw;
   h1 {
     font-family: 'Dosis';
   }
+}
+.parents-dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  overflow: scroll;
 }
 #amount {
   width: 167px;
