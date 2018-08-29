@@ -1,4 +1,4 @@
-.background-size {
+.parents-dashboard-container {
   height: 100vw;
   margin-top: 10vh;
   background-color: #EEEEEE;
@@ -23,6 +23,7 @@
 .purchase-action {
   display: flex;
   justify-content:center;
+  margin-top: 4vh;
 }
 .buy-btn {
     color: rgba(247, 247, 255, 0.8);
@@ -100,6 +101,8 @@ a.buy-btn:hover {
   margin-top: 70px;
   display: flex;
   justify-content: center;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 .log-out-btn {
   border: none !important;
@@ -113,7 +116,7 @@ a.buy-btn:hover {
   border-radius: 15px;
   border: 2px solid rgba(84, 198, 235, 0.8);
   margin-bottom: 30px;
-  width: 85%;
+  width: 15%;
 }
 .add-child-button:hover {
   background-color: rgba(84, 198, 235, 1);
@@ -130,6 +133,10 @@ a.add-child-button:hover {
 }
 .num-field, .call-action-content {
   color: white;
+}
+.cards-display {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 

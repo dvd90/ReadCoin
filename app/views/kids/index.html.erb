@@ -1,11 +1,11 @@
 <div class="parents-dashboard-wrapper">
-<div class="background-size">
+<div class="parents-dashboard-container">
   <h1 class="text-center", style="margin-bottom: 45px;">My account</h1>
   <p class="text-center", style="font-size: 23px; margin-bottom: 40px;">Purchase ReadCoins and allow your children to explore the wonders of the books world</p>
 
 
 
-  <div class="container call-to-action">
+  <div class="call-to-action">
     <div class="row">
       <div class="balance-card-content text-center">
         <div class="call-action-content">
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="container", style="margin-top:35px;">
+
     <div class="purchase-action">
       <div>
         <%= form_tag orders_path do %>
@@ -33,7 +33,7 @@
       </div>
      <% end %>
     </div>
-  </div>
+
   <div class="row text-center btn-add-kid-margin">
     <div class="add-child-button">
       <%= link_to "Add a child", new_kid_path, class: "btn-add-kid", style:"text-decoration:none; color: #54c6eb;" %>
