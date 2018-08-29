@@ -109,3 +109,15 @@
 .landing-page-content p {
   font-size: 24px;
 }
+.btn-banner-home {
+  background-color: $turquiz;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-size: 35px;
+}
+.btn-banner-home:hover {
+  background-color: white;
+  color: $turquiz;
+  text-decoration: none;
+}
