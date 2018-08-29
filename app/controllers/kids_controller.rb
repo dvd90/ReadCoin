@@ -25,7 +25,7 @@ class KidsController < ApplicationController
     @kid = Kid.find(params[:id])
     @books = Book.all
     @chosen_books = []
-    unless @kid.interest.empty?
+    unless @kid.interests.nil?
       @kid.interests.each do |interest|
         @chosen_books = Book.where(genre: interest).where("min_age < ? AND max_age > ?", @kid.age, @kid.age)
       end
