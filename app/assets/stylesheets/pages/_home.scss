@@ -25,7 +25,7 @@
 }
 
 .banner-title {
-  font-size: 120px;
+  font-size: 100px;
   font-weight: bolder;
   color:white;
   filter: brightness(0.9)
@@ -58,18 +58,10 @@
 
 .card-home-left {
   margin-right: 38px;
-  h3 {
-  font-weight: bolder;
-  font-size: 38px;
-  }
 }
 
 .card-home-right {
   margin-left: 38px;
-  h3 {
-  font-weight: bolder;
-  font-size: 38px;
-  }
 }
 
 .lgog-image {
@@ -82,11 +74,7 @@
   font-weight:bolder;
 }
 
-.path-font h1 {
-  font-size: 48px;
-  font-weight:bolder;
 
-}
 
 .the-path-background-color {
   background-color: white;
@@ -97,16 +85,27 @@
   margin-bottom: 0;
   background-color: #39393A;
   color: white;
+  text-align: center;
 }
 
 .how-uses-background {
   background-color: #EEEEEE;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+  p {
+    margin-top: 20px;
+  }
 }
 
 .image-inline {
   display: flex;
   justify-content: space-between;
 
+}
+#qr {
+  margin-bottom: 20px;
+}
+.landing-page-content p {
+  font-size: 24px;
 }

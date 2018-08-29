@@ -5,18 +5,18 @@
     <%= link_to "sign in", new_user_session_path, class:"btn btn-danger btn-lg align-self-center banner-btn" %>
   </div>
 </div>
-
+<div class="landing-page-content">
 <div class="jumbotron problem-solution-background">
   <div class="container cards-align" >
       <div class="card text-center col-xs-12 col-md-4 card-home-left">
-          <h3>What is ReadCoin?</h3>
+          <h2>What is ReadCoin?</h2>
           <p>ReadCoin is the first incentive driven coin for childern of the world. </p>
       </div>
 
       <%= image_tag 'logo.png', class:"logo-image", style:"height: 300px" %>
 
       <div class="card  col-xs-12 col-md-4 text-center card-home-right">
-        <h3 style="font-size: 38px;">Why ReadCoin?</h3>
+        <h2>Why ReadCoin?</h2>
         <p>If you want your children to be smart, successful, technologicly advanced, happy and ready for the way that is ahead.</p>
       </div>
   </div>
@@ -46,17 +46,17 @@
 
 
 <div class="container-fluid how-uses-background">
-    <h2 class="text-center" style="font-size: 48px; padding-bottom: 65px; font-weight:bolder;">How to use ReadCoin?</h2>
+    <h2>How to use ReadCoin?</h2>
     <div class="container text-center image-inline">
       <div>
+        <h2>Kids</h2>
         <%= image_tag "kids_on_roof_reading_book.jpg", class:"img-circle" %>
-        <h3 style="font-size:45px">Kids</h3>
-        <p style="font-size:30px">Read books and Learn important money management skills that last a lifetime.</p>
+        <p>Read books, buy things, and learn important money management skills that last a lifetime.</p>
       </div>
       <div>
-        <%= image_tag "kid-reading-with-parents.jpg", class:"img-circle" %>
-        <h3 style="font-size:45px">Parents</h3>
-        <p style="font-size:30px">Get involved in your child’s learning and reading abilities  and have fun along the way.</p>
+        <h2>Parents</h2>
+        <%= image_tag "kid-reading-with-parents.jpeg", class:"img-circle" %>
+        <p>Get involved in your child’s learning and reading abilities  and have fun along the way.</p>
       </div>
   </div>
 </div>
@@ -65,13 +65,14 @@
 <div class="jumbotron get-paid-background">
   <div class="container">
     <div class="row">
-      <h1 class="">How Can I Contribute?</h2>
-      <h2 class="">If you think that our goal is align with yours, sign in.</h3>
-      <h2>Want To Contribute More?</h2>
-      <h4>we are accepting donations with etherium</h4>
-      <%= image_tag "qr code.png" %>
+      <h2>How Can I Contribute?</h2>
+      <p>If you think that our goal is align with yours, sign in.</p>
+      <p>Want To Contribute More?</p>
+      <p>we are accepting donations with etherium</p>
+      <%= image_tag "qr code.png", id: "qr" %>
       <p>Our Ethereum address is: 0xD375a855837a0046C8783C6d8edD6981cE3103e9</p>
 
     </div>
   </div>
+</div>
 </div>

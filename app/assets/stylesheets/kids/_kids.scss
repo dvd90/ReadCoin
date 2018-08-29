@@ -3,20 +3,16 @@
   margin-top: 10vh;
   background-color: #EEEEEE;
   h1 {
-    font-family: 'Kurale';
+    font-family: 'Dosis';
   }
 }
-
 #amount {
   width: 167px;
 }
-
-
 .call-to-action {
   display:flex;
   justify-content:center;
 }
-
 .purchase-action {
   display: flex;
   justify-content:center;
@@ -36,17 +32,11 @@ a.buy-btn:hover {
     text-decoration: none;
     color: rgba(84, 198, 235, 1);
   }
-
 .purchase-card {
   border: 0.8px solid $turquiz;
   border-radius: 12px;
   padding: 25px;
 }
-
-
-
-
-
 .balance-card-content {
   border: 1px solid $turquiz;
   height: 300px;
@@ -58,18 +48,18 @@ a.buy-btn:hover {
   align-items:center;
   background-color: $turquiz;
 }
-
 .cards-display{
-  display: grid;
+  display: flex;
+  justify-content: center;
 }
 .kid-card {
   border: 1.5px solid $turquiz;
   border-radius: 12px;
   padding: 0;
-  width:100%;
+  width: 85%;
   margin-bottom: 40px;
-  height:35vh;
-  display:flex;
+  height: 35vh;
+  display: flex;
 }
 .card-left {
   width:30%;
@@ -78,19 +68,15 @@ a.buy-btn:hover {
   display:flex;
   align-items:center;
   justify-content:center;
-
 }
-
 .card-right {
   width:70%;
   margin: 0;
   font-size: 24px;
 }
-
 .card-avatar {
   height:150px;
   width:150px;
-
 }
 .kid-name {
   margin-top: 30px;
@@ -100,16 +86,15 @@ a.buy-btn:hover {
   justify-content:space-around;
   height: 20vh;
   align-items: center;
-
 }
 .nav-buttons {
   display: flex;
   justify-content: space-around;
-
 }
-
 .btn-add-kid-margin {
   margin-top: 70px;
+  display: flex;
+  justify-content: center;
 }
 .log-out-btn {
   border: none !important;
@@ -117,24 +102,21 @@ a.buy-btn:hover {
   color: rgba(84, 198, 235, 0.8);
   padding: 5px 15px;
 }
-
 .add-child-button {
   color: rgba(84, 198, 235, 0.8);
   padding: 5px 15px;
   border-radius: 15px;
   border: 2px solid rgba(84, 198, 235, 0.8);
   margin-bottom: 30px;
+  width: 85%;
 }
-
 .add-child-button:hover {
   background-color: rgba(84, 198, 235, 1);
 }
-
 a.add-child-button:hover {
   text-decoration: none;
   color: rgba(247, 247, 255, 1);
 }
-
 .btn-add-kid {
   border-radius: 50%;
 }

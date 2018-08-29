@@ -12,3 +12,17 @@ a.kid-button:hover {
   text-decoration: none;
   color: rgba(247, 247, 255, 1);
 }
+.kid-focus-button {
+  background-color: rgba(84, 198, 235, 1);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 2px solid rgba(84, 198, 235, 1)
+}
+.kid-focus-button:hover {
+  background-color: white;
+}
+a.kid-focus-button:hover {
+  text-decoration: none;
+  color: rgba(84, 198, 235, 1);
+}
