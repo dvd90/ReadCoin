@@ -3,11 +3,11 @@
     <div class="score-result">
       <% if @score == "100"%>
         <h2>Congratulations!</h2>
-        <h3>All the answer are corrects</h3>
-        <h3>You just won: <%= image_tag 'coins.png' %> <%= @book.reward %> RDC</h3>
+        <h3>All the answer are corrects, you just won:</h3>
+        <h1><%= image_tag 'coins.png', width: 50, height: 50 %> <%= @book.reward %> RDC</h1>
         <div class="quiz-links">
           <%= link_to "Back to books", kid_dashboard_path(@kid), class: "kid-button" %>
-          <%= link_to "E-shop", kid_prizes_path, class: "kid-button" %>
+          <%= link_to "E-shop", kid_prizes_path, class: "kid-focus-button" %>
         </div>
       <% else %>
         <h2>Try Again!</h2>

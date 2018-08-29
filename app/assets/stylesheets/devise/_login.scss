@@ -1,5 +1,9 @@
 .two-sides {
   display: flex;
+  p {
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
 }
 .right-side {
   background-color: $turquiz;
@@ -62,4 +66,14 @@
 }
 .login-links {
   margin-top: 25px;
+  text-align: center;
+  p {
+    margin-top: 10px;
+  }
+}
+.user-login-links {
+  color: $turquiz;
+}
+.form-for-kid {
+  margin-top: 31px;
 }

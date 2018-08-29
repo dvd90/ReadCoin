@@ -9,7 +9,7 @@
       <%= f.input q, label: q, collection: a, as: :select, prompt: 'Choose your answer'%>
       <% end %>
 
-     <%= link_to "back to book", kid_book_path(@kid, @book), class: "kid-button" %>   <%= f.submit "Submit", class: "kid-button" %>
+     <%= link_to "back to book", kid_book_path(@kid, @book), class: "kid-button" %>   <%= f.submit "Submit", class: "kid-focus-button" %>
     </div>
   </div>
   <% end %>

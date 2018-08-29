@@ -5,10 +5,10 @@
       <%= cl_image_tag @prize.picture, width: 220, height: 220 %>
       <h2><%= image_tag 'coins.png' %> <%= @prize.price %> rdc</h2>
       <% if @kid.wallet >= @prize.price %>
-        <h2><%= link_to "Confirm", kid_prize_purchases_path(@kid, @prize), method: :post, id:"buy-now-btn", class: "kid-button" %></h2>
+        <h2><%= link_to "Confirm", kid_prize_purchases_path(@kid, @prize), method: :post, id:"buy-now-btn", class: "kid-focus-button" %></h2>
          <h2><%= link_to "Back to Eshop", kid_prizes_path(@kid), id:"buy-now-btn", class: "kid-button" %></h2>
       <% else %>
-        <h2><%= link_to "Confirm", kid_prizes_path(@kid), class: "kid-button", data: { confirm: "Not enough ReadCoin go and read some more!"}%></h2>
+        <h2><%= link_to "Confirm", kid_prizes_path(@kid), class: "kid-focus-button", data: { confirm: "Not enough ReadCoin go and read some more!"}%></h2>
         <h2><%= link_to "Back to Eshop", kid_prizes_path(@kid), id:"buy-now-btn", class: "kid-button" %></h2>
       <% end %>
     </div>

@@ -1,11 +1,11 @@
 <div class="two-sides">
   <div class="left-side">
     <div class="left-side-container">
-      <h1>Parents</h1>
+      <h2 class="login-title">Parents</h2>
 
       <p>Parents, enter your login below to access your dashboard and unlock your kids login!<p>
 
-      <%= image_tag 'kid-reading-with-parents.jpg', class: "login-avatar" %>
+      <%= image_tag 'kid-reading-with-parents.jpeg', class: "login-avatar parent-avatar" %>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
+          <%= f.button :submit, "Log in", class: "kid-button" %>
         </div>
       <% end %>
 
@@ -29,7 +29,7 @@
   </div>
   <div class="right-side">
     <div class="right-side-container">
-      <h1>Kids</h1>
+      <h2 class="login-title">Kids</h2>
       <p>Ask your parents to login, then you can access your ebooks and discover your eshop!</p>
       <%= image_tag 'kids_on_roof_reading_book.jpg', class: "login-avatar" %>
     </div>
