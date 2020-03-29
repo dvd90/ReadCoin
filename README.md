@@ -1,10 +1,10 @@
-###READCOIN
-#Read. Earn. Spend.
+READCOIN
+Read. Earn. Spend.
 
-##What is ReadCoin?
+What is ReadCoin?
 ReadCoin is the first incentive driven coin for childern of the world.
 
-##Why ReadCoin?
+Why ReadCoin?
 If you want your children to be smart, successful, technologicly advanced, happy and ready for the way that is ahead.
 
 
