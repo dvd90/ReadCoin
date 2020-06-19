@@ -6,12 +6,13 @@
           <%= f.input :name %>
           <%= f.input :password %>
           <%= f.input :age %>
-          <p>Interests</p>
+          <p class="interests-font">Interests</p>
+          <p>choose from list</p>
           <%= select_tag "kid[interests][]", options_from_collection_for_select(
                 @categories,
                 :to_s, :to_s),
-                class: 'select2', multiple: 'multiple' %>
-          <%= f.submit class: 'btn btn-primary form-group' %>
+                class: 'select2 interests-dropdown', multiple: 'multiple' %>
+          <%= f.submit class: 'btn btn-primary form-group', style:"margin-top: 60px;" %>
       <% end %>
     </div>
   </div>
