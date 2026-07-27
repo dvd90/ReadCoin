@@ -1,0 +1,9 @@
+<div class="flex items-center gap-3 mb-4">
+  <%= link_to "← Back", play_book_path(@book), class: "font-bold text-stone-400 hover:text-stone-600" %>
+  <h1 class="font-extrabold text-xl"><%= @book.title %></h1>
+  <span class="flex-1"></span>
+  <%= link_to "Done — take the quiz! ✏️", quiz_play_book_path(@book), class: "px-4 py-2 rounded-xl bg-amber-500 text-white font-bold" %>
+</div>
+
+<iframe src="<%= @book.source_url %>" class="w-full h-[75vh] rounded-2xl bg-white shadow" title="<%= @book.title %>"></iframe>
+<p class="text-xs text-stone-400 mt-2">If the book doesn't load here, <%= link_to "open it in a new tab", @book.source_url, target: "_blank", rel: "noopener", class: "underline" %>.</p>

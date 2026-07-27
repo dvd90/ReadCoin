@@ -1,0 +1,42 @@
+<h1 class="text-3xl font-extrabold mb-6">Family dashboard</h1>
+
+<div class="grid md:grid-cols-3 gap-4 mb-8">
+  <% @kids.each do |kid| %>
+    <div class="bg-white rounded-2xl border border-stone-200 p-5">
+      <div class="text-4xl"><%= kid.avatar %></div>
+      <h2 class="font-bold text-lg mt-2"><%= kid.name %></h2>
+      <p class="text-sm text-stone-500">🪙 <%= kid.coins %> coins · 📖 <%= kid.finished_count %> books · 🔥 <%= kid.current_streak %>-day streak</p>
+    </div>
+  <% end %>
+  <% if @kids.empty? %>
+    <p class="text-stone-500 col-span-3">No readers yet — <%= link_to "add your first kid", new_family_kid_path, class: "underline" %>.</p>
+  <% end %>
+</div>
+
+<% if @pending_redemptions.any? %>
+  <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8">
+    <h2 class="font-bold text-lg mb-3">🎁 Rewards waiting for your approval</h2>
+    <% @pending_redemptions.each do |r| %>
+      <div class="flex items-center gap-3 py-2 border-t border-amber-100">
+        <span><%= r.kid.avatar %> <strong><%= r.kid.name %></strong> wants <%= r.reward.emoji %> <strong><%= r.reward.title %></strong></span>
+        <span class="flex-1"></span>
+        <%= button_to "Approve", family_redemption_path(r), method: :patch, class: "px-3 py-1.5 rounded-lg bg-amber-500 text-white text-sm font-bold cursor-pointer" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<h2 class="font-bold text-lg mb-3">Recently finished books</h2>
+<div class="bg-white rounded-2xl border border-stone-200 divide-y divide-stone-100">
+  <% @recent_readings.each do |reading| %>
+    <div class="px-5 py-3 flex items-center gap-3 text-sm">
+      <span><%= reading.kid.avatar %></span>
+      <span><strong><%= reading.kid.name %></strong> finished <em><%= reading.book.title %></em></span>
+      <span class="flex-1"></span>
+      <span class="text-stone-400">score <%= reading.quiz_score %>% · +<%= reading.coins_earned %> 🪙 · <%= time_ago_in_words(reading.updated_at) %> ago</span>
+    </div>
+  <% end %>
+  <% if @recent_readings.empty? %>
+    <p class="px-5 py-4 text-stone-500 text-sm">Nothing yet — once your kids finish books and pass quizzes, they'll show up here.</p>
+  <% end %>
+</div>

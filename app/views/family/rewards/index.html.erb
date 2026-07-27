@@ -1,0 +1,23 @@
+<div class="flex items-center mb-6">
+  <h1 class="text-3xl font-extrabold">Rewards</h1>
+  <span class="flex-1"></span>
+  <%= link_to "+ Add reward", new_family_reward_path, class: "px-4 py-2 rounded-xl bg-amber-500 text-white font-bold" %>
+</div>
+<p class="text-stone-500 mb-6 text-sm">These are the prizes your kids can buy with their coins — real-world things you deliver, like a zoo trip or movie night.</p>
+
+<div class="grid md:grid-cols-3 gap-4">
+  <% @rewards.each do |reward| %>
+    <div class="bg-white rounded-2xl border border-stone-200 p-5">
+      <div class="text-4xl"><%= reward.emoji %></div>
+      <h2 class="font-bold text-lg mt-2"><%= reward.title %></h2>
+      <p class="text-amber-500 font-bold">🪙 <%= reward.cost %></p>
+      <div class="mt-3 flex gap-3 text-sm">
+        <%= link_to "Edit", edit_family_reward_path(reward), class: "underline" %>
+        <%= button_to "Remove", family_reward_path(reward), method: :delete, data: { turbo_confirm: "Remove this reward?" }, class: "text-red-500 underline cursor-pointer" %>
+      </div>
+    </div>
+  <% end %>
+  <% if @rewards.empty? %>
+    <p class="text-stone-500 col-span-3">No rewards yet — add the first one!</p>
+  <% end %>
+</div>

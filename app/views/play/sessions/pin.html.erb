@@ -1,0 +1,12 @@
+<div class="text-center py-10">
+  <div class="text-7xl"><%= @kid.avatar %></div>
+  <h1 class="text-3xl font-extrabold mt-2">Hi <%= @kid.name %>!</h1>
+  <p class="text-stone-500 mt-1">Type your secret PIN</p>
+
+  <%= form_with url: play_session_path(@kid), class: "mt-6 flex flex-col items-center gap-4" do |form| %>
+    <%= form.password_field :pin, inputmode: :numeric, pattern: "\\d{4}", maxlength: 4, autofocus: true, required: true,
+        class: "rounded-2xl border-2 border-amber-300 px-4 py-4 w-44 text-center text-3xl tracking-[0.5em]" %>
+    <%= form.submit "Let's go! 🚀", class: "px-8 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg cursor-pointer" %>
+  <% end %>
+  <p class="mt-6"><%= link_to "← Not you?", play_root_path, class: "text-sm text-stone-400 underline" %></p>
+</div>

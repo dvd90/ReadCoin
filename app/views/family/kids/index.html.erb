@@ -1,0 +1,19 @@
+<div class="flex items-center mb-6">
+  <h1 class="text-3xl font-extrabold">Kids</h1>
+  <span class="flex-1"></span>
+  <%= link_to "+ Add kid", new_family_kid_path, class: "px-4 py-2 rounded-xl bg-amber-500 text-white font-bold" %>
+</div>
+
+<div class="grid md:grid-cols-3 gap-4">
+  <% @kids.each do |kid| %>
+    <div class="bg-white rounded-2xl border border-stone-200 p-5">
+      <div class="text-4xl"><%= kid.avatar %></div>
+      <h2 class="font-bold text-lg mt-2"><%= kid.name %> <span class="text-stone-400 font-normal text-sm"><%= "· age #{kid.age}" if kid.age %></span></h2>
+      <p class="text-sm text-stone-500">🪙 <%= kid.coins %> · 📖 <%= kid.finished_count %></p>
+      <div class="mt-3 flex gap-3 text-sm">
+        <%= link_to "Edit", edit_family_kid_path(kid), class: "underline" %>
+        <%= button_to "Remove", family_kid_path(kid), method: :delete, data: { turbo_confirm: "Remove #{kid.name} and all their progress?" }, class: "text-red-500 underline cursor-pointer" %>
+      </div>
+    </div>
+  <% end %>
+</div>

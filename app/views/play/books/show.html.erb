@@ -1,0 +1,41 @@
+<div class="max-w-xl mx-auto">
+  <% if params[:score] %>
+    <div class="text-center bg-white rounded-3xl shadow p-8 mb-6">
+      <% if params[:earned].present? %>
+        <div class="text-6xl">🎉</div>
+        <h2 class="text-2xl font-extrabold mt-2">You did it! +<%= params[:earned] %> 🪙</h2>
+        <p class="text-stone-500">You scored <%= params[:score] %>%!</p>
+      <% elsif params[:score].to_i >= Reading::PASS_SCORE %>
+        <div class="text-6xl">⭐</div>
+        <h2 class="text-2xl font-extrabold mt-2">Great job — <%= params[:score] %>%!</h2>
+      <% else %>
+        <div class="text-6xl">💪</div>
+        <h2 class="text-2xl font-extrabold mt-2">You scored <%= params[:score] %>%</h2>
+        <p class="text-stone-500">You need <%= Reading::PASS_SCORE %>% to earn coins. Read it again and retry!</p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="bg-white rounded-3xl shadow p-8 text-center">
+    <% if @book.cover_url.present? %>
+      <img src="<%= @book.cover_url %>" alt="" class="w-32 mx-auto rounded-xl mb-4">
+    <% else %>
+      <div class="text-6xl mb-2">📖</div>
+    <% end %>
+    <h1 class="text-2xl font-extrabold"><%= @book.title %></h1>
+    <p class="text-stone-400"><%= @book.author %></p>
+    <p class="mt-3 text-stone-600 text-sm"><%= @book.summary %></p>
+    <p class="mt-3 font-bold text-amber-500">Finish it and pass the quiz to earn 🪙 <%= @book.reward %></p>
+
+    <div class="mt-6 flex flex-col gap-3">
+      <% if @reading.nil? %>
+        <%= button_to "Start reading 🚀", start_play_book_path(@book), class: "px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg cursor-pointer w-full" %>
+      <% else %>
+        <%= link_to "Read the book 📖", read_play_book_path(@book), class: "px-6 py-3 rounded-2xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-lg" %>
+        <% unless @reading.finished? %>
+          <%= link_to "Take the quiz ✏️", quiz_play_book_path(@book), class: "px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

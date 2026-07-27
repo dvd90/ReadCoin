@@ -2,101 +2,106 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_26_145209) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
+ActiveRecord::Schema[8.1].define(version: 2026_07_27_155512) do
   create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.string "url"
-    t.string "quiz"
-    t.integer "reward"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "genre"
-    t.integer "min_age"
-    t.integer "max_age"
     t.string "author"
+    t.string "cover_url"
+    t.datetime "created_at", null: false
+    t.string "genre"
+    t.integer "max_age"
+    t.integer "min_age"
+    t.integer "reward"
+    t.string "source_url"
     t.text "summary"
-    t.string "photo"
+    t.string "title"
+    t.datetime "updated_at", null: false
   end
 
   create_table "kids", force: :cascade do |t|
-    t.string "name"
-    t.integer "parent_id"
-    t.string "password"
     t.integer "age"
-    t.string "interests"
-    t.integer "wallet", default: 0
     t.string "avatar"
+    t.integer "coins", default: 0, null: false
     t.datetime "created_at", null: false
+    t.date "last_read_on"
+    t.string "name"
+    t.integer "parent_id", null: false
+    t.string "pin_digest"
+    t.integer "streak", default: 0, null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_kids_on_parent_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.string "state"
-    t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "USD", null: false
-    t.jsonb "payment"
-    t.bigint "user_id"
+  create_table "quizzes", force: :cascade do |t|
+    t.integer "book_id", null: false
     t.datetime "created_at", null: false
+    t.json "questions"
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
-  create_table "prizes", force: :cascade do |t|
-    t.integer "price"
-    t.string "title"
-    t.string "picture"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "purchases", force: :cascade do |t|
-    t.bigint "prize_id"
-    t.bigint "kid_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["kid_id"], name: "index_purchases_on_kid_id"
-    t.index ["prize_id"], name: "index_purchases_on_prize_id"
+    t.index ["book_id"], name: "index_quizzes_on_book_id"
   end
 
   create_table "readings", force: :cascade do |t|
-    t.bigint "kid_id"
-    t.bigint "book_id"
+    t.integer "book_id", null: false
+    t.integer "coins_earned"
     t.datetime "created_at", null: false
+    t.integer "kid_id", null: false
+    t.integer "quiz_score"
+    t.string "status", default: "reading", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_readings_on_book_id"
     t.index ["kid_id"], name: "index_readings_on_kid_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+  create_table "redemptions", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "kid_id", null: false
+    t.integer "reward_id", null: false
+    t.string "status", default: "pending", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
-    t.integer "wallet_cents", default: 0, null: false
-    t.string "username"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["kid_id"], name: "index_redemptions_on_kid_id"
+    t.index ["reward_id"], name: "index_redemptions_on_reward_id"
   end
 
-  add_foreign_key "orders", "users"
-  add_foreign_key "purchases", "kids"
-  add_foreign_key "purchases", "prizes"
+  create_table "rewards", force: :cascade do |t|
+    t.integer "cost"
+    t.datetime "created_at", null: false
+    t.string "emoji"
+    t.integer "parent_id", null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_rewards_on_parent_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "ip_address"
+    t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email_address", null: false
+    t.string "password_digest", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_users_on_email_address", unique: true
+  end
+
+  add_foreign_key "kids", "users", column: "parent_id"
+  add_foreign_key "quizzes", "books"
   add_foreign_key "readings", "books"
   add_foreign_key "readings", "kids"
+  add_foreign_key "redemptions", "kids"
+  add_foreign_key "redemptions", "rewards"
+  add_foreign_key "rewards", "users", column: "parent_id"
+  add_foreign_key "sessions", "users"
 end

@@ -1,0 +1,23 @@
+<div class="text-center py-10">
+  <h1 class="text-4xl font-extrabold">Who's reading today?</h1>
+
+  <% if @family %>
+    <div class="mt-8 flex flex-wrap justify-center gap-6">
+      <% @kids.each do |kid| %>
+        <%= link_to play_pin_path(kid), class: "bg-white rounded-3xl shadow p-6 w-36 hover:scale-105 transition" do %>
+          <div class="text-6xl"><%= kid.avatar %></div>
+          <div class="font-bold mt-2"><%= kid.name %></div>
+        <% end %>
+      <% end %>
+      <% if @kids.empty? %>
+        <p class="text-stone-500">No kids in this family yet — a parent can add them in the <%= link_to "family dashboard", family_root_path, class: "underline" %>.</p>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="mt-4 text-stone-500">Ask a grown-up to type your family's email:</p>
+    <%= form_with url: play_pick_family_path, class: "mt-6 flex justify-center gap-2" do |form| %>
+      <%= form.email_field :email_address, required: true, placeholder: "family@email.com", class: "rounded-xl border border-stone-300 px-4 py-3 w-72" %>
+      <%= form.submit "Go!", class: "px-6 py-3 rounded-xl bg-amber-500 text-white font-bold cursor-pointer" %>
+    <% end %>
+  <% end %>
+</div>

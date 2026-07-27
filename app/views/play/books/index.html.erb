@@ -1,0 +1,26 @@
+<h1 class="text-3xl font-extrabold mb-6">My books 📚</h1>
+
+<div class="grid md:grid-cols-2 gap-4">
+  <% @books.each do |book| %>
+    <% reading = @readings[book.id] %>
+    <%= link_to play_book_path(book), class: "bg-white rounded-2xl shadow p-5 hover:scale-[1.02] transition block" do %>
+      <div class="flex items-start gap-4">
+        <% if book.cover_url.present? %>
+          <img src="<%= book.cover_url %>" alt="" class="w-16 h-24 object-cover rounded-lg">
+        <% else %>
+          <div class="w-16 h-24 rounded-lg bg-amber-100 flex items-center justify-center text-3xl">📖</div>
+        <% end %>
+        <div>
+          <h2 class="font-bold"><%= book.title %></h2>
+          <p class="text-sm text-stone-400"><%= book.author %></p>
+          <p class="text-sm font-bold text-amber-500 mt-1">earn 🪙 <%= book.reward %></p>
+          <% if reading&.finished? %>
+            <span class="inline-block mt-1 text-xs font-bold text-green-600 bg-green-50 rounded-full px-2 py-0.5">✓ finished</span>
+          <% elsif reading %>
+            <span class="inline-block mt-1 text-xs font-bold text-sky-600 bg-sky-50 rounded-full px-2 py-0.5">reading now</span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
