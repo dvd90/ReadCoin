@@ -1,33 +1,44 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root to: 'pages#home'
+  root "pages#home"
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :kids, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    get 'create_avatar', to: 'kids#create_avatar', as: :create_avatar
-    # post 'add_RDC', to: 'kids#add_RDC', as: :add_RDC
-    resources :books, only: [:index, :show] do
-      get 'quiz', to: 'books#quiz', as: :quiz
-      post 'check_quiz', to: 'books#check_quiz', as: :check_quiz
-      get 'answers_quiz/:score', to: 'books#answers_quiz', as: :answers_quiz
-      resources :readings, only: [:index, :create, :show]
-      get 'reader', to: 'readings#reader', as: :reader
+  # Parent authentication (Rails 8 built-in)
+  resource :session
+  resources :passwords, param: :token
+  resource :registration, only: %i[new create]
+
+  # Parent area
+  namespace :family do
+    root "dashboards#show"
+    resources :kids
+    resources :rewards, except: :show
+    resources :redemptions, only: %i[index update]
+    resources :books do
+      resource :quiz, only: %i[edit update] do
+        post :generate
+      end
     end
-    resources :prizes, only: [:index, :show] do
-      resources :purchases, only: [:index, :create, :show]
+  end
+
+  # Kid area — PIN login, no parent credentials needed on the device
+  scope module: :play, path: "play", as: :play do
+    root "sessions#new"
+    post "family", to: "sessions#pick_family", as: :pick_family
+    get  "kids/:id/pin", to: "sessions#pin", as: :pin
+    post "kids/:id/session", to: "sessions#create", as: :session
+    delete "session", to: "sessions#destroy", as: :logout
+
+    get "dashboard", to: "dashboards#show", as: :dashboard
+    resources :books, only: %i[index show] do
+      member do
+        post :start
+        get  :read
+        get  :quiz
+        post :quiz, action: :submit_quiz, as: :submit_quiz
+      end
     end
+    get  "shop", to: "shop#index", as: :shop
+    post "shop/:reward_id", to: "shop#redeem", as: :redeem
   end
 
-  namespace :admin do
-    resources :books
-    resources :prizes
-  end
-
-  resources :orders, only: [:show, :create] do
-    resources :payments, only: [:new, :create]
-  end
-
-  get 'login', to: 'kids#login', as: :kids_login
-  post 'login', to: 'kids#create_login', as: :verify_password
-  get 'kid_dashboard/:id', to: 'kids#kid_dashboard', as: :kid_dashboard
+  get "up" => "rails/health#show", as: :rails_health_check
 end

@@ -1,0 +1,49 @@
+<div class="py-4">
+  <h1 class="text-3xl font-extrabold">Hi <%= current_kid.name %>! <%= current_kid.avatar %></h1>
+
+  <div class="grid grid-cols-3 gap-3 mt-6 text-center">
+    <div class="bg-white rounded-2xl shadow p-4">
+      <div class="text-3xl">🪙</div>
+      <div class="font-extrabold text-2xl text-amber-500"><%= current_kid.coins %></div>
+      <div class="text-xs text-stone-400 font-bold">COINS</div>
+    </div>
+    <div class="bg-white rounded-2xl shadow p-4">
+      <div class="text-3xl">📖</div>
+      <div class="font-extrabold text-2xl text-sky-500"><%= @finished_count %></div>
+      <div class="text-xs text-stone-400 font-bold">BOOKS DONE</div>
+    </div>
+    <div class="bg-white rounded-2xl shadow p-4">
+      <div class="text-3xl">🔥</div>
+      <div class="font-extrabold text-2xl text-orange-500"><%= current_kid.current_streak %></div>
+      <div class="text-xs text-stone-400 font-bold">DAY STREAK</div>
+    </div>
+  </div>
+
+  <% if @in_progress.any? %>
+    <h2 class="font-extrabold text-xl mt-8 mb-3">Keep reading 📚</h2>
+    <div class="grid md:grid-cols-2 gap-3">
+      <% @in_progress.each do |reading| %>
+        <%= link_to play_book_path(reading.book), class: "bg-white rounded-2xl shadow p-4 flex items-center gap-3 hover:scale-[1.02] transition" do %>
+          <span class="text-3xl">📖</span>
+          <span class="font-bold"><%= reading.book.title %></span>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h2 class="font-extrabold text-xl mt-8 mb-3">New adventures ✨</h2>
+  <div class="grid md:grid-cols-2 gap-3">
+    <% @next_books.each do |book| %>
+      <%= link_to play_book_path(book), class: "bg-white rounded-2xl shadow p-4 flex items-center gap-3 hover:scale-[1.02] transition" do %>
+        <span class="text-3xl">✨</span>
+        <div>
+          <div class="font-bold"><%= book.title %></div>
+          <div class="text-sm text-amber-500 font-bold">earn 🪙 <%= book.reward %></div>
+        </div>
+      <% end %>
+    <% end %>
+    <% if @next_books.empty? %>
+      <p class="text-stone-500">You've read everything! Ask a grown-up to add more books.</p>
+    <% end %>
+  </div>
+</div>

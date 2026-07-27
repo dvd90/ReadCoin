@@ -1,9 +1,8 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :orders
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  has_many :kids, foreign_key: :parent_id, dependent: :destroy
-  monetize :wallet_cents
+  has_secure_password
+  has_many :sessions, dependent: :destroy
+  has_many :kids, foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
+  has_many :rewards, foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
+
+  normalizes :email_address, with: ->(e) { e.strip.downcase }
 end

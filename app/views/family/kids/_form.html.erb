@@ -1,0 +1,25 @@
+<%= form_with model: [ :family, kid ], class: "bg-white rounded-2xl border border-stone-200 p-6 max-w-lg" do |form| %>
+  <% if kid.errors.any? %>
+    <div class="py-2 px-4 bg-red-100 text-red-600 rounded-xl mb-4"><%= kid.errors.full_messages.to_sentence %></div>
+  <% end %>
+
+  <label class="block font-medium mb-1">Name</label>
+  <%= form.text_field :name, required: true, class: "block w-full rounded-md border border-stone-300 px-3 py-2 mb-4" %>
+
+  <label class="block font-medium mb-1">Age</label>
+  <%= form.number_field :age, in: 3..16, class: "block w-24 rounded-md border border-stone-300 px-3 py-2 mb-4" %>
+
+  <label class="block font-medium mb-1">Avatar</label>
+  <div class="flex flex-wrap gap-2 mb-4">
+    <% Kid::AVATARS.each do |a| %>
+      <label class="cursor-pointer text-2xl p-1.5 rounded-lg border border-stone-200 has-checked:bg-amber-100 has-checked:border-amber-400">
+        <%= form.radio_button :avatar, a, class: "hidden" %><%= a %>
+      </label>
+    <% end %>
+  </div>
+
+  <label class="block font-medium mb-1">4-digit PIN <span class="text-stone-400 text-sm">(<%= kid.persisted? ? "leave blank to keep current" : "used to log in on the tablet" %>)</span></label>
+  <%= form.text_field :pin, inputmode: :numeric, pattern: "\\d{4}", maxlength: 4, required: kid.new_record?, class: "block w-32 rounded-md border border-stone-300 px-3 py-2 mb-6 tracking-widest text-center" %>
+
+  <%= form.submit class: "px-4 py-2 rounded-xl bg-amber-500 text-white font-bold cursor-pointer" %>
+<% end %>

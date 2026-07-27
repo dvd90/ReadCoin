@@ -1,0 +1,18 @@
+<h1 class="text-3xl font-extrabold mb-6">Redemptions</h1>
+
+<div class="bg-white rounded-2xl border border-stone-200 divide-y divide-stone-100">
+  <% @redemptions.each do |r| %>
+    <div class="px-5 py-3 flex items-center gap-3 text-sm">
+      <span><%= r.kid.avatar %> <strong><%= r.kid.name %></strong> → <%= r.reward.emoji %> <%= r.reward.title %> (🪙 <%= r.reward.cost %>)</span>
+      <span class="flex-1"></span>
+      <% if r.status == "pending" %>
+        <%= button_to "Approve", family_redemption_path(r), method: :patch, class: "px-3 py-1.5 rounded-lg bg-amber-500 text-white font-bold cursor-pointer" %>
+      <% else %>
+        <span class="text-green-600 font-medium">✓ approved</span>
+      <% end %>
+    </div>
+  <% end %>
+  <% if @redemptions.empty? %>
+    <p class="px-5 py-4 text-stone-500 text-sm">No redemptions yet.</p>
+  <% end %>
+</div>

@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Read-Coin</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <%= favicon_link_tag 'logo.png'%>
+    <title><%= content_for(:title) || "Readcoin" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Readcoin">
+    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
+
   <body>
-    <% if !@show_navbar %>
-      <%= render 'shared/navbar' unless current_page?(new_user_session_path) %>
-    <% end %>
-    <%#= #render 'shared/flashes' %>
-
-    <%= yield %>
-
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-     <% if controller_name == "readings" %>
-      <%= javascript_pack_tag 'a' %>
-     <% end %>
+    <main class="container mx-auto mt-28 px-5 flex">
+      <%= yield %>
+    </main>
   </body>
 </html>

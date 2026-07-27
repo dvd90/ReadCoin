@@ -1,9 +1,6 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+  allow_unauthenticated_access
 
   def home
-    @show_navbar = true
-  end
-  def login
   end
 end

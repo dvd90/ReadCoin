@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "ReadCoin — Play" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="bg-gradient-to-b from-sky-100 to-amber-50 min-h-screen text-stone-800">
+    <% if current_kid %>
+      <nav class="bg-white/80 backdrop-blur border-b border-amber-100">
+        <div class="max-w-4xl mx-auto px-4 py-2 flex items-center gap-4">
+          <%= link_to play_dashboard_path, class: "text-2xl" do %><%= current_kid.avatar %><% end %>
+          <%= link_to "My books", play_books_path, class: "font-bold text-sm hover:text-amber-600" %>
+          <%= link_to "Prize shop", play_shop_path, class: "font-bold text-sm hover:text-amber-600" %>
+          <span class="flex-1"></span>
+          <span class="font-extrabold text-amber-500 text-lg">🪙 <%= current_kid.coins %></span>
+          <% if current_kid.current_streak.positive? %>
+            <span class="font-bold text-orange-500">🔥 <%= current_kid.current_streak %></span>
+          <% end %>
+          <%= button_to "Bye!", play_logout_path, method: :delete, class: "text-xs font-bold text-stone-400 hover:text-stone-600 cursor-pointer" %>
+        </div>
+      </nav>
+    <% end %>
+    <main class="max-w-4xl mx-auto px-4 py-6">
+      <%= render "shared/flashes" %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

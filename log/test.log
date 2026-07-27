@@ -1,0 +1,1604 @@
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "books"[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "author" varchar, "cover_url" varchar, "created_at" datetime(6) NOT NULL, "genre" varchar, "max_age" integer, "min_age" integer, "reward" integer, "source_url" varchar, "summary" text, "title" varchar, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "kids"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "kids" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "age" integer, "avatar" varchar, "coins" integer DEFAULT 0 NOT NULL, "created_at" datetime(6) NOT NULL, "last_read_on" date, "name" varchar, "parent_id" integer NOT NULL, "pin_digest" varchar, "streak" integer DEFAULT 0 NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_kids_on_parent_id" ON "kids" ("parent_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "quizzes"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "questions" json, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_quizzes_on_book_id" ON "quizzes" ("book_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "readings"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "readings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_id" integer NOT NULL, "coins_earned" integer, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "quiz_score" integer, "status" varchar DEFAULT 'reading' NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_readings_on_book_id" ON "readings" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_readings_on_kid_id" ON "readings" ("kid_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "redemptions"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "redemptions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "reward_id" integer NOT NULL, "status" varchar DEFAULT 'pending' NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_redemptions_on_kid_id" ON "redemptions" ("kid_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_redemptions_on_reward_id" ON "redemptions" ("reward_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "rewards"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "rewards" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "cost" integer, "created_at" datetime(6) NOT NULL, "emoji" varchar, "parent_id" integer NOT NULL, "title" varchar, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_rewards_on_parent_id" ON "rewards" ("parent_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "sessions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "ip_address" varchar, "updated_at" datetime(6) NOT NULL, "user_agent" varchar, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_sessions_on_user_id" ON "sessions" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "email_address" varchar NOT NULL, "password_digest" varchar NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email_address" ON "users" ("email_address")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "akids" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "age" integer, "avatar" varchar, "coins" integer DEFAULT 0 NOT NULL, "created_at" datetime(6) NOT NULL, "last_read_on" date, "name" varchar, "parent_id" integer NOT NULL, "pin_digest" varchar, "streak" integer DEFAULT 0 NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_akids_on_parent_id" ON "akids" ("parent_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "akids" ("id","age","avatar","coins","created_at","last_read_on","name","parent_id","pin_digest","streak","updated_at")
+                     SELECT "id","age","avatar","coins","created_at","last_read_on","name","parent_id","pin_digest","streak","updated_at" FROM "kids"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "kids"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "kids" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "age" integer, "avatar" varchar, "coins" integer DEFAULT 0 NOT NULL, "created_at" datetime(6) NOT NULL, "last_read_on" date, "name" varchar, "parent_id" integer NOT NULL, "pin_digest" varchar, "streak" integer DEFAULT 0 NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_8f997e749d"
+FOREIGN KEY ("parent_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_kids_on_parent_id" ON "kids" ("parent_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "kids" ("id","age","avatar","coins","created_at","last_read_on","name","parent_id","pin_digest","streak","updated_at")
+                     SELECT "id","age","avatar","coins","created_at","last_read_on","name","parent_id","pin_digest","streak","updated_at" FROM "akids"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "akids"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aquizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "questions" json, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aquizzes_on_book_id" ON "aquizzes" ("book_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aquizzes" ("id","book_id","created_at","questions","updated_at")
+                     SELECT "id","book_id","created_at","questions","updated_at" FROM "quizzes"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "quizzes"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "questions" json, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d4441db6a3"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_quizzes_on_book_id" ON "quizzes" ("book_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "quizzes" ("id","book_id","created_at","questions","updated_at")
+                     SELECT "id","book_id","created_at","questions","updated_at" FROM "aquizzes"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aquizzes"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areadings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_id" integer NOT NULL, "coins_earned" integer, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "quiz_score" integer, "status" varchar DEFAULT 'reading' NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areadings_on_kid_id" ON "areadings" ("kid_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areadings_on_book_id" ON "areadings" ("book_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "areadings" ("id","book_id","coins_earned","created_at","kid_id","quiz_score","status","updated_at")
+                     SELECT "id","book_id","coins_earned","created_at","kid_id","quiz_score","status","updated_at" FROM "readings"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "readings"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "readings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_id" integer NOT NULL, "coins_earned" integer, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "quiz_score" integer, "status" varchar DEFAULT 'reading' NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_48146515b1"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_readings_on_book_id" ON "readings" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_readings_on_kid_id" ON "readings" ("kid_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "readings" ("id","book_id","coins_earned","created_at","kid_id","quiz_score","status","updated_at")
+                     SELECT "id","book_id","coins_earned","created_at","kid_id","quiz_score","status","updated_at" FROM "areadings"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "areadings"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areadings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_id" integer NOT NULL, "coins_earned" integer, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "quiz_score" integer, "status" varchar DEFAULT 'reading' NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areadings_on_kid_id" ON "areadings" ("kid_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areadings_on_book_id" ON "areadings" ("book_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "areadings" ("id","book_id","coins_earned","created_at","kid_id","quiz_score","status","updated_at")
+                     SELECT "id","book_id","coins_earned","created_at","kid_id","quiz_score","status","updated_at" FROM "readings"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "readings"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "readings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_id" integer NOT NULL, "coins_earned" integer, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "quiz_score" integer, "status" varchar DEFAULT 'reading' NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_48146515b1"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+, CONSTRAINT "fk_rails_edf519b7d2"
+FOREIGN KEY ("kid_id")
+  REFERENCES "kids" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_readings_on_book_id" ON "readings" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_readings_on_kid_id" ON "readings" ("kid_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "readings" ("id","book_id","coins_earned","created_at","kid_id","quiz_score","status","updated_at")
+                     SELECT "id","book_id","coins_earned","created_at","kid_id","quiz_score","status","updated_at" FROM "areadings"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "areadings"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aredemptions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "reward_id" integer NOT NULL, "status" varchar DEFAULT 'pending' NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aredemptions_on_reward_id" ON "aredemptions" ("reward_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aredemptions_on_kid_id" ON "aredemptions" ("kid_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aredemptions" ("id","created_at","kid_id","reward_id","status","updated_at")
+                     SELECT "id","created_at","kid_id","reward_id","status","updated_at" FROM "redemptions"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "redemptions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "redemptions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "reward_id" integer NOT NULL, "status" varchar DEFAULT 'pending' NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_f905113878"
+FOREIGN KEY ("kid_id")
+  REFERENCES "kids" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_redemptions_on_kid_id" ON "redemptions" ("kid_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_redemptions_on_reward_id" ON "redemptions" ("reward_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "redemptions" ("id","created_at","kid_id","reward_id","status","updated_at")
+                     SELECT "id","created_at","kid_id","reward_id","status","updated_at" FROM "aredemptions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aredemptions"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aredemptions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "reward_id" integer NOT NULL, "status" varchar DEFAULT 'pending' NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aredemptions_on_reward_id" ON "aredemptions" ("reward_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aredemptions_on_kid_id" ON "aredemptions" ("kid_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aredemptions" ("id","created_at","kid_id","reward_id","status","updated_at")
+                     SELECT "id","created_at","kid_id","reward_id","status","updated_at" FROM "redemptions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "redemptions"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "redemptions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "kid_id" integer NOT NULL, "reward_id" integer NOT NULL, "status" varchar DEFAULT 'pending' NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_f905113878"
+FOREIGN KEY ("kid_id")
+  REFERENCES "kids" ("id")
+, CONSTRAINT "fk_rails_f8409c3b59"
+FOREIGN KEY ("reward_id")
+  REFERENCES "rewards" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_redemptions_on_kid_id" ON "redemptions" ("kid_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_redemptions_on_reward_id" ON "redemptions" ("reward_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "redemptions" ("id","created_at","kid_id","reward_id","status","updated_at")
+                     SELECT "id","created_at","kid_id","reward_id","status","updated_at" FROM "aredemptions"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aredemptions"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arewards" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "cost" integer, "created_at" datetime(6) NOT NULL, "emoji" varchar, "parent_id" integer NOT NULL, "title" varchar, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arewards_on_parent_id" ON "arewards" ("parent_id")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "arewards" ("id","cost","created_at","emoji","parent_id","title","updated_at")
+                     SELECT "id","cost","created_at","emoji","parent_id","title","updated_at" FROM "rewards"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "rewards"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "rewards" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "cost" integer, "created_at" datetime(6) NOT NULL, "emoji" varchar, "parent_id" integer NOT NULL, "title" varchar, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_7a8e4cc082"
+FOREIGN KEY ("parent_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_rewards_on_parent_id" ON "rewards" ("parent_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "rewards" ("id","cost","created_at","emoji","parent_id","title","updated_at")
+                     SELECT "id","cost","created_at","emoji","parent_id","title","updated_at" FROM "arewards"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "arewards"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "asessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "ip_address" varchar, "updated_at" datetime(6) NOT NULL, "user_agent" varchar, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "tindex_asessions_on_user_id" ON "asessions" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "asessions" ("id","created_at","ip_address","updated_at","user_agent","user_id")
+                     SELECT "id","created_at","ip_address","updated_at","user_agent","user_id" FROM "sessions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "sessions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "ip_address" varchar, "updated_at" datetime(6) NOT NULL, "user_agent" varchar, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_758836b4f0"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_sessions_on_user_id" ON "sessions" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "sessions" ("id","created_at","ip_address","updated_at","user_agent","user_id")
+                     SELECT "id","created_at","ip_address","updated_at","user_agent","user_id" FROM "asessions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "asessions"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20260727155512)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20260727155511),
+(20260727155510),
+(20260727155508),
+(20260727155507),
+(20260727155506),
+(20260727155459),
+(20260727155458);[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-07-27 16:03:16.633104', '2026-07-27 16:03:16.633106') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'd3cf7a7b19d87c3a09811c7d0f0a19b2b7e5bcd3', '2026-07-27 16:03:16.634445', '2026-07-27 16:03:16.634447') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "users";
+INSERT INTO "users" ("id", "created_at", "email_address", "password_digest", "updated_at") VALUES (980190962, '2026-07-27 16:03:17.266216', 'one@example.com', '$2a$12$2l2XnLEBffvnkN3oC2DSgOxWdGmaSwwPL7tGWzeTKGAWuXJqs0AOC', '2026-07-27 16:03:17.266216'), (298486374, '2026-07-27 16:03:17.266216', 'two@example.com', '$2a$12$2l2XnLEBffvnkN3oC2DSgOxWdGmaSwwPL7tGWzeTKGAWuXJqs0AOC', '2026-07-27 16:03:17.266216')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+SessionsControllerTest: test_destroy
+------------------------------------
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.5ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:17.406241"], ["ip_address", nil], ["updated_at", "2026-07-27 16:03:17.406241"], ["user_agent", nil], ["user_id", 298486374]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/session" for 127.0.0.1 at 2026-07-27 16:03:17 +0000
+Processing by SessionsController#destroy as HTML
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Destroy (0.3ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = ?[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/session/new
+Completed 303 See Other in 26ms (ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.5ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------
+SessionsControllerTest: test_create_with_valid_credentials
+----------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:03:17 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.5ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:17.913288"], ["ip_address", "127.0.0.1"], ["updated_at", "2026-07-27 16:03:17.913288"], ["user_agent", nil], ["user_id", 298486374]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 246ms (ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------
+SessionsControllerTest: test_new
+--------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:03:17 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 17.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------------
+SessionsControllerTest: test_create_with_invalid_credentials
+------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:03:17 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 243ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------
+PasswordsControllerTest: test_edit
+----------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia04zb0MyRFNnTyJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjE4LjIwMVoiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--7850b9a20e13db37eebdde89938a3861b6211bef/edit" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by PasswordsController#edit as HTML
+  Parameters: {"token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/edit.html.erb within layouts/application
+  Rendered passwords/edit.html.erb within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------------------------
+PasswordsControllerTest: test_edit_with_invalid_password_reset_token
+--------------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/passwords/invalid%20token/edit" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by PasswordsController#edit as HTML
+  Parameters: {"token"=>"[FILTERED]"}
+Redirected to http://www.example.com/passwords/new
+Filter chain halted as :set_user_by_token rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/passwords/new" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by PasswordsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/new.html.erb within layouts/application
+  Rendered passwords/new.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+PasswordsControllerTest: test_update
+------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started PUT "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia04zb0MyRFNnTyJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjE4LjIyNloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--42a73002300e92bd65e093440a860f0f9d6d7fd6" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by PasswordsController#update as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "token"=>"[FILTERED]"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+[31mUnpermitted parameter: :token. Context: { controller: PasswordsController, action: update, request: #<ActionDispatch::Request:0x00007fe443f7d5d0>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"passwords", "action"=>"update", "token"=>"[FILTERED]"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "password_digest" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:03:18.231226"], ["id", 298486374]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."user_id" = ?[0m  [["user_id", 298486374]]
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 6ms (ActiveRecord: 0.5ms (3 queries, 1 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------------
+PasswordsControllerTest: test_update_with_non_matching_passwords
+----------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started PUT "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia04zb0MyRFNnTyJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjE4LjI0MloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--8a9f98a312f4ef2a3c9aae72153d71a00a96e13d" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by PasswordsController#update as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "token"=>"[FILTERED]"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+[31mUnpermitted parameter: :token. Context: { controller: PasswordsController, action: update, request: #<ActionDispatch::Request:0x00007fe44410e2f0>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"passwords", "action"=>"update", "token"=>"[FILTERED]"} }[0m
+Redirected to http://www.example.com/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia04zb0MyRFNnTyJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjE4LjI0MloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--8a9f98a312f4ef2a3c9aae72153d71a00a96e13d/edit
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms (1 query, 1 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started GET "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia04zb0MyRFNnTyJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjE4LjI0MloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--8a9f98a312f4ef2a3c9aae72153d71a00a96e13d/edit" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by PasswordsController#edit as HTML
+  Parameters: {"token"=>"[FILTERED]"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/edit.html.erb within layouts/application
+  Rendered passwords/edit.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms (1 query, 1 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------------------------------------
+PasswordsControllerTest: test_create_for_an_unknown_user_redirects_but_sends_no_mail
+------------------------------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/passwords" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by PasswordsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+PasswordsControllerTest: test_create
+------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/passwords" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by PasswordsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: 7aaa4fb5-1bf4-4237-8674-684fce12ee22) to Test(default) with arguments: "PasswordsMailer", "reset", "deliver_now", {:args=>[#<GlobalID:0x00007fe443c27de0 @uri=#<URI::GID gid://readcoin/User/298486374>>]}
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 6ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------
+PasswordsControllerTest: test_new
+---------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/passwords/new" for 127.0.0.1 at 2026-07-27 16:03:18 +0000
+Processing by PasswordsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/new.html.erb within layouts/application
+  Rendered passwords/new.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------
+UserTest: test_downcases_and_strips_email_address
+-------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (36.4ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.4ms)[0m  [1m[31mDELETE FROM "users";
+INSERT INTO "users" ("id", "created_at", "email_address", "password_digest", "updated_at") VALUES (980190962, '2026-07-27 16:03:46.859600', 'one@example.com', '$2a$12$M5GvOzkkGE.VkMNEzUPAMeL8XZJx4iPipdmo6DT5oGP.Ibj4lKQIi', '2026-07-27 16:03:46.859600'), (298486374, '2026-07-27 16:03:46.859600', 'two@example.com', '$2a$12$M5GvOzkkGE.VkMNEzUPAMeL8XZJx4iPipdmo6DT5oGP.Ibj4lKQIi', '2026-07-27 16:03:46.859600')[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (23.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------------
+PasswordsControllerTest: test_update_with_non_matching_passwords
+----------------------------------------------------------------
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started PUT "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia01ORXpVUEFNZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjQ2Ljk1NloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--203eda7ab05311ea3df433972a5ca5f3aaf879bf" for 127.0.0.1 at 2026-07-27 16:03:46 +0000
+Processing by PasswordsController#update as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "token"=>"[FILTERED]"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+[31mUnpermitted parameter: :token. Context: { controller: PasswordsController, action: update, request: #<ActionDispatch::Request:0x00007f14c299ac90>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"passwords", "action"=>"update", "token"=>"[FILTERED]"} }[0m
+Redirected to http://www.example.com/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia01ORXpVUEFNZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjQ2Ljk1NloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--203eda7ab05311ea3df433972a5ca5f3aaf879bf/edit
+Completed 302 Found in 16ms (ActiveRecord: 0.0ms (1 query, 1 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started GET "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia01ORXpVUEFNZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjQ2Ljk1NloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--203eda7ab05311ea3df433972a5ca5f3aaf879bf/edit" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by PasswordsController#edit as HTML
+  Parameters: {"token"=>"[FILTERED]"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/edit.html.erb within layouts/application
+  Rendered passwords/edit.html.erb within layouts/application (Duration: 2.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | GC: 0.0ms)
+Completed 200 OK in 18ms (Views: 15.2ms | ActiveRecord: 0.0ms (1 query, 1 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+PasswordsControllerTest: test_create
+------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/passwords" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by PasswordsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: 2b73ff4d-c0a8-4532-92e3-461713a93bba) to Test(default) with arguments: "PasswordsMailer", "reset", "deliver_now", {:args=>[#<GlobalID:0x00007f14c20be928 @uri=#<URI::GID gid://readcoin/User/298486374>>]}
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------------------------------------
+PasswordsControllerTest: test_create_for_an_unknown_user_redirects_but_sends_no_mail
+------------------------------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/passwords" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by PasswordsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------
+PasswordsControllerTest: test_new
+---------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/passwords/new" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by PasswordsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/new.html.erb within layouts/application
+  Rendered passwords/new.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------------------------
+PasswordsControllerTest: test_edit_with_invalid_password_reset_token
+--------------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/passwords/invalid%20token/edit" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by PasswordsController#edit as HTML
+  Parameters: {"token"=>"[FILTERED]"}
+Redirected to http://www.example.com/passwords/new
+Filter chain halted as :set_user_by_token rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/passwords/new" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by PasswordsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/new.html.erb within layouts/application
+  Rendered passwords/new.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+PasswordsControllerTest: test_update
+------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started PUT "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia01ORXpVUEFNZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjQ3LjExNVoiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--7aecbedbaba2d3f8e9d70d9bffd11a8eb6939138" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by PasswordsController#update as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "token"=>"[FILTERED]"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+[31mUnpermitted parameter: :token. Context: { controller: PasswordsController, action: update, request: #<ActionDispatch::Request:0x00007f14c1ff82a0>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"passwords", "action"=>"update", "token"=>"[FILTERED]"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "password_digest" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:03:47.119209"], ["id", 298486374]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."user_id" = ?[0m  [["user_id", 298486374]]
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 13ms (ActiveRecord: 0.9ms (3 queries, 1 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------
+PasswordsControllerTest: test_edit
+----------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwia01ORXpVUEFNZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE4OjQ3LjEzOFoiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--3d0fa3ecb43d6755c5f782da00b3e56d3246ae91/edit" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by PasswordsController#edit as HTML
+  Parameters: {"token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/edit.html.erb within layouts/application
+  Rendered passwords/edit.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------------
+SessionsControllerTest: test_create_with_invalid_credentials
+------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 236ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------
+SessionsControllerTest: test_new
+--------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------
+SessionsControllerTest: test_create_with_valid_credentials
+----------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.4ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:47.676968"], ["ip_address", "127.0.0.1"], ["updated_at", "2026-07-27 16:03:47.676968"], ["user_agent", nil], ["user_id", 298486374]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 250ms (ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 2.7ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+SessionsControllerTest: test_destroy
+------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.3ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:47.686817"], ["ip_address", nil], ["updated_at", "2026-07-27 16:03:47.686817"], ["user_agent", nil], ["user_id", 298486374]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/session" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#destroy as HTML
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Destroy (0.2ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = ?[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/session/new
+Completed 303 See Other in 3ms (ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.7ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------------------------
+FamilyFlowTest: test_parent_manages_kids,_books,_quizzes_and_rewards
+--------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:47.696583"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:03:47.696583"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.4ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:47.701274"], ["ip_address", "127.0.0.1"], ["updated_at", "2026-07-27 16:03:47.701274"], ["user_agent", nil], ["user_id", 980190963]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 5ms (ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.4ms)
+Started GET "/family" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Family::DashboardsController#show as HTML
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  Rendering layout layouts/family.html.erb
+  Rendering family/dashboards/show.html.erb within layouts/family
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ?[0m  [["parent_id", 980190963]]
+  [1m[36mRedemption Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "redemptions" INNER JOIN "rewards" ON "rewards"."id" = "redemptions"."reward_id" LEFT OUTER JOIN "kids" ON "kids"."id" = "redemptions"."kid_id" WHERE "redemptions"."status" = ? AND "rewards"."parent_id" = ? LIMIT ?[0m  [["status", "pending"], ["parent_id", 980190963], ["LIMIT", 1]]
+  [1m[36mReading Load (0.2ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."status" = ? AND "readings"."kid_id" IN (SELECT "kids"."id" FROM "kids" WHERE "kids"."parent_id" = ?) ORDER BY "readings"."updated_at" DESC LIMIT ?[0m  [["status", "finished"], ["parent_id", 980190963], ["LIMIT", 10]]
+  Rendered family/dashboards/show.html.erb within layouts/family (Duration: 14.2ms | GC: 0.5ms)
+  Rendered shared/_flashes.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/family.html.erb (Duration: 16.6ms | GC: 0.5ms)
+Completed 200 OK in 41ms (Views: 16.9ms | ActiveRecord: 2.3ms (5 queries, 0 cached) | GC: 2.2ms)
+Started POST "/family/kids" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Family::KidsController#create as HTML
+  Parameters: {"kid"=>{"name"=>"Maya", "age"=>"10", "avatar"=>"🦄", "pin"=>"5678"}}
+  [1m[36mCACHE Session Load (0.0ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (0.7ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 10], ["avatar", "🦄"], ["coins", 0], ["created_at", "2026-07-27 16:03:47.765580"], ["last_read_on", nil], ["name", "Maya"], ["parent_id", 980190963], ["pin_digest", "$2a$04$IQsSHwED6sBbpOR32Ey98ulhqMg/pwKKwbGmXAgKJ4aC4gh9TJzm6"], ["streak", 0], ["updated_at", "2026-07-27 16:03:47.765580"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/family/kids
+Completed 302 Found in 13ms (ActiveRecord: 0.8ms (3 queries, 2 cached) | GC: 0.9ms)
+  [1m[36mKid Load (0.2ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? ORDER BY "kids"."id" DESC LIMIT ?[0m  [["parent_id", 980190963], ["LIMIT", 1]]
+Started POST "/family/books" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Family::BooksController#create as HTML
+  Parameters: {"book"=>{"title"=>"B", "author"=>"A", "genre"=>"G", "reward"=>"10", "source_url"=>"https://example.com", "min_age"=>"5", "max_age"=>"10"}}
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A"], ["cover_url", nil], ["created_at", "2026-07-27 16:03:47.786888"], ["genre", "G"], ["max_age", 10], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com"], ["summary", nil], ["title", "B"], ["updated_at", "2026-07-27 16:03:47.786888"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/family/books/1/quiz/edit
+Completed 302 Found in 14ms (ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.6ms)
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started PATCH "/family/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Family::QuizzesController#update as HTML
+  Parameters: {"questions"=>{"0"=>{"question"=>"Q?", "choices"=>["x", "y"], "answer"=>"1"}}, "book_id"=>"1"}
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:03:47.803249"], ["questions", "[{\"question\":\"Q?\",\"choices\":[\"x\",\"y\"],\"answer\":1}]"], ["updated_at", "2026-07-27 16:03:47.803249"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/family/books
+Completed 302 Found in 11ms (ActiveRecord: 0.9ms (4 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+Started POST "/family/rewards" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Family::RewardsController#create as HTML
+  Parameters: {"reward"=>{"title"=>"Zoo", "emoji"=>"🦓", "cost"=>"50"}}
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.3ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 50], ["created_at", "2026-07-27 16:03:47.817059"], ["emoji", "🦓"], ["parent_id", 980190963], ["title", "Zoo"], ["updated_at", "2026-07-27 16:03:47.817059"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/family/rewards
+Completed 302 Found in 8ms (ActiveRecord: 0.5ms (3 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mReward Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "rewards" WHERE "rewards"."parent_id" = ?[0m  [["parent_id", 980190963]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------------
+FamilyFlowTest: test_family_area_requires_authentication
+--------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:47.822806"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:03:47.822806"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.2ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:47.827707"], ["ip_address", "127.0.0.1"], ["updated_at", "2026-07-27 16:03:47.827707"], ["user_agent", nil], ["user_id", 980190963]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+Started DELETE "/session" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by SessionsController#destroy as HTML
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Destroy (0.2ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = ?[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/session/new
+Completed 303 See Other in 2ms (ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/family" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Family::DashboardsController#show as HTML
+Redirected to http://www.example.com/session/new
+Filter chain halted as :require_authentication rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------------------
+PlayFlowTest: test_failing_quiz_earns_nothing
+---------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:47.838969"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:03:47.838969"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (0.3ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 8], ["avatar", "🦁"], ["coins", 0], ["created_at", "2026-07-27 16:03:47.842272"], ["last_read_on", nil], ["name", "Leo"], ["parent_id", 980190963], ["pin_digest", "$2a$04$iyqsw.z2e0lN5cnh1cge1.rwuRF8bMdYzUoWmWn8ey1L3f/tOLDaW"], ["streak", 0], ["updated_at", "2026-07-27 16:03:47.842272"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A. Author"], ["cover_url", nil], ["created_at", "2026-07-27 16:03:47.843923"], ["genre", "Adventure"], ["max_age", 12], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com/book"], ["summary", nil], ["title", "Test Book"], ["updated_at", "2026-07-27 16:03:47.843923"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.4ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:03:47.845752"], ["questions", "[{\"question\":\"Q1?\",\"choices\":[\"a\",\"b\"],\"answer\":1},{\"question\":\"Q2?\",\"choices\":[\"a\",\"b\"],\"answer\":0}]"], ["updated_at", "2026-07-27 16:03:47.845752"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.4ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 5], ["created_at", "2026-07-27 16:03:47.848129"], ["emoji", "🍿"], ["parent_id", 980190963], ["title", "Movie night"], ["updated_at", "2026-07-27 16:03:47.848129"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/play/family" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::SessionsController#pick_family as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/play
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+Started POST "/play/kids/1/session" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::SessionsController#create as HTML
+  Parameters: {"pin"=>"1234", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mKid Load (0.2ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? AND "kids"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/play/dashboard
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/play/dashboard" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::DashboardsController#show as HTML
+  [1m[36mKid Load (0.2ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."status" = ?[0m  [["kid_id", 1], ["status", "finished"]]
+  [1m[36mBook Pluck (0.2ms)[0m  [1m[34mSELECT "books"."id" FROM "books" INNER JOIN "readings" ON "books"."id" = "readings"."book_id" WHERE "readings"."kid_id" = ?[0m  [["kid_id", 1]]
+  Rendering layout layouts/play.html.erb
+  Rendering play/dashboards/show.html.erb within layouts/play
+  [1m[36mReading Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."status" = ? LIMIT ?[0m  [["kid_id", 1], ["status", "reading"], ["LIMIT", 1]]
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (min_age IS NULL OR min_age <= ?) AND (max_age IS NULL OR max_age >= ?) AND 1=1 LIMIT ?[0m  [[nil, 8], [nil, 8], ["LIMIT", 4]]
+  Rendered play/dashboards/show.html.erb within layouts/play (Duration: 4.2ms | GC: 1.3ms)
+  Rendered shared/_flashes.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/play.html.erb (Duration: 6.0ms | GC: 1.3ms)
+Completed 200 OK in 55ms (Views: 6.9ms | ActiveRecord: 1.1ms (5 queries, 0 cached) | GC: 38.7ms)
+Started POST "/play/books/1/start" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::BooksController#start as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mReading Create (0.2ms)[0m  [1m[32mINSERT INTO "readings" ("book_id", "coins_earned", "created_at", "kid_id", "quiz_score", "status", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["coins_earned", nil], ["created_at", "2026-07-27 16:03:47.935673"], ["kid_id", 1], ["quiz_score", nil], ["status", "reading"], ["updated_at", "2026-07-27 16:03:47.935673"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1/read
+Completed 302 Found in 10ms (ActiveRecord: 0.9ms (5 queries, 1 cached) | GC: 0.6ms)
+Started POST "/play/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::BooksController#submit_quiz as HTML
+  Parameters: {"answers"=>{"0"=>"0", "1"=>"1"}, "id"=>"1"}
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Load (0.2ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."id" != ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mReading Update (0.1ms)[0m  [1m[33mUPDATE "readings" SET "quiz_score" = ?, "updated_at" = ? WHERE "readings"."id" = ?[0m  [["quiz_score", 0], ["updated_at", "2026-07-27 16:03:47.944920"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1?score=0
+Completed 302 Found in 7ms (ActiveRecord: 1.1ms (7 queries, 0 cached) | GC: 0.4ms)
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------------------------------------
+PlayFlowTest: test_kid_reads_a_book,_passes_quiz,_earns_coins_once,_and_redeems_a_reward
+----------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:47.951027"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:03:47.951027"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (0.3ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 8], ["avatar", "🦁"], ["coins", 0], ["created_at", "2026-07-27 16:03:47.954718"], ["last_read_on", nil], ["name", "Leo"], ["parent_id", 980190963], ["pin_digest", "$2a$04$u6B3p6EvzwBQEbL9G7VsueSS/Hrsu4wx0MsOYb2nD6lTrF0yg78ae"], ["streak", 0], ["updated_at", "2026-07-27 16:03:47.954718"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A. Author"], ["cover_url", nil], ["created_at", "2026-07-27 16:03:47.956216"], ["genre", "Adventure"], ["max_age", 12], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com/book"], ["summary", nil], ["title", "Test Book"], ["updated_at", "2026-07-27 16:03:47.956216"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.3ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:03:47.957836"], ["questions", "[{\"question\":\"Q1?\",\"choices\":[\"a\",\"b\"],\"answer\":1},{\"question\":\"Q2?\",\"choices\":[\"a\",\"b\"],\"answer\":0}]"], ["updated_at", "2026-07-27 16:03:47.957836"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.3ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 5], ["created_at", "2026-07-27 16:03:47.959972"], ["emoji", "🍿"], ["parent_id", 980190963], ["title", "Movie night"], ["updated_at", "2026-07-27 16:03:47.959972"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/play/family" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::SessionsController#pick_family as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/play
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.4ms)
+Started POST "/play/kids/1/session" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::SessionsController#create as HTML
+  Parameters: {"pin"=>"1234", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? AND "kids"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/play/dashboard
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/play/dashboard" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::DashboardsController#show as HTML
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."status" = ?[0m  [["kid_id", 1], ["status", "finished"]]
+  [1m[36mBook Pluck (0.0ms)[0m  [1m[34mSELECT "books"."id" FROM "books" INNER JOIN "readings" ON "books"."id" = "readings"."book_id" WHERE "readings"."kid_id" = ?[0m  [["kid_id", 1]]
+  Rendering layout layouts/play.html.erb
+  Rendering play/dashboards/show.html.erb within layouts/play
+  [1m[36mReading Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."status" = ? LIMIT ?[0m  [["kid_id", 1], ["status", "reading"], ["LIMIT", 1]]
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (min_age IS NULL OR min_age <= ?) AND (max_age IS NULL OR max_age >= ?) AND 1=1 LIMIT ?[0m  [[nil, 8], [nil, 8], ["LIMIT", 4]]
+  Rendered play/dashboards/show.html.erb within layouts/play (Duration: 1.3ms | GC: 0.0ms)
+  Rendered shared/_flashes.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/play.html.erb (Duration: 2.6ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.7ms | ActiveRecord: 0.7ms (5 queries, 0 cached) | GC: 0.5ms)
+Started POST "/play/books/1/start" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::BooksController#start as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mReading Create (0.1ms)[0m  [1m[32mINSERT INTO "readings" ("book_id", "coins_earned", "created_at", "kid_id", "quiz_score", "status", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["coins_earned", nil], ["created_at", "2026-07-27 16:03:47.982066"], ["kid_id", 1], ["quiz_score", nil], ["status", "reading"], ["updated_at", "2026-07-27 16:03:47.982066"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1/read
+Completed 302 Found in 5ms (ActiveRecord: 0.7ms (5 queries, 1 cached) | GC: 0.0ms)
+Started GET "/play/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::BooksController#quiz as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/play.html.erb
+  Rendering play/books/quiz.html.erb within layouts/play
+  Rendered play/books/quiz.html.erb within layouts/play (Duration: 1.1ms | GC: 0.0ms)
+  Rendered shared/_flashes.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/play.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 0.4ms (4 queries, 0 cached) | GC: 0.4ms)
+Started POST "/play/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:03:47 +0000
+Processing by Play::BooksController#submit_quiz as HTML
+  Parameters: {"answers"=>{"0"=>"1", "1"=>"0"}, "id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Book Load (0.0ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Reading Load (0.0ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Load (0.2ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKid Update (0.1ms)[0m  [1m[33mUPDATE "kids" SET "coins" = ?, "last_read_on" = ?, "streak" = ?, "updated_at" = ? WHERE "kids"."id" = ?[0m  [["coins", 10], ["last_read_on", "2026-07-27"], ["streak", 1], ["updated_at", "2026-07-27 16:03:47.998742"], ["id", 1]]
+  [1m[36mReading Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."id" != ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mReading Update (0.1ms)[0m  [1m[33mUPDATE "readings" SET "coins_earned" = ?, "quiz_score" = ?, "status" = ?, "updated_at" = ? WHERE "readings"."id" = ?[0m  [["coins_earned", 10], ["quiz_score", 100], ["status", "finished"], ["updated_at", "2026-07-27 16:03:48.000788"], ["id", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1?earned=10&score=100
+Completed 302 Found in 10ms (ActiveRecord: 0.9ms (10 queries, 4 cached) | GC: 0.3ms)
+  [1m[36mKid Load (0.2ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started POST "/play/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:03:48 +0000
+Processing by Play::BooksController#submit_quiz as HTML
+  Parameters: {"answers"=>{"0"=>"1", "1"=>"0"}, "id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Load (0.2ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1?score=100
+Completed 302 Found in 4ms (ActiveRecord: 0.6ms (5 queries, 1 cached) | GC: 0.0ms)
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started POST "/play/shop/1" for 127.0.0.1 at 2026-07-27 16:03:48 +0000
+Processing by Play::ShopController#redeem as HTML
+  Parameters: {"reward_id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mReward Load (2.4ms)[0m  [1m[34mSELECT "rewards".* FROM "rewards" WHERE "rewards"."parent_id" = ? AND "rewards"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Load (2.8ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKid Update All (2.1ms)[0m  [1m[33mUPDATE "kids" SET "coins" = COALESCE("kids"."coins", 0) - ? WHERE "kids"."id" = ?[0m  [["coins", 5], ["id", 1]]
+  [1m[36mRedemption Create (0.2ms)[0m  [1m[32mINSERT INTO "redemptions" ("created_at", "kid_id", "reward_id", "status", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:48.100310"], ["kid_id", 1], ["reward_id", 1], ["status", "pending"], ["updated_at", "2026-07-27 16:03:48.100310"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/shop
+Completed 302 Found in 83ms (ActiveRecord: 13.5ms (6 queries, 1 cached) | GC: 69.8ms)
+  [1m[36mKid Load (0.2ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRedemption Load (0.3ms)[0m  [1m[34mSELECT "redemptions".* FROM "redemptions" WHERE "redemptions"."kid_id" = ? ORDER BY "redemptions"."id" DESC LIMIT ?[0m  [["kid_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------
+PlayFlowTest: test_kid_area_requires_kid_session
+------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:48.124797"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:03:48.124797"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (3.1ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 8], ["avatar", "🦁"], ["coins", 0], ["created_at", "2026-07-27 16:03:48.129969"], ["last_read_on", nil], ["name", "Leo"], ["parent_id", 980190963], ["pin_digest", "$2a$04$AapVEzjh.8dosxcmDa7QT.hX.rO8X6yKnaohEZBR8ckczSzE8m0aC"], ["streak", 0], ["updated_at", "2026-07-27 16:03:48.129969"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (2.2ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A. Author"], ["cover_url", nil], ["created_at", "2026-07-27 16:03:48.138311"], ["genre", "Adventure"], ["max_age", 12], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com/book"], ["summary", nil], ["title", "Test Book"], ["updated_at", "2026-07-27 16:03:48.138311"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.4ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:03:48.144054"], ["questions", "[{\"question\":\"Q1?\",\"choices\":[\"a\",\"b\"],\"answer\":1},{\"question\":\"Q2?\",\"choices\":[\"a\",\"b\"],\"answer\":0}]"], ["updated_at", "2026-07-27 16:03:48.144054"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mQuiz Load (0.2ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.4ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 5], ["created_at", "2026-07-27 16:03:48.151998"], ["emoji", "🍿"], ["parent_id", 980190963], ["title", "Movie night"], ["updated_at", "2026-07-27 16:03:48.151998"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/play/dashboard" for 127.0.0.1 at 2026-07-27 16:03:48 +0000
+Processing by Play::DashboardsController#show as HTML
+  [1m[36mKid Load (0.2ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Redirected to http://www.example.com/play
+Filter chain halted as :require_kid! rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------
+PlayFlowTest: test_kid_logs_in_with_PIN,_wrong_PIN_rejected
+-----------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:03:48.160106"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:03:48.160106"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (0.5ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 8], ["avatar", "🦁"], ["coins", 0], ["created_at", "2026-07-27 16:03:48.164232"], ["last_read_on", nil], ["name", "Leo"], ["parent_id", 980190963], ["pin_digest", "$2a$04$Li6FNjKPsuT/92n02XaY..3Blf1NPeqDjbNcD2fFTzkhS2kYMtwXu"], ["streak", 0], ["updated_at", "2026-07-27 16:03:48.164232"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A. Author"], ["cover_url", nil], ["created_at", "2026-07-27 16:03:48.167493"], ["genre", "Adventure"], ["max_age", 12], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com/book"], ["summary", nil], ["title", "Test Book"], ["updated_at", "2026-07-27 16:03:48.167493"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:03:48.169134"], ["questions", "[{\"question\":\"Q1?\",\"choices\":[\"a\",\"b\"],\"answer\":1},{\"question\":\"Q2?\",\"choices\":[\"a\",\"b\"],\"answer\":0}]"], ["updated_at", "2026-07-27 16:03:48.169134"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.4ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 5], ["created_at", "2026-07-27 16:03:48.172091"], ["emoji", "🍿"], ["parent_id", 980190963], ["title", "Movie night"], ["updated_at", "2026-07-27 16:03:48.172091"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/play/family" for 127.0.0.1 at 2026-07-27 16:03:48 +0000
+Processing by Play::SessionsController#pick_family as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/play
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+Started POST "/play/kids/1/session" for 127.0.0.1 at 2026-07-27 16:03:48 +0000
+Processing by Play::SessionsController#create as HTML
+  Parameters: {"pin"=>"9999", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? AND "kids"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/play/kids/1/pin
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+Started POST "/play/kids/1/session" for 127.0.0.1 at 2026-07-27 16:03:48 +0000
+Processing by Play::SessionsController#create as HTML
+  Parameters: {"pin"=>"1234", "id"=>"1"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? AND "kids"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/play/dashboard
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms (2 queries, 2 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------
+UserTest: test_downcases_and_strips_email_address
+-------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.2ms)[0m  [1m[31mDELETE FROM "users";
+INSERT INTO "users" ("id", "created_at", "email_address", "password_digest", "updated_at") VALUES (980190962, '2026-07-27 16:04:12.209829', 'one@example.com', '$2a$12$bu3e6VJsX4LMF1xsE2neleFoIyn.zJP3/3m5USyMXoc/vyee6VIZi', '2026-07-27 16:04:12.209829'), (298486374, '2026-07-27 16:04:12.209829', 'two@example.com', '$2a$12$bu3e6VJsX4LMF1xsE2neleFoIyn.zJP3/3m5USyMXoc/vyee6VIZi', '2026-07-27 16:04:12.209829')[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (27.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------------
+FamilyFlowTest: test_family_area_requires_authentication
+--------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:12.304949"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:04:12.304949"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.4ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:12.397490"], ["ip_address", "127.0.0.1"], ["updated_at", "2026-07-27 16:04:12.397490"], ["user_agent", nil], ["user_id", 980190963]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 30ms (ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+Started DELETE "/session" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by SessionsController#destroy as HTML
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Destroy (0.2ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = ?[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/session/new
+Completed 303 See Other in 6ms (ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/family" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by Family::DashboardsController#show as HTML
+Redirected to http://www.example.com/session/new
+Filter chain halted as :require_authentication rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------------------------
+FamilyFlowTest: test_parent_manages_kids,_books,_quizzes_and_rewards
+--------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:12.424611"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:04:12.424611"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.3ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:12.429892"], ["ip_address", "127.0.0.1"], ["updated_at", "2026-07-27 16:04:12.429892"], ["user_agent", nil], ["user_id", 980190963]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/family" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by Family::DashboardsController#show as HTML
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  Rendering layout layouts/family.html.erb
+  Rendering family/dashboards/show.html.erb within layouts/family
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ?[0m  [["parent_id", 980190963]]
+  [1m[36mRedemption Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "redemptions" INNER JOIN "rewards" ON "rewards"."id" = "redemptions"."reward_id" LEFT OUTER JOIN "kids" ON "kids"."id" = "redemptions"."kid_id" WHERE "redemptions"."status" = ? AND "rewards"."parent_id" = ? LIMIT ?[0m  [["status", "pending"], ["parent_id", 980190963], ["LIMIT", 1]]
+  [1m[36mReading Load (0.3ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."status" = ? AND "readings"."kid_id" IN (SELECT "kids"."id" FROM "kids" WHERE "kids"."parent_id" = ?) ORDER BY "readings"."updated_at" DESC LIMIT ?[0m  [["status", "finished"], ["parent_id", 980190963], ["LIMIT", 10]]
+  Rendered family/dashboards/show.html.erb within layouts/family (Duration: 7.1ms | GC: 0.0ms)
+  Rendered shared/_flashes.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/family.html.erb (Duration: 16.6ms | GC: 0.0ms)
+Completed 200 OK in 39ms (Views: 18.6ms | ActiveRecord: 2.0ms (5 queries, 0 cached) | GC: 0.0ms)
+Started POST "/family/kids" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by Family::KidsController#create as HTML
+  Parameters: {"kid"=>{"name"=>"Maya", "age"=>"10", "avatar"=>"🦄", "pin"=>"5678"}}
+  [1m[36mCACHE Session Load (0.0ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (0.5ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 10], ["avatar", "🦄"], ["coins", 0], ["created_at", "2026-07-27 16:04:12.485687"], ["last_read_on", nil], ["name", "Maya"], ["parent_id", 980190963], ["pin_digest", "$2a$04$ICnpd0AwQoejlwSMmkpMJeVmTMyRJkoGia4YZxur2GxgGpuPROS0m"], ["streak", 0], ["updated_at", "2026-07-27 16:04:12.485687"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/family/kids
+Completed 302 Found in 12ms (ActiveRecord: 0.6ms (3 queries, 2 cached) | GC: 0.0ms)
+  [1m[36mKid Load (0.2ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? ORDER BY "kids"."id" DESC LIMIT ?[0m  [["parent_id", 980190963], ["LIMIT", 1]]
+Started POST "/family/books" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by Family::BooksController#create as HTML
+  Parameters: {"book"=>{"title"=>"B", "author"=>"A", "genre"=>"G", "reward"=>"10", "source_url"=>"https://example.com", "min_age"=>"5", "max_age"=>"10"}}
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (0.5ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A"], ["cover_url", nil], ["created_at", "2026-07-27 16:04:12.546389"], ["genre", "G"], ["max_age", 10], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com"], ["summary", nil], ["title", "B"], ["updated_at", "2026-07-27 16:04:12.546389"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/family/books/1/quiz/edit
+Completed 302 Found in 55ms (ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 38.6ms)
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started PATCH "/family/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by Family::QuizzesController#update as HTML
+  Parameters: {"questions"=>{"0"=>{"question"=>"Q?", "choices"=>["x", "y"], "answer"=>"1"}}, "book_id"=>"1"}
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.2ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.8ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:04:12.566194"], ["questions", "[{\"question\":\"Q?\",\"choices\":[\"x\",\"y\"],\"answer\":1}]"], ["updated_at", "2026-07-27 16:04:12.566194"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/family/books
+Completed 302 Found in 13ms (ActiveRecord: 1.6ms (4 queries, 0 cached) | GC: 1.2ms)
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+Started POST "/family/rewards" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by Family::RewardsController#create as HTML
+  Parameters: {"reward"=>{"title"=>"Zoo", "emoji"=>"🦓", "cost"=>"50"}}
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.3ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 50], ["created_at", "2026-07-27 16:04:12.580724"], ["emoji", "🦓"], ["parent_id", 980190963], ["title", "Zoo"], ["updated_at", "2026-07-27 16:04:12.580724"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/family/rewards
+Completed 302 Found in 9ms (ActiveRecord: 0.7ms (3 queries, 0 cached) | GC: 1.0ms)
+  [1m[36mReward Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "rewards" WHERE "rewards"."parent_id" = ?[0m  [["parent_id", 980190963]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------
+SessionsControllerTest: test_new
+--------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+SessionsControllerTest: test_destroy
+------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.3ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:12.598032"], ["ip_address", nil], ["updated_at", "2026-07-27 16:04:12.598032"], ["user_agent", nil], ["user_id", 298486374]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/session" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by SessionsController#destroy as HTML
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Destroy (0.2ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = ?[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/session/new
+Completed 303 See Other in 2ms (ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------------
+SessionsControllerTest: test_create_with_invalid_credentials
+------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 238ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------
+SessionsControllerTest: test_create_with_valid_credentials
+----------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/session" for 127.0.0.1 at 2026-07-27 16:04:12 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSession Create (0.5ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "ip_address", "updated_at", "user_agent", "user_id") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:13.086087"], ["ip_address", "127.0.0.1"], ["updated_at", "2026-07-27 16:04:13.086087"], ["user_agent", nil], ["user_id", 298486374]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 238ms (ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------------------------------------
+PlayFlowTest: test_kid_reads_a_book,_passes_quiz,_earns_coins_once,_and_redeems_a_reward
+----------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:13.092479"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:04:13.092479"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (0.3ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 8], ["avatar", "🦁"], ["coins", 0], ["created_at", "2026-07-27 16:04:13.095608"], ["last_read_on", nil], ["name", "Leo"], ["parent_id", 980190963], ["pin_digest", "$2a$04$mjoyk1yCtBBckJlFHSUxFeGlsVaT3hJag/gRuAxT29tl.nzZXy3o6"], ["streak", 0], ["updated_at", "2026-07-27 16:04:13.095608"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A. Author"], ["cover_url", nil], ["created_at", "2026-07-27 16:04:13.097222"], ["genre", "Adventure"], ["max_age", 12], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com/book"], ["summary", nil], ["title", "Test Book"], ["updated_at", "2026-07-27 16:04:13.097222"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.3ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:04:13.099530"], ["questions", "[{\"question\":\"Q1?\",\"choices\":[\"a\",\"b\"],\"answer\":1},{\"question\":\"Q2?\",\"choices\":[\"a\",\"b\"],\"answer\":0}]"], ["updated_at", "2026-07-27 16:04:13.099530"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.2ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 5], ["created_at", "2026-07-27 16:04:13.101931"], ["emoji", "🍿"], ["parent_id", 980190963], ["title", "Movie night"], ["updated_at", "2026-07-27 16:04:13.101931"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/play/family" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::SessionsController#pick_family as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/play
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.4ms)
+Started POST "/play/kids/1/session" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::SessionsController#create as HTML
+  Parameters: {"pin"=>"1234", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mKid Load (0.2ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? AND "kids"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/play/dashboard
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/play/dashboard" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::DashboardsController#show as HTML
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."status" = ?[0m  [["kid_id", 1], ["status", "finished"]]
+  [1m[36mBook Pluck (0.1ms)[0m  [1m[34mSELECT "books"."id" FROM "books" INNER JOIN "readings" ON "books"."id" = "readings"."book_id" WHERE "readings"."kid_id" = ?[0m  [["kid_id", 1]]
+  Rendering layout layouts/play.html.erb
+  Rendering play/dashboards/show.html.erb within layouts/play
+  [1m[36mReading Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."status" = ? LIMIT ?[0m  [["kid_id", 1], ["status", "reading"], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (min_age IS NULL OR min_age <= ?) AND (max_age IS NULL OR max_age >= ?) AND 1=1 LIMIT ?[0m  [[nil, 8], [nil, 8], ["LIMIT", 4]]
+  Rendered play/dashboards/show.html.erb within layouts/play (Duration: 2.3ms | GC: 0.3ms)
+  Rendered shared/_flashes.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/play.html.erb (Duration: 3.7ms | GC: 0.3ms)
+Completed 200 OK in 10ms (Views: 4.4ms | ActiveRecord: 0.7ms (5 queries, 0 cached) | GC: 0.7ms)
+Started POST "/play/books/1/start" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::BooksController#start as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mReading Create (0.2ms)[0m  [1m[32mINSERT INTO "readings" ("book_id", "coins_earned", "created_at", "kid_id", "quiz_score", "status", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["coins_earned", nil], ["created_at", "2026-07-27 16:04:13.136087"], ["kid_id", 1], ["quiz_score", nil], ["status", "reading"], ["updated_at", "2026-07-27 16:04:13.136087"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1/read
+Completed 302 Found in 8ms (ActiveRecord: 0.7ms (5 queries, 1 cached) | GC: 0.0ms)
+Started GET "/play/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::BooksController#quiz as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/play.html.erb
+  Rendering play/books/quiz.html.erb within layouts/play
+  Rendered play/books/quiz.html.erb within layouts/play (Duration: 0.9ms | GC: 0.0ms)
+  Rendered shared/_flashes.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/play.html.erb (Duration: 1.9ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 0.3ms (4 queries, 0 cached) | GC: 0.0ms)
+Started POST "/play/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::BooksController#submit_quiz as HTML
+  Parameters: {"answers"=>{"0"=>"1", "1"=>"0"}, "id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Book Load (0.0ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Reading Load (0.0ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Load (0.3ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKid Update (0.1ms)[0m  [1m[33mUPDATE "kids" SET "coins" = ?, "last_read_on" = ?, "streak" = ?, "updated_at" = ? WHERE "kids"."id" = ?[0m  [["coins", 10], ["last_read_on", "2026-07-27"], ["streak", 1], ["updated_at", "2026-07-27 16:04:13.151938"], ["id", 1]]
+  [1m[36mReading Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."id" != ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mReading Update (0.1ms)[0m  [1m[33mUPDATE "readings" SET "coins_earned" = ?, "quiz_score" = ?, "status" = ?, "updated_at" = ? WHERE "readings"."id" = ?[0m  [["coins_earned", 10], ["quiz_score", 100], ["status", "finished"], ["updated_at", "2026-07-27 16:04:13.154243"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1?earned=10&score=100
+Completed 302 Found in 9ms (ActiveRecord: 1.1ms (10 queries, 4 cached) | GC: 0.0ms)
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started POST "/play/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::BooksController#submit_quiz as HTML
+  Parameters: {"answers"=>{"0"=>"1", "1"=>"0"}, "id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Load (0.2ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1?score=100
+Completed 302 Found in 4ms (ActiveRecord: 0.5ms (5 queries, 1 cached) | GC: 0.0ms)
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started POST "/play/shop/1" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::ShopController#redeem as HTML
+  Parameters: {"reward_id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mReward Load (0.2ms)[0m  [1m[34mSELECT "rewards".* FROM "rewards" WHERE "rewards"."parent_id" = ? AND "rewards"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Load (0.2ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKid Update All (0.1ms)[0m  [1m[33mUPDATE "kids" SET "coins" = COALESCE("kids"."coins", 0) - ? WHERE "kids"."id" = ?[0m  [["coins", 5], ["id", 1]]
+  [1m[36mRedemption Create (0.1ms)[0m  [1m[32mINSERT INTO "redemptions" ("created_at", "kid_id", "reward_id", "status", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:13.172383"], ["kid_id", 1], ["reward_id", 1], ["status", "pending"], ["updated_at", "2026-07-27 16:04:13.172383"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/shop
+Completed 302 Found in 8ms (ActiveRecord: 0.7ms (6 queries, 1 cached) | GC: 0.0ms)
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRedemption Load (0.1ms)[0m  [1m[34mSELECT "redemptions".* FROM "redemptions" WHERE "redemptions"."kid_id" = ? ORDER BY "redemptions"."id" DESC LIMIT ?[0m  [["kid_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------
+PlayFlowTest: test_kid_logs_in_with_PIN,_wrong_PIN_rejected
+-----------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:13.178445"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:04:13.178445"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (0.2ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 8], ["avatar", "🦁"], ["coins", 0], ["created_at", "2026-07-27 16:04:13.181371"], ["last_read_on", nil], ["name", "Leo"], ["parent_id", 980190963], ["pin_digest", "$2a$04$DYcE18oz/CYrziCa51zcWeCo3/qeNRNaEazv48Es3EQet6oI8C73e"], ["streak", 0], ["updated_at", "2026-07-27 16:04:13.181371"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A. Author"], ["cover_url", nil], ["created_at", "2026-07-27 16:04:13.182705"], ["genre", "Adventure"], ["max_age", 12], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com/book"], ["summary", nil], ["title", "Test Book"], ["updated_at", "2026-07-27 16:04:13.182705"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:04:13.184315"], ["questions", "[{\"question\":\"Q1?\",\"choices\":[\"a\",\"b\"],\"answer\":1},{\"question\":\"Q2?\",\"choices\":[\"a\",\"b\"],\"answer\":0}]"], ["updated_at", "2026-07-27 16:04:13.184315"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.3ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 5], ["created_at", "2026-07-27 16:04:13.186288"], ["emoji", "🍿"], ["parent_id", 980190963], ["title", "Movie night"], ["updated_at", "2026-07-27 16:04:13.186288"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/play/family" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::SessionsController#pick_family as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/play
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+Started POST "/play/kids/1/session" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::SessionsController#create as HTML
+  Parameters: {"pin"=>"9999", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? AND "kids"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/play/kids/1/pin
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+Started POST "/play/kids/1/session" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::SessionsController#create as HTML
+  Parameters: {"pin"=>"1234", "id"=>"1"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? AND "kids"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/play/dashboard
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms (2 queries, 2 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------------------
+PlayFlowTest: test_failing_quiz_earns_nothing
+---------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:13.201335"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:04:13.201335"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (0.3ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 8], ["avatar", "🦁"], ["coins", 0], ["created_at", "2026-07-27 16:04:13.204122"], ["last_read_on", nil], ["name", "Leo"], ["parent_id", 980190963], ["pin_digest", "$2a$04$parfwzMmQQ7yMKqGm8TVA.rC2PAngd01kMz8CQnBKLItAAAieLpVu"], ["streak", 0], ["updated_at", "2026-07-27 16:04:13.204122"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A. Author"], ["cover_url", nil], ["created_at", "2026-07-27 16:04:13.205420"], ["genre", "Adventure"], ["max_age", 12], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com/book"], ["summary", nil], ["title", "Test Book"], ["updated_at", "2026-07-27 16:04:13.205420"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:04:13.207038"], ["questions", "[{\"question\":\"Q1?\",\"choices\":[\"a\",\"b\"],\"answer\":1},{\"question\":\"Q2?\",\"choices\":[\"a\",\"b\"],\"answer\":0}]"], ["updated_at", "2026-07-27 16:04:13.207038"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.2ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 5], ["created_at", "2026-07-27 16:04:13.209055"], ["emoji", "🍿"], ["parent_id", 980190963], ["title", "Movie night"], ["updated_at", "2026-07-27 16:04:13.209055"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/play/family" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::SessionsController#pick_family as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/play
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+Started POST "/play/kids/1/session" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::SessionsController#create as HTML
+  Parameters: {"pin"=>"1234", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."parent_id" = ? AND "kids"."id" = ? LIMIT ?[0m  [["parent_id", 980190963], ["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/play/dashboard
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+Started GET "/play/dashboard" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::DashboardsController#show as HTML
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."status" = ?[0m  [["kid_id", 1], ["status", "finished"]]
+  [1m[36mBook Pluck (0.0ms)[0m  [1m[34mSELECT "books"."id" FROM "books" INNER JOIN "readings" ON "books"."id" = "readings"."book_id" WHERE "readings"."kid_id" = ?[0m  [["kid_id", 1]]
+  Rendering layout layouts/play.html.erb
+  Rendering play/dashboards/show.html.erb within layouts/play
+  [1m[36mReading Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."status" = ? LIMIT ?[0m  [["kid_id", 1], ["status", "reading"], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE (min_age IS NULL OR min_age <= ?) AND (max_age IS NULL OR max_age >= ?) AND 1=1 LIMIT ?[0m  [[nil, 8], [nil, 8], ["LIMIT", 4]]
+  Rendered play/dashboards/show.html.erb within layouts/play (Duration: 1.4ms | GC: 0.0ms)
+  Rendered shared/_flashes.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/play.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 0.4ms (5 queries, 0 cached) | GC: 0.0ms)
+Started POST "/play/books/1/start" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::BooksController#start as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCACHE Kid Load (0.0ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mReading Create (0.1ms)[0m  [1m[32mINSERT INTO "readings" ("book_id", "coins_earned", "created_at", "kid_id", "quiz_score", "status", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["coins_earned", nil], ["created_at", "2026-07-27 16:04:13.227247"], ["kid_id", 1], ["quiz_score", nil], ["status", "reading"], ["updated_at", "2026-07-27 16:04:13.227247"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1/read
+Completed 302 Found in 4ms (ActiveRecord: 0.5ms (5 queries, 1 cached) | GC: 0.0ms)
+Started POST "/play/books/1/quiz" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::BooksController#submit_quiz as HTML
+  Parameters: {"answers"=>{"0"=>"0", "1"=>"1"}, "id"=>"1"}
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReading Load (0.3ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."id" != ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mReading Update (0.1ms)[0m  [1m[33mUPDATE "readings" SET "quiz_score" = ?, "updated_at" = ? WHERE "readings"."id" = ?[0m  [["quiz_score", 0], ["updated_at", "2026-07-27 16:04:13.234014"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/play/books/1?score=0
+Completed 302 Found in 5ms (ActiveRecord: 0.9ms (7 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReading Load (0.1ms)[0m  [1m[34mSELECT "readings".* FROM "readings" WHERE "readings"."kid_id" = ? AND "readings"."book_id" = ? LIMIT ?[0m  [["kid_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------
+PlayFlowTest: test_kid_area_requires_kid_session
+------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email_address", "password_digest", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["created_at", "2026-07-27 16:04:13.239667"], ["email_address", "[FILTERED]"], ["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:04:13.239667"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKid Create (0.2ms)[0m  [1m[32mINSERT INTO "kids" ("age", "avatar", "coins", "created_at", "last_read_on", "name", "parent_id", "pin_digest", "streak", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["age", 8], ["avatar", "🦁"], ["coins", 0], ["created_at", "2026-07-27 16:04:13.242613"], ["last_read_on", nil], ["name", "Leo"], ["parent_id", 980190963], ["pin_digest", "$2a$04$1V/1KYO/TaYmKO/N9986WOPjWMglp0DKG1FlpuiW3NUe.eTMrVh0W"], ["streak", 0], ["updated_at", "2026-07-27 16:04:13.242613"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("author", "cover_url", "created_at", "genre", "max_age", "min_age", "reward", "source_url", "summary", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["author", "A. Author"], ["cover_url", nil], ["created_at", "2026-07-27 16:04:13.243974"], ["genre", "Adventure"], ["max_age", 12], ["min_age", 5], ["reward", 10], ["source_url", "https://example.com/book"], ["summary", nil], ["title", "Test Book"], ["updated_at", "2026-07-27 16:04:13.243974"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("book_id", "created_at", "questions", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["book_id", 1], ["created_at", "2026-07-27 16:04:13.245399"], ["questions", "[{\"question\":\"Q1?\",\"choices\":[\"a\",\"b\"],\"answer\":1},{\"question\":\"Q2?\",\"choices\":[\"a\",\"b\"],\"answer\":0}]"], ["updated_at", "2026-07-27 16:04:13.245399"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReward Create (0.2ms)[0m  [1m[32mINSERT INTO "rewards" ("cost", "created_at", "emoji", "parent_id", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["cost", 5], ["created_at", "2026-07-27 16:04:13.247493"], ["emoji", "🍿"], ["parent_id", 980190963], ["title", "Movie night"], ["updated_at", "2026-07-27 16:04:13.247493"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/play/dashboard" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by Play::DashboardsController#show as HTML
+  [1m[36mKid Load (0.1ms)[0m  [1m[34mSELECT "kids".* FROM "kids" WHERE "kids"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Redirected to http://www.example.com/play
+Filter chain halted as :require_kid! rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------------
+PasswordsControllerTest: test_update_with_non_matching_passwords
+----------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started PUT "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwiRjF4c0UybmVsZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE5OjEzLjI1MloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--3307d592464e968f2bcd0f0a4043ced35b261093" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by PasswordsController#update as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "token"=>"[FILTERED]"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+[31mUnpermitted parameter: :token. Context: { controller: PasswordsController, action: update, request: #<ActionDispatch::Request:0x00007f7a4110d340>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"passwords", "action"=>"update", "token"=>"[FILTERED]"} }[0m
+Redirected to http://www.example.com/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwiRjF4c0UybmVsZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE5OjEzLjI1MloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--3307d592464e968f2bcd0f0a4043ced35b261093/edit
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms (1 query, 1 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started GET "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwiRjF4c0UybmVsZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE5OjEzLjI1MloiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--3307d592464e968f2bcd0f0a4043ced35b261093/edit" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by PasswordsController#edit as HTML
+  Parameters: {"token"=>"[FILTERED]"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/edit.html.erb within layouts/application
+  Rendered passwords/edit.html.erb within layouts/application (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms (1 query, 1 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------
+PasswordsControllerTest: test_edit
+----------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwiRjF4c0UybmVsZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE5OjEzLjI3MFoiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--d920ac10011a0c228ed5e76b02bdf66fcc13f6a1/edit" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by PasswordsController#edit as HTML
+  Parameters: {"token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/edit.html.erb within layouts/application
+  Rendered passwords/edit.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+--------------------------------------------------------------------
+PasswordsControllerTest: test_edit_with_invalid_password_reset_token
+--------------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/passwords/invalid%20token/edit" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by PasswordsController#edit as HTML
+  Parameters: {"token"=>"[FILTERED]"}
+Redirected to http://www.example.com/passwords/new
+Filter chain halted as :set_user_by_token rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/passwords/new" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by PasswordsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/new.html.erb within layouts/application
+  Rendered passwords/new.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------------------------------------
+PasswordsControllerTest: test_create_for_an_unknown_user_redirects_but_sends_no_mail
+------------------------------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/passwords" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by PasswordsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+---------------------------------
+PasswordsControllerTest: test_new
+---------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/passwords/new" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by PasswordsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passwords/new.html.erb within layouts/application
+  Rendered passwords/new.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+PasswordsControllerTest: test_create
+------------------------------------
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/passwords" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by PasswordsController#create as HTML
+  Parameters: {"email_address"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email_address" = ? LIMIT ?[0m  [["email_address", "[FILTERED]"], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: d2453d16-6c3f-430d-a3e5-45ecb8e7d807) to Test(default) with arguments: "PasswordsMailer", "reset", "deliver_now", {:args=>[#<GlobalID:0x00007f7a428381a0 @uri=#<URI::GID gid://readcoin/User/298486374>>]}
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 4ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+PasswordsControllerTest: test_update
+------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started PUT "/passwords/eyJfcmFpbHMiOnsiZGF0YSI6WzI5ODQ4NjM3NCwiRjF4c0UybmVsZSJdLCJleHAiOiIyMDI2LTA3LTI3VDE2OjE5OjEzLjM0N1oiLCJwdXIiOiJVc2VyXG5wYXNzd29yZF9yZXNldFxuOTAwIn19--4ebbaf61ca20b2ad25c7f950e9daa1282b0418aa" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by PasswordsController#update as HTML
+  Parameters: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "token"=>"[FILTERED]"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+[31mUnpermitted parameter: :token. Context: { controller: PasswordsController, action: update, request: #<ActionDispatch::Request:0x00007f7a41853848>, params: {"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"passwords", "action"=>"update", "token"=>"[FILTERED]"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "password_digest" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["password_digest", "[FILTERED]"], ["updated_at", "2026-07-27 16:04:13.351036"], ["id", 298486374]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."user_id" = ?[0m  [["user_id", 298486374]]
+Redirected to http://www.example.com/session/new
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms (3 queries, 1 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 298486374], ["LIMIT", 1]]
+Started GET "/session/new" for 127.0.0.1 at 2026-07-27 16:04:13 +0000
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------
+UserTest: test_downcases_and_strips_email_address
+-------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m

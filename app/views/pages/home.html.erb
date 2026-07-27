@@ -1,78 +1,19 @@
-<div class="container banner-img">
-  <div class="banner-content text-center">
-    <h1 class="banner-title">READCOIN</h1>
-    <h2 class="banner-text", style="color:white;">Read. Earn. Spend.</h2>
-    <%= link_to "Sign in", new_user_session_path, class: "btn-banner-home" %>
+<div class="w-full text-center py-16">
+  <h1 class="text-6xl font-extrabold tracking-tight">📚 ReadCoin</h1>
+  <p class="mt-4 text-2xl text-stone-500 font-medium">Read. Earn. Spend.</p>
+  <p class="mt-6 max-w-xl mx-auto text-stone-600">
+    Kids read real books, pass a comprehension quiz, and earn coins they can spend on
+    rewards their parents set up — a trip to the zoo, movie night, you name it.
+  </p>
+  <div class="mt-10 flex justify-center gap-4">
+    <%= link_to "I'm a kid — let's read! 🚀", play_root_path, class: "px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg shadow" %>
+    <% if authenticated? %>
+      <%= link_to "Family dashboard", family_root_path, class: "px-6 py-3 rounded-2xl bg-stone-800 hover:bg-stone-700 text-white font-bold text-lg" %>
+    <% else %>
+      <%= link_to "Parent sign in", new_session_path, class: "px-6 py-3 rounded-2xl bg-stone-800 hover:bg-stone-700 text-white font-bold text-lg" %>
+    <% end %>
   </div>
-</div>
-<div class="landing-page-content">
-<div class="jumbotron problem-solution-background">
-  <div class="container cards-align" >
-      <div class="card text-center col-xs-12 col-md-4 card-home-left">
-          <h2>What is ReadCoin?</h2>
-          <p>ReadCoin is the first incentive driven coin for childern of the world. </p>
-      </div>
-
-      <%= image_tag 'logo.png', class:"logo-image", style:"height: 300px" %>
-
-      <div class="card  col-xs-12 col-md-4 text-center card-home-right">
-        <h2>Why ReadCoin?</h2>
-        <p>If you want your children to be smart, successful, technologicly advanced, happy and ready for the way that is ahead.</p>
-      </div>
-  </div>
-</div>
-
-<div class="jumbotron the-path-background-color">
-  <div class="container">
-    <div class="row text-center path-font">
-      <div class="col-xs-12 col-md-4">
-        <%= image_tag "icons8-read-online-96.png" %>
-        <h2>Read</h2>
-        <p>Find a book. Read the book.</p>
-      </div>
-      <div class="col-xs-12 col-md-4">
-        <%= image_tag "icons8-pass-fail-96.png" %>
-        <h2>Answer</h2>
-        <p>Answer a short quiz about the book</p>
-      </div>
-      <div class="col-xs-12 col-md-4">
-         <%= image_tag "icons8-buy-96.png" %>
-         <h2>Buy</h2>
-         <p>Go to our amazing shop and find the gift that you want for yourself</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="container-fluid how-uses-background">
-    <h2>How to use ReadCoin?</h2>
-    <div class="container text-center image-inline">
-      <div>
-        <h2>Kids</h2>
-        <%= image_tag "kids_on_roof_reading_book.jpg", class:"img-circle" %>
-        <p>Read books, buy things, and learn important money management skills that last a lifetime.</p>
-      </div>
-      <div>
-        <h2>Parents</h2>
-        <%= image_tag "kid-reading-with-parents.jpg", class:"img-circle" %>
-        <p>Get involved in your child’s learning and reading abilities  and have fun along the way.</p>
-      </div>
-  </div>
-</div>
-<!-- 
-
-<div class="jumbotron get-paid-background">
-  <div class="container">
-    <div class="row">
-      <h2>How Can I Contribute?</h2>
-      <p>If you think that our goal is align with yours, sign in.</p>
-      <p>Want To Contribute More?</p>
-      <p>we are accepting donations with etherium</p>
-      <%= image_tag "qr code.png", id: "qr" %>
-      <p>Our Ethereum address is: 0xD375a855837a0046C8783C6d8edD6981cE3103e9</p>
-
-    </div>
-  </div>
-</div> -->
+  <% unless authenticated? %>
+    <p class="mt-4 text-sm text-stone-500">New here? <%= link_to "Create a family account", new_registration_path, class: "underline font-medium" %></p>
+  <% end %>
 </div>

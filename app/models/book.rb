@@ -1,10 +1,10 @@
 class Book < ApplicationRecord
+  has_one :quiz, dependent: :destroy
   has_many :readings, dependent: :destroy
   has_many :kids, through: :readings
-  validates :title, presence: true
-  validates :url, presence: true
-  validates :genre, presence: true
-  validates :reward, presence: true
-  serialize :quiz
-  mount_uploader :photo, PhotoUploader
+
+  validates :title, :author, :genre, :source_url, presence: true
+  validates :reward, numericality: { greater_than: 0 }
+
+  scope :for_age, ->(age) { where("min_age IS NULL OR min_age <= ?", age).where("max_age IS NULL OR max_age >= ?", age) }
 end

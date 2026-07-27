@@ -1,12 +1,6 @@
 <% if notice %>
-  <div class="alert alert-info alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= notice %>
-  </div>
+  <p class="py-2 px-4 bg-green-100 text-green-700 font-medium rounded-xl mb-4"><%= notice %></p>
 <% end %>
 <% if alert %>
-  <div class="alert alert-warning alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= alert %>
-  </div>
+  <p class="py-2 px-4 bg-red-100 text-red-600 font-medium rounded-xl mb-4"><%= alert %></p>
 <% end %>

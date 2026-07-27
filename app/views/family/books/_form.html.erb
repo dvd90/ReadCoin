@@ -1,0 +1,46 @@
+<%= form_with model: [ :family, book ], class: "bg-white rounded-2xl border border-stone-200 p-6 max-w-2xl" do |form| %>
+  <% if book.errors.any? %>
+    <div class="py-2 px-4 bg-red-100 text-red-600 rounded-xl mb-4"><%= book.errors.full_messages.to_sentence %></div>
+  <% end %>
+
+  <div class="grid md:grid-cols-2 gap-4">
+    <div>
+      <label class="block font-medium mb-1">Title</label>
+      <%= form.text_field :title, required: true, class: "block w-full rounded-md border border-stone-300 px-3 py-2" %>
+    </div>
+    <div>
+      <label class="block font-medium mb-1">Author</label>
+      <%= form.text_field :author, required: true, class: "block w-full rounded-md border border-stone-300 px-3 py-2" %>
+    </div>
+    <div>
+      <label class="block font-medium mb-1">Genre</label>
+      <%= form.text_field :genre, required: true, placeholder: "Adventure", class: "block w-full rounded-md border border-stone-300 px-3 py-2" %>
+    </div>
+    <div>
+      <label class="block font-medium mb-1">Coin reward</label>
+      <%= form.number_field :reward, min: 1, required: true, class: "block w-full rounded-md border border-stone-300 px-3 py-2" %>
+    </div>
+    <div>
+      <label class="block font-medium mb-1">Min age</label>
+      <%= form.number_field :min_age, in: 3..16, class: "block w-full rounded-md border border-stone-300 px-3 py-2" %>
+    </div>
+    <div>
+      <label class="block font-medium mb-1">Max age</label>
+      <%= form.number_field :max_age, in: 3..16, class: "block w-full rounded-md border border-stone-300 px-3 py-2" %>
+    </div>
+    <div class="md:col-span-2">
+      <label class="block font-medium mb-1">Read link <span class="text-stone-400 text-sm">(where the kid reads it — e.g. a Project Gutenberg page)</span></label>
+      <%= form.url_field :source_url, required: true, class: "block w-full rounded-md border border-stone-300 px-3 py-2" %>
+    </div>
+    <div class="md:col-span-2">
+      <label class="block font-medium mb-1">Cover image URL <span class="text-stone-400 text-sm">(optional)</span></label>
+      <%= form.url_field :cover_url, class: "block w-full rounded-md border border-stone-300 px-3 py-2" %>
+    </div>
+    <div class="md:col-span-2">
+      <label class="block font-medium mb-1">Summary <span class="text-stone-400 text-sm">(helps AI quiz generation)</span></label>
+      <%= form.text_area :summary, rows: 4, class: "block w-full rounded-md border border-stone-300 px-3 py-2" %>
+    </div>
+  </div>
+
+  <%= form.submit class: "mt-6 px-4 py-2 rounded-xl bg-amber-500 text-white font-bold cursor-pointer" %>
+<% end %>
